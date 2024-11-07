@@ -21,6 +21,7 @@ export class AuthService implements IAuthService {
     id?: string;
     email: string;
     name: string;
+    role?: string;
   }> {
     const user = await this.userService.findByEmail(email);
 

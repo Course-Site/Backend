@@ -9,7 +9,9 @@ export interface IAuthService {
     id?: string;
     email: string;
     name: string;
+    role?: string;
   } | null>;
   signUp(data: CreateUserDto): Promise<{ token: string }>;
   signIn(data: any): Promise<{ token: string }>;
 }
+ 

@@ -14,8 +14,7 @@ export class AuthController {
     private readonly authService: IAuthService,
   ) {}
 
-  @UseGuards(JwtAuthGuard)
-  @ApiBearerAuth()
+
   @Post('sign-up')
   @ApiBody({
     schema: {
@@ -23,6 +22,7 @@ export class AuthController {
         email: { type: 'string', default: 'test@test.com' },
         password: { type: 'string', default: '12345678' },
         name: { type: 'string', default: 'John Doe' },
+        role: { type: 'string', default: 'Student' },
       },
     },
   })

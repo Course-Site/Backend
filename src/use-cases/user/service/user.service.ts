@@ -20,6 +20,7 @@ export class UserService implements IUserService {
       email: data.email,
       password: hash,
       name: data.name,
+      role: data.role,
     });
   }
 

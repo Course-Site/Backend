@@ -24,4 +24,7 @@ export class UserEntity {
   @Column('varchar')
   @IsNotEmpty()
   name: string;
+
+  @Column('varchar')
+  role: string;
 }

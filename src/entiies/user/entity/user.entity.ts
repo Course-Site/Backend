@@ -6,10 +6,12 @@ export class UserEntity implements IUserEntity {
   email: string;
   password: string;
   name: string;
+  role?: string;
   constructor(data: TUserEntity) {
     this.id = data.id;
     this.email = data.email;
     this.password = data.password;
     this.name = data.name;
+    this.role = data.role;
   }
 }

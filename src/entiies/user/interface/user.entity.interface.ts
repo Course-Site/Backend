@@ -3,4 +3,5 @@ export interface IUserEntity {
   email: string;
   password: string;
   name: string;
+  role?: string;
 }

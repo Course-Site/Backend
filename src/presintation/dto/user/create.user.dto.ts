@@ -4,4 +4,5 @@ export class CreateUserDto implements ICreateUserDto {
   email: string;
   password: string;
   name: string;
+  role?: string;
 }
