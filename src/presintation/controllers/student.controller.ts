@@ -19,7 +19,8 @@ import { IStudentEntity } from 'src/entiies/student/interface/student.entity.int
 @ApiTags('Student')
 @UseGuards(JwtAuthGuard)
 @ApiBearerAuth()
-export class StudentController {
+export class StudentController 
+{
   constructor(
     @Inject('studentService')
     private readonly studentService: IStudentService,
@@ -45,15 +46,17 @@ export class StudentController {
   })
   @ApiResponse({ status: 201, description: 'The student has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Bad Request.' })
-  async createStudent(@Body() data: ICreateStudentDto) {
+  async createStudent(@Body() data: ICreateStudentDto) 
+  {
     return await this.studentService.createStudent(data);
   }
 
-  @Get('get')
+  @Get('getAll')
   @ApiOperation({ summary: 'Get all students' })
   @ApiResponse({ status: 200, description: 'Return all students.' })
   @ApiResponse({ status: 404, description: 'Students not found.' })
-  async findAllStudents() {
+  async findAllStudents() 
+  {
     return await this.studentService.findAllStudents();
   }
 
@@ -62,7 +65,8 @@ export class StudentController {
   @ApiParam({ name: 'id', description: 'Student ID', type: 'string' })
   @ApiResponse({ status: 200, description: 'The student has been successfully deleted.' })
   @ApiResponse({ status: 404, description: 'Student not found.' })
-  async deleteStudent(@Param('id') id: string) {
+  async deleteStudent(@Param('id') id: string) 
+  {
     await this.studentService.deleteStudent(id);
   }
 
@@ -86,7 +90,8 @@ export class StudentController {
   })
   @ApiResponse({ status: 200, description: 'student data has been changed.' })
   @ApiResponse({ status: 404, description: 'Student not found.' })
-  async update(@Param('id') id: string, @Body() student: IStudentEntity) {
+  async update(@Param('id') id: string, @Body() student: IStudentEntity) 
+  {
     return await this.studentService.update(id, student);
   }
 
@@ -95,7 +100,8 @@ export class StudentController {
   @ApiParam({ name: 'id', description: 'Student ID', type: 'string' })
   @ApiResponse({ status: 200, description: 'Return the student with the given ID.' })
   @ApiResponse({ status: 404, description: 'Student not found.' })
-  async findById(@Param('id') id: string) {
+  async findById(@Param('id') id: string) 
+  {
     return await this.studentService.findById(id);
   }
 
@@ -104,7 +110,8 @@ export class StudentController {
   @ApiParam({ name: 'fullName', description: 'Student fullName', type: 'string' })
   @ApiResponse({ status: 200, description: 'Return the student with the given fullname.' })
   @ApiResponse({ status: 404, description: 'Student not found.' })
-  async findByName(@Param('fullName') fullName: string) {
+  async findByName(@Param('fullName') fullName: string) 
+  {
       return await this.studentService.findByName(fullName);
   };
 
@@ -114,7 +121,8 @@ export class StudentController {
   @ApiParam({ name: 'email', description: 'Student email', type: 'string' })
   @ApiResponse({ status: 200, description: 'Return the student with the given email.' })
   @ApiResponse({ status: 404, description: 'Student not found.' })
-  async findByEmail(@Param('email') email: string) {
+  async findByEmail(@Param('email') email: string) 
+  {
       return await this.studentService.findByEmail(email);
   };
 }

@@ -1,4 +1,5 @@
-export type TStudentEntity = {
+export type TStudentEntity = 
+{
   id?: string;
   typeOfLearning: string;
   fullName: string;

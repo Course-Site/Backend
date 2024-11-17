@@ -7,7 +7,8 @@ import { UserEntity } from 'src/infrastructure/db/entities/user.entity';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
-export class AuthService implements IAuthService {
+export class AuthService implements IAuthService 
+{
   constructor(
     @Inject('userService')
     private readonly userService: IUserService,
@@ -34,7 +35,8 @@ export class AuthService implements IAuthService {
 
     return null;
   }
-  async signUp(data: CreateUserDto): Promise<{ token: string }> {
+  async signUp(data: CreateUserDto): Promise<{ token: string }> 
+  {
     try {
       const candidate = await this.userService.findByEmail(data.email);
       if (candidate) {
@@ -53,7 +55,28 @@ export class AuthService implements IAuthService {
     }
   }
 
-  async signIn(user: UserEntity) {
+  async signUpAdmin(data: CreateUserDto): Promise<{ token: string }> 
+  {
+    try {
+      const candidate = await this.userService.findByEmail(data.email);
+      if (candidate) {
+        throw new ForbiddenException(
+          'Пользователь с таким email уже существует',
+        );
+      }
+
+      const userData = await this.userService.createAdminUser(data);
+
+      return {
+        token: this.jwtService.sign({ id: userData.id }),
+      };
+    } catch (err) {
+      throw new ForbiddenException('Ошибка при регистрации');
+    }
+  }
+
+  async signIn(user: UserEntity) 
+  {
     return {
       token: this.jwtService.sign({ id: user.id }),
     };

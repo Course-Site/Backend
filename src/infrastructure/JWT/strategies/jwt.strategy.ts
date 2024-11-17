@@ -4,7 +4,8 @@ import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { IUserService } from 'src/use-cases/user/interface/service/user.service.interface';
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
+export class JwtStrategy extends PassportStrategy(Strategy) 
+{
   constructor(
     @Inject('userService')
     private readonly userService: IUserService,
@@ -16,7 +17,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(payload: { id: string }) {
+  async validate(payload: { id: string }) 
+  {
     const user = await this.userService.findById(payload.id);
 
     if (!user) {

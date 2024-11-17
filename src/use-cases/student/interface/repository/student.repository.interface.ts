@@ -1,7 +1,8 @@
 import { IStudentEntity } from 'src/entiies/student/interface/student.entity.interface';
 import { ICreateStudentDto } from '../dto/create.student.dto.interface';
 
-export interface IStudentRepository {
+export interface IStudentRepository 
+{
   createStudent(data: ICreateStudentDto): Promise<IStudentEntity>;
   findAllStudents(): Promise<IStudentEntity[]>;
   deleteStudent(id: string): Promise<void>;

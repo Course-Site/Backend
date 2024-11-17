@@ -1,7 +1,8 @@
 import { IStudentEntity } from '../interface/student.entity.interface';
 import { TStudentEntity } from '../type/student.entity.type';
 
-export class StudentEntity implements IStudentEntity {
+export class StudentEntity implements IStudentEntity 
+{
   id?: string;
   typeOfLearning: string;
   fullName: string;
@@ -13,7 +14,8 @@ export class StudentEntity implements IStudentEntity {
   email: string;
   url: string;
 
-  constructor(data: TStudentEntity) {
+  constructor(data: TStudentEntity) 
+  {
     this.id = data.id;
     this.typeOfLearning = data.typeOfLearning;
     this.fullName = data.fullName;
