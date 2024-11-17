@@ -5,16 +5,18 @@ import { IApplicationEntity } from 'src/entiies/application/interface/applicatio
 import { ICreateApplicationDto } from '../interface/dto/create.application.dto.interface';
 
 @Injectable()
-export class ApplicationService implements IApplicationService {
+export class ApplicationService implements IApplicationService 
+{
   constructor(
     @Inject('applicationRepository')
     private readonly applicationRepository: IApplicationRepository,
   ) {}
 
-  async createApplication(data: ICreateApplicationDto): Promise<IApplicationEntity> {
+  async createApplication(data: ICreateApplicationDto): Promise<IApplicationEntity> 
+  {
 
     return this.applicationRepository.createApplication({
-      status: "Новый",
+      status: data.status || "Новый",
       typeOfLearning: data.typeOfLearning,
       fullName: data.fullName,
       age: data.age,
@@ -27,11 +29,13 @@ export class ApplicationService implements IApplicationService {
     });
   }
 
-  async findAllApplications(): Promise<IApplicationEntity[]> {
+  async findAllApplications(): Promise<IApplicationEntity[]> 
+  {
     return await this.applicationRepository.findAllApplications();
   }
 
-  async deleteApplication(id: string): Promise<void> {
+  async deleteApplication(id: string): Promise<void> 
+  {
     try {
       return await this.applicationRepository.deleteApplication(id);
     } catch (error) {
@@ -39,19 +43,23 @@ export class ApplicationService implements IApplicationService {
     }
   }
 
-  async update(id: string, application: Partial<IApplicationEntity>): Promise<IApplicationEntity>{
+  async update(id: string, application: Partial<IApplicationEntity>): Promise<IApplicationEntity>
+  {
     return await this.applicationRepository.update(id, application);
   }
 
-  async findById(id: string): Promise<IApplicationEntity> {
+  async findById(id: string): Promise<IApplicationEntity> 
+  {
     return await this.applicationRepository.findById(id);
   }
 
-  async findByName(fullName: string): Promise<IApplicationEntity> {
+  async findByName(fullName: string): Promise<IApplicationEntity> 
+  {
     return await this.applicationRepository.findByName(fullName);
   }
 
-  async findByEmail(email: string): Promise<IApplicationEntity> {
+  async findByEmail(email: string): Promise<IApplicationEntity> 
+  {
     return await this.applicationRepository.findByEmail(email);
   }
 }

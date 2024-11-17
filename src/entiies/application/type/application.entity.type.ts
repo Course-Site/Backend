@@ -1,4 +1,5 @@
-export type TApplicationEntity = {
+export type TApplicationEntity = 
+{
   id?: string;
   status?: string;
   typeOfLearning: string;

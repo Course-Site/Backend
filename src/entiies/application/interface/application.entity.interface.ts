@@ -1,4 +1,5 @@
-export interface IApplicationEntity {
+export interface IApplicationEntity 
+{
   id?: string;
   status?: string;
   typeOfLearning?: string;

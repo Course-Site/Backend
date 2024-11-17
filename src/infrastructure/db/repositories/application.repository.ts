@@ -7,13 +7,15 @@ import { ApplicationEntity } from '../entities/application.entity';
 import { IApplicationEntity } from 'src/entiies/application/interface/application.entity.interface';
 
 @Injectable()
-export class ApplicationRepository implements IApplicationRepository {
+export class ApplicationRepository implements IApplicationRepository 
+{
   constructor(
     @InjectRepository(ApplicationEntity)
     private readonly applicationRepository: Repository<ApplicationEntity>,
   ) {}
 
-  async createApplication(data: ICreateApplicationDto): Promise<IApplicationEntity> {
+  async createApplication(data: ICreateApplicationDto): Promise<IApplicationEntity> 
+  {
     try {
       const application = this.applicationRepository.create(data);
       return await this.applicationRepository.save(application);
@@ -22,7 +24,8 @@ export class ApplicationRepository implements IApplicationRepository {
     }
   }
 
-  async findAllApplications(): Promise<IApplicationEntity[]> {
+  async findAllApplications(): Promise<IApplicationEntity[]> 
+  {
     try {
       return this.applicationRepository.find({  });
     } catch (error) {
@@ -30,7 +33,8 @@ export class ApplicationRepository implements IApplicationRepository {
     }
   }
 
-  async deleteApplication(id: string): Promise<void> {
+  async deleteApplication(id: string): Promise<void> 
+  {
     try {
       await this.applicationRepository.delete(id);
     } catch (error) {
@@ -38,7 +42,8 @@ export class ApplicationRepository implements IApplicationRepository {
     }
   }
 
-  async update(id: string, application: Partial<IApplicationEntity>): Promise<IApplicationEntity>  {
+  async update(id: string, application: Partial<IApplicationEntity>): Promise<IApplicationEntity>  
+  {
     try{
     await this.applicationRepository.update(id, application);
     return this.applicationRepository.findOne({ where: { id } });
@@ -47,7 +52,8 @@ export class ApplicationRepository implements IApplicationRepository {
     }
   }
 
-  async findById(applicationId: string): Promise<IApplicationEntity> {
+  async findById(applicationId: string): Promise<IApplicationEntity> 
+  {
     try {
       return this.applicationRepository.findOne({ where: { id: applicationId } });
     } catch (error) {
@@ -55,7 +61,8 @@ export class ApplicationRepository implements IApplicationRepository {
     }
   }
 
-  findByName(fullName: string): Promise<IApplicationEntity> {
+  findByName(fullName: string): Promise<IApplicationEntity> 
+  {
     try {
       return this.applicationRepository.findOneBy({ fullName });
     } catch (error) {
@@ -63,7 +70,8 @@ export class ApplicationRepository implements IApplicationRepository {
     }
   }
 
-  findByEmail(email: string): Promise<IApplicationEntity> {
+  findByEmail(email: string): Promise<IApplicationEntity> 
+  {
     try {
       return this.applicationRepository.findOneBy({ email });
     } catch (error) {

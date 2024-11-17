@@ -1,4 +1,5 @@
-export interface ICreateStudentDto {
+export interface ICreateStudentDto 
+{
   id?: string;
   typeOfLearning: string;
   fullName: string;

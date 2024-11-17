@@ -7,7 +7,8 @@ import {
 
 
 @Entity()
-export class UserEntity {
+export class UserEntity 
+{
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

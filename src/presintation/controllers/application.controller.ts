@@ -17,7 +17,8 @@ import { IApplicationEntity } from 'src/entiies/application/interface/applicatio
 
 @Controller('application')
 @ApiTags('Application')
-export class ApplicationController {
+export class ApplicationController 
+{
   constructor(
     @Inject('applicationService')
     private readonly applicationService: IApplicationService,
@@ -43,17 +44,19 @@ export class ApplicationController {
   })
   @ApiResponse({ status: 201, description: 'The application has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Bad Request.' })
-  async createApplication(@Body() data: ICreateApplicationDto) {
+  async createApplication(@Body() data: ICreateApplicationDto) 
+  {
     return await this.applicationService.createApplication(data)
   }
 
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  @Get('get')
+  @Get('getAll')
   @ApiOperation({ summary: 'Get all applications' })
   @ApiResponse({ status: 200, description: 'Return all applications.' })
   @ApiResponse({ status: 404, description: 'Applications not found.' })
-  async findAllApplications() {
+  async findAllApplications() 
+  {
     return await this.applicationService.findAllApplications()
   }
 
@@ -64,7 +67,8 @@ export class ApplicationController {
   @ApiParam({ name: 'id', description: 'Application ID', type: 'string' })
   @ApiResponse({ status: 200, description: 'The application has been successfully deleted.' })
   @ApiResponse({ status: 404, description: 'Application not found.' })
-  async deleteApplication(@Param('id') id: string) {
+  async deleteApplication(@Param('id') id: string) 
+  {
     await this.applicationService.deleteApplication(id)
   }
 
@@ -90,7 +94,8 @@ export class ApplicationController {
   })
   @ApiResponse({ status: 200, description: 'application data has been changed.' })
   @ApiResponse({ status: 404, description: 'Application not found.' })
-  async update(@Param('id') id: string, @Body() application: IApplicationEntity) {
+  async update(@Param('id') id: string, @Body() application: IApplicationEntity) 
+  {
     return await this.applicationService.update(id, application)
   }
 
@@ -101,7 +106,8 @@ export class ApplicationController {
   @ApiParam({ name: 'id', description: 'Application ID', type: 'string' })
   @ApiResponse({ status: 200, description: 'Return the application with the given ID.' })
   @ApiResponse({ status: 404, description: 'Application not found.' })
-  async findById(@Param('id') id: string) {
+  async findById(@Param('id') id: string) 
+  {
     return await this.applicationService.findById(id)
   }
 
@@ -112,7 +118,8 @@ export class ApplicationController {
   @ApiParam({ name: 'fullName', description: 'Application fullName', type: 'string' })
   @ApiResponse({ status: 200, description: 'Return the application with the given fullname.' })
   @ApiResponse({ status: 404, description: 'Application not found.' })
-  async findByName(@Param('fullName') fullName: string) {
+  async findByName(@Param('fullName') fullName: string) 
+  {
       return await this.applicationService.findByName(fullName)
   }
 
@@ -123,7 +130,8 @@ export class ApplicationController {
   @ApiParam({ name: 'email', description: 'Application email', type: 'string' })
   @ApiResponse({ status: 200, description: 'Return the application with the given email.' })
   @ApiResponse({ status: 404, description: 'Application not found.' })
-  async findByEmail(@Param('email') email: string) {
+  async findByEmail(@Param('email') email: string) 
+  {
       return await this.applicationService.findByEmail(email);
   };
 }

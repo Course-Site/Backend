@@ -42,7 +42,8 @@ export class StudentRepository implements IStudentRepository
     }
   }
 
-  async update(id: string, student: Partial<IStudentEntity>): Promise<IStudentEntity>  {
+  async update(id: string, student: Partial<IStudentEntity>): Promise<IStudentEntity>  
+  {
     try{
     await this.studentRepository.update(id, student);
     return this.studentRepository.findOne({ where: { id } });
