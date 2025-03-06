@@ -3,9 +3,11 @@ import { IAuthService } from 'src/use-cases/auth/interface/service/auth.service.
 import { ApiBody, ApiTags, ApiBearerAuth} from '@nestjs/swagger';
 import { ICreateUserDto } from 'src/use-cases/user/interface/dto/create.user.dto.interface';
 import { LocalAuthGuard } from 'src/infrastructure/JWT/guards/local.guard';
-//import { OnlyAdminGuard } from 'src/infrastructure/JWT/guards/admin.guard';
+import { Roles } from 'src/infrastructure/decorators/roles.decorator';
 import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard';
 import { CreateUserDto } from '../dto/user/create.user.dto';
+import { UserRole } from 'src/entiies/user/type/user.entity.type'
+import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard'
 
 @Controller('auth')
 @ApiTags('Auth')
@@ -16,7 +18,9 @@ export class AuthController
     private readonly authService: IAuthService,
   ) {}
 
-
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @ApiBearerAuth()
+  @Roles(UserRole.ADMIN)
   @Post('sign-up')
   @ApiBody({
     schema: {
@@ -24,7 +28,7 @@ export class AuthController
         email: { type: 'string', default: 'test@test.com' },
         password: { type: 'string', default: '12345678' },
         name: { type: 'string', default: 'John Doe' },
-        role: { type: 'string', default: 'Student' },
+        role: { type: 'string', default: 'user' },
       },
     },
   })
@@ -33,27 +37,7 @@ export class AuthController
     return this.authService.signUp(data);
   }
 
-  //@UseGuards(OnlyAdminGuard)
-  @UseGuards(JwtAuthGuard)
-  @ApiBearerAuth()
-  @Post('sign-up/admin')
-  @ApiBody({
-    schema: {
-      properties: {
-        email: { type: 'string', default: 'test@test.com' },
-        password: { type: 'string', default: '12345678' },
-        name: { type: 'string', default: 'John Doe' },
-        role: { type: 'string', default: 'Admin' },
-      },
-    },
-  })
-  async signUpAdmin(@Body() data: ICreateUserDto) 
-  {
-    return this.authService.signUpAdmin(data);
-  }
-
-  @UseGuards(JwtAuthGuard)
-  @ApiBearerAuth()
+  @UseGuards(LocalAuthGuard)
   @Post('sign-in')
   @ApiBody({
     schema: {

@@ -1,8 +1,9 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, ForbiddenException } from '@nestjs/common';
 import { IUserService } from '../interface/service/user.service.interface';
 import { IUserRepository } from '../interface/repository/user.repository.interface';
 import { IUserEntity } from 'src/entiies/user/interface/user.entity.interface';
 import { ICreateUserDto } from '../interface/dto/create.user.dto.interface';
+import { UserRole } from 'src/entiies/user/type/user.entity.type';
 
 import * as bcrypt from 'bcrypt';
 
@@ -23,19 +24,7 @@ export class UserService implements IUserService
       email: data.email,
       password: hash,
       name: data.name,
-      role: "Student",
-    });
-  }
-
-  async createAdminUser(data: ICreateUserDto): Promise<IUserEntity> 
-  {
-    const hash = bcrypt.hashSync(data.password, 10);
-
-    return this.userRepository.createAdminUser({
-      email: data.email,
-      password: hash,
-      name: data.name,
-      role: data.role,
+      role: data.role || UserRole.USER,
     });
   }
 
