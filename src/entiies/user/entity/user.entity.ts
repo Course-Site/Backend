@@ -1,5 +1,5 @@
 import { IUserEntity } from '../interface/user.entity.interface';
-import { TUserEntity } from '../type/user.entity.type';
+import { TUserEntity, UserRole } from '../type/user.entity.type';
 
 export class UserEntity implements IUserEntity 
 {
@@ -7,7 +7,8 @@ export class UserEntity implements IUserEntity
   email: string;
   password: string;
   name: string;
-  role: string;
+  role: UserRole;
+
   constructor(data: TUserEntity) 
   {
     this.id = data.id;

@@ -24,16 +24,6 @@ export class UserRepository implements IUserRepository
     }
   }
 
-  async createAdminUser(data: ICreateUserDto): Promise<IUserEntity> 
-  {
-    try {
-      const user = this.userRepository.create(data);
-      return await this.userRepository.save(user);
-    } catch (error) {
-      throw error;
-    }
-  }
-
   async findAllUsers(): Promise<IUserEntity[]> 
   {
     try {

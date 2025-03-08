@@ -5,6 +5,8 @@ import { TypeOrmComponent } from './infrastructure/db/conect';
 import { AuthModule } from './infrastructure/modules/auth.module';
 import { ApplicationModule } from './infrastructure/modules/application.module';
 import { StudentModule } from './infrastructure/modules/student.module';
+import { APP_GUARD } from '@nestjs/core'
+//import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard'
 
 
 @Module({

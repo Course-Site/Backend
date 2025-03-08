@@ -6,14 +6,13 @@ export const UserId = createParamDecorator(
     return request.user?.id ? request.user.id : null;
   },
 );
-/*import { UseGuards, applyDecorators } from "@nestjs/common";
-import { OnlyAdminGuard } from "../guards/admin.guard";
-import { JwtAuthGuard } from "../guards/jwt.guard";
+import { UseGuards, applyDecorators } from "@nestjs/common";
+import { JwtAuthGuard } from "../JWT/guards/jwt.guard";
+import { UserRole } from 'src/entiies/user/type/user.entity.type';
 
-export type TypeRole = "admin" | "user";
 
-export function Auth(role: TypeRole = "user") {
+export function Auth(role: UserRole) {
     return applyDecorators(
-        role === "admin" ? UseGuards(JwtAuthGuard, OnlyAdminGuard) : UseGuards(JwtAuthGuard),
+        role === UserRole.ADMIN ? UseGuards(JwtAuthGuard) : UseGuards(JwtAuthGuard),
     ); 
-}*/
+}

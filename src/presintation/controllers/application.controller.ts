@@ -63,7 +63,7 @@ export class ApplicationController
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @Delete('delete/:id')
-  @ApiOperation({ summary: 'Delete a application by its ID' })
+  @ApiOperation({ summary: 'Delete an application by its ID' })
   @ApiParam({ name: 'id', description: 'Application ID', type: 'string' })
   @ApiResponse({ status: 200, description: 'The application has been successfully deleted.' })
   @ApiResponse({ status: 404, description: 'Application not found.' })

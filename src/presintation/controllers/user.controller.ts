@@ -12,6 +12,7 @@ import {
 import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard';
 import { Response } from 'express';
 import { UserId } from 'src/infrastructure/decorators/user-id.decorator';
+//import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard'
 
 @Controller('user')
 @ApiTags('User')
@@ -24,6 +25,7 @@ export class UserController
     private readonly userService: IUserService,
   ) {}
 
+  //@UseGuards(RolesGuard)
   @Get('getAll')
   @ApiOperation({ summary: 'Get all users' })
   @ApiResponse({ status: 200, description: 'Return all users.' })
@@ -33,6 +35,7 @@ export class UserController
     return await this.userService.findAllUsers();
   }
 
+  //@UseGuards(RolesGuard)
   @Delete('delete/:id')
   @ApiOperation({ summary: 'Delete a user by his ID' })
   @ApiParam({ name: 'id', description: 'User ID', type: 'string' })
@@ -59,15 +62,6 @@ export class UserController
       role: user.role,
     };
   }
-  /*@Get('findById/:id')
-  @ApiOperation({ summary: 'Get a student by its ID' })
-  @ApiParam({ name: 'id', description: 'Student ID', type: 'string' })
-  @ApiResponse({ status: 200, description: 'Return the student with the given ID.' })
-  @ApiResponse({ status: 404, description: 'Student not found.' })
-  async findById(@Param('id') id: string) 
-  {
-    return await this.studentService.findById(id);
-  }*/
 
   @Get('findByEmail/:email')
   async findByEmail(@Param('email') email: string) 

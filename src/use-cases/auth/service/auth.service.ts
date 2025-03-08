@@ -5,6 +5,7 @@ import { IUserService } from '../../user/interface/service/user.service.interfac
 import { JwtService } from '@nestjs/jwt';
 import { UserEntity } from 'src/infrastructure/db/entities/user.entity';
 import * as bcrypt from 'bcrypt';
+import { UserRole } from 'src/entiies/user/type/user.entity.type';
 
 @Injectable()
 export class AuthService implements IAuthService 
@@ -22,7 +23,7 @@ export class AuthService implements IAuthService
     id?: string;
     email: string;
     name: string;
-    role?: string;
+    role?: UserRole;
   }> {
     const user = await this.userService.findByEmail(email);
 
@@ -35,6 +36,7 @@ export class AuthService implements IAuthService
 
     return null;
   }
+  
   async signUp(data: CreateUserDto): Promise<{ token: string }> 
   {
     try {
@@ -45,27 +47,13 @@ export class AuthService implements IAuthService
         );
       }
 
-      const userData = await this.userService.createUser(data);
-
-      return {
-        token: this.jwtService.sign({ id: userData.id }),
-      };
-    } catch (err) {
-      throw new ForbiddenException('Ошибка при регистрации');
-    }
-  }
-
-  async signUpAdmin(data: CreateUserDto): Promise<{ token: string }> 
-  {
-    try {
-      const candidate = await this.userService.findByEmail(data.email);
-      if (candidate) {
+      if (data.role !== UserRole.ADMIN && data.role !== UserRole.USER && data.role !== undefined) {
         throw new ForbiddenException(
-          'Пользователь с таким email уже существует',
+          'Пользователь с такой ролью не может существовать',
         );
       }
 
-      const userData = await this.userService.createAdminUser(data);
+      const userData = await this.userService.createUser(data);
 
       return {
         token: this.jwtService.sign({ id: userData.id }),

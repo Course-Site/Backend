@@ -4,7 +4,6 @@ import { ICreateUserDto } from '../dto/create.user.dto.interface';
 export interface IUserRepository 
 {
   createUser(data: ICreateUserDto): Promise<IUserEntity>;
-  createAdminUser(data: ICreateUserDto): Promise<IUserEntity>;
   findAllUsers(): Promise<IUserEntity[]>;
   deleteUser(id: string): Promise<void>;
   findById(id: string): Promise<IUserEntity>;
