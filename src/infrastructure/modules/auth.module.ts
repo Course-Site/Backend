@@ -12,7 +12,6 @@ import { UserService } from 'src/use-cases/user/service/user.service';
 import { UserRepository } from '../db/repositories/user.repository';
 import { UserEntity } from '../db/entities/user.entity';
 
-
 @Module({
   imports: [
     TypeOrmModule.forFeature([UserEntity]),

@@ -1,5 +1,4 @@
-export interface ICreateApplicationDto 
-{
+export interface ICreateApplicationDto {
   id?: string;
   status?: string;
   typeOfLearning: string;

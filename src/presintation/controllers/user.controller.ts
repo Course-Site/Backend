@@ -1,6 +1,16 @@
-import { Controller, Get, Delete, Inject, Param, Post, Req, Res, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Delete,
+  Inject,
+  Param,
+  Post,
+  Req,
+  Res,
+  UseGuards,
+} from '@nestjs/common';
 import { IUserService } from 'src/use-cases/user/interface/service/user.service.interface';
-import { 
+import {
   ApiBearerAuth,
   ApiTags,
   ApiOperation,
@@ -12,14 +22,16 @@ import {
 import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard';
 import { Response } from 'express';
 import { UserId } from 'src/infrastructure/decorators/user-id.decorator';
-//import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard'
+import { Roles } from 'src/infrastructure/decorators/roles.decorator';
+import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard'
+import { UserRole } from 'src/entiies/user/type/user.entity.type';
 
 @Controller('user')
 @ApiTags('User')
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, RolesGuard)
 @ApiBearerAuth()
-export class UserController 
-{
+@Roles(UserRole.ADMIN)
+export class UserController {
   constructor(
     @Inject('userService')
     private readonly userService: IUserService,
@@ -30,8 +42,7 @@ export class UserController
   @ApiOperation({ summary: 'Get all users' })
   @ApiResponse({ status: 200, description: 'Return all users.' })
   @ApiResponse({ status: 404, description: 'Users not found.' })
-  async findAllUsers() 
-  {
+  async findAllUsers() {
     return await this.userService.findAllUsers();
   }
 
@@ -39,20 +50,24 @@ export class UserController
   @Delete('delete/:id')
   @ApiOperation({ summary: 'Delete a user by his ID' })
   @ApiParam({ name: 'id', description: 'User ID', type: 'string' })
-  @ApiResponse({ status: 200, description: 'The user has been successfully deleted.' })
+  @ApiResponse({
+    status: 200,
+    description: 'The user has been successfully deleted.',
+  })
   @ApiResponse({ status: 404, description: 'User not found.' })
-  async deleteUser(@Param('id') id: string) 
-  {
+  async deleteUser(@Param('id') id: string) {
     await this.userService.deleteUser(id);
   }
 
   @Get('findById/:id')
   @ApiOperation({ summary: 'Get user by his ID' })
   @ApiParam({ name: 'id', description: 'User ID', type: 'string' })
-  @ApiResponse({ status: 200, description: 'Return the user with the given ID.' })
+  @ApiResponse({
+    status: 200,
+    description: 'Return the user with the given ID.',
+  })
   @ApiResponse({ status: 404, description: 'User not found.' })
-  async findById(@UserId() id: string) 
-  {
+  async findById(@UserId() id: string) {
     const user = await this.userService.findById(id);
 
     return {
@@ -64,8 +79,7 @@ export class UserController
   }
 
   @Get('findByEmail/:email')
-  async findByEmail(@Param('email') email: string) 
-  {
+  async findByEmail(@Param('email') email: string) {
     const user = await this.userService.findByEmail(email);
 
     return {

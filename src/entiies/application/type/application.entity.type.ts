@@ -1,5 +1,4 @@
-export type TApplicationEntity = 
-{
+export type TApplicationEntity = {
   id?: string;
   status?: string;
   typeOfLearning: string;
@@ -12,4 +11,3 @@ export type TApplicationEntity =
   email: string;
   url: string;
 };
-  

@@ -1,6 +1,5 @@
 import { UserRole } from '../type/user.entity.type';
-export interface IUserEntity 
-{
+export interface IUserEntity {
   id?: string;
   email: string;
   password: string;

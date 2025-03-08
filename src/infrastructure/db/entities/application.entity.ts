@@ -1,13 +1,8 @@
 import { IsEmail, IsNotEmpty } from 'class-validator';
-import {
-  Column,
-  Entity,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity() 
-export class ApplicationEntity 
-{
+@Entity()
+export class ApplicationEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

@@ -5,7 +5,6 @@ import { ApplicationService } from 'src/use-cases/application/service/applicatio
 import { ApplicationRepository } from '../db/repositories/application.repository';
 import { ApplicationEntity } from '../db/entities/application.entity';
 
-
 @Module({
   imports: [TypeOrmModule.forFeature([ApplicationEntity])],
   controllers: [ApplicationController],

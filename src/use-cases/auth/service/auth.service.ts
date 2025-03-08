@@ -8,8 +8,7 @@ import * as bcrypt from 'bcrypt';
 import { UserRole } from 'src/entiies/user/type/user.entity.type';
 
 @Injectable()
-export class AuthService implements IAuthService 
-{
+export class AuthService implements IAuthService {
   constructor(
     @Inject('userService')
     private readonly userService: IUserService,
@@ -36,9 +35,8 @@ export class AuthService implements IAuthService
 
     return null;
   }
-  
-  async signUp(data: CreateUserDto): Promise<{ token: string }> 
-  {
+
+  async signUp(data: CreateUserDto): Promise<{ token: string }> {
     try {
       const candidate = await this.userService.findByEmail(data.email);
       if (candidate) {
@@ -47,7 +45,11 @@ export class AuthService implements IAuthService
         );
       }
 
-      if (data.role !== UserRole.ADMIN && data.role !== UserRole.USER && data.role !== undefined) {
+      if (
+        data.role !== UserRole.ADMIN &&
+        data.role !== UserRole.USER &&
+        data.role !== undefined
+      ) {
         throw new ForbiddenException(
           'Пользователь с такой ролью не может существовать',
         );
@@ -63,8 +65,7 @@ export class AuthService implements IAuthService
     }
   }
 
-  async signIn(user: UserEntity) 
-  {
+  async signIn(user: UserEntity) {
     return {
       token: this.jwtService.sign({ id: user.id }),
     };

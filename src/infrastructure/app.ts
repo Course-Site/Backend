@@ -8,8 +8,7 @@ import {
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
-export class App 
-{
+export class App {
   private readonly app: INestApplication;
   private readonly apiPort: number;
   private readonly apiVersion: string;
@@ -19,20 +18,20 @@ export class App
   private readonly swaggerPath: string;
   private readonly configService: ConfigService;
 
-  constructor(app: INestApplication) 
-  {
+  constructor(app: INestApplication) {
     this.app = app;
     this.configService = app.get(ConfigService);
     this.apiPort = this.configService.get<number>('API_PORT');
     this.apiVersion = this.configService.get<string>('API_VERSION');
     this.apiPrefix = this.configService.get<string>('API_PREFIX');
     this.swaggerTitle = this.configService.get<string>('SWAGGER_TITLE');
-    this.swaggerDescription = this.configService.get<string>('SWAGGER_DESCRIPTION');
+    this.swaggerDescription = this.configService.get<string>(
+      'SWAGGER_DESCRIPTION',
+    );
     this.swaggerPath = this.configService.get<string>('SWAGGER_PATH');
   }
 
-  private appConfig() 
-  {
+  private appConfig() {
     this.app.setGlobalPrefix(this.apiPrefix);
     this.app.enableVersioning({
       defaultVersion: this.apiVersion,
@@ -42,8 +41,7 @@ export class App
     return this;
   }
 
-  private swaggerConfig() 
-  {
+  private swaggerConfig() {
     const options = new DocumentBuilder()
       .setTitle(this.swaggerTitle)
       .setDescription(this.swaggerDescription)
@@ -60,8 +58,7 @@ export class App
     return this;
   }
 
-  private validationConfig() 
-  {
+  private validationConfig() {
     this.app.useGlobalPipes(
       new ValidationPipe({
         transform: true,
@@ -71,14 +68,12 @@ export class App
     return this;
   }
 
-  private async runApp() 
-  {
+  private async runApp() {
     await this.app.listen(this.apiPort);
     return this;
   }
 
-  public static async run() 
-  {
+  public static async run() {
     NestFactory.create(AppModule, { cors: false }).then((app) => {
       new App(app).appConfig().swaggerConfig().validationConfig().runApp();
     });

@@ -1,16 +1,14 @@
 import { IUserEntity } from '../interface/user.entity.interface';
 import { TUserEntity, UserRole } from '../type/user.entity.type';
 
-export class UserEntity implements IUserEntity 
-{
+export class UserEntity implements IUserEntity {
   id?: string;
   email: string;
   password: string;
   name: string;
   role: UserRole;
 
-  constructor(data: TUserEntity) 
-  {
+  constructor(data: TUserEntity) {
     this.id = data.id;
     this.email = data.email;
     this.password = data.password;

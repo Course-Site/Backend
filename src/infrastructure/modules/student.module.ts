@@ -5,7 +5,6 @@ import { StudentService } from 'src/use-cases/student/service/student.service';
 import { StudentRepository } from '../db/repositories/student.repository';
 import { StudentEntity } from '../db/entities/student.entity';
 
-
 @Module({
   imports: [TypeOrmModule.forFeature([StudentEntity])],
   controllers: [StudentController],

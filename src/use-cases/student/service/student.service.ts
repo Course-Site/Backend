@@ -5,16 +5,13 @@ import { IStudentEntity } from 'src/entiies/student/interface/student.entity.int
 import { ICreateStudentDto } from '../interface/dto/create.student.dto.interface';
 
 @Injectable()
-export class StudentService implements IStudentService 
-{
+export class StudentService implements IStudentService {
   constructor(
     @Inject('studentRepository')
     private readonly studentRepository: IStudentRepository,
   ) {}
 
-  async createStudent(data: ICreateStudentDto): Promise<IStudentEntity> 
-  {
-
+  async createStudent(data: ICreateStudentDto): Promise<IStudentEntity> {
     return this.studentRepository.createStudent({
       typeOfLearning: data.typeOfLearning,
       fullName: data.fullName,
@@ -28,13 +25,11 @@ export class StudentService implements IStudentService
     });
   }
 
-  async findAllStudents(): Promise<IStudentEntity[]> 
-  {
+  async findAllStudents(): Promise<IStudentEntity[]> {
     return await this.studentRepository.findAllStudents();
   }
 
-  async deleteStudent(id: string): Promise<void> 
-  {
+  async deleteStudent(id: string): Promise<void> {
     try {
       return await this.studentRepository.deleteStudent(id);
     } catch (error) {
@@ -42,23 +37,22 @@ export class StudentService implements IStudentService
     }
   }
 
-  async update(id: string, student: Partial<IStudentEntity>): Promise<IStudentEntity>
-  {
+  async update(
+    id: string,
+    student: Partial<IStudentEntity>,
+  ): Promise<IStudentEntity> {
     return await this.studentRepository.update(id, student);
   }
 
-  async findById(id: string): Promise<IStudentEntity> 
-  {
+  async findById(id: string): Promise<IStudentEntity> {
     return await this.studentRepository.findById(id);
   }
 
-  async findByName(fullName: string): Promise<IStudentEntity> 
-  {
+  async findByName(fullName: string): Promise<IStudentEntity> {
     return await this.studentRepository.findByName(fullName);
   }
 
-  async findByEmail(email: string): Promise<IStudentEntity> 
-  {
+  async findByEmail(email: string): Promise<IStudentEntity> {
     return await this.studentRepository.findByEmail(email);
   }
 }

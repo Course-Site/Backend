@@ -1,10 +1,9 @@
 export enum UserRole {
-  ADMIN = "admin",
-  USER = "user",
+  ADMIN = 'admin',
+  USER = 'user',
 }
 
-export type TUserEntity = 
-{
+export type TUserEntity = {
   id?: string;
   email: string;
   password: string;

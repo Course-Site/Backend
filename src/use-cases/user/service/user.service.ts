@@ -7,17 +7,14 @@ import { UserRole } from 'src/entiies/user/type/user.entity.type';
 
 import * as bcrypt from 'bcrypt';
 
-
 @Injectable()
-export class UserService implements IUserService 
-{
+export class UserService implements IUserService {
   constructor(
     @Inject('userRepository')
     private readonly userRepository: IUserRepository,
   ) {}
 
-  async createUser(data: ICreateUserDto): Promise<IUserEntity> 
-  {
+  async createUser(data: ICreateUserDto): Promise<IUserEntity> {
     const hash = bcrypt.hashSync(data.password, 10);
 
     return this.userRepository.createUser({
@@ -28,13 +25,11 @@ export class UserService implements IUserService
     });
   }
 
-  async findAllUsers(): Promise<IUserEntity[]> 
-  {
+  async findAllUsers(): Promise<IUserEntity[]> {
     return await this.userRepository.findAllUsers();
   }
 
-  async deleteUser(id: string): Promise<void> 
-  {
+  async deleteUser(id: string): Promise<void> {
     try {
       return await this.userRepository.deleteUser(id);
     } catch (error) {
@@ -42,13 +37,11 @@ export class UserService implements IUserService
     }
   }
 
-  async findById(id: string): Promise<IUserEntity> 
-  {
+  async findById(id: string): Promise<IUserEntity> {
     return this.userRepository.findById(id);
   }
 
-  async findByEmail(email: string): Promise<IUserEntity> 
-  {
+  async findByEmail(email: string): Promise<IUserEntity> {
     return await this.userRepository.findByEmail(email);
   }
 }

@@ -1,5 +1,4 @@
-export interface IStudentEntity 
-{
+export interface IStudentEntity {
   id?: string;
   typeOfLearning?: string;
   fullName?: string;

@@ -1,8 +1,7 @@
 import { IApplicationEntity } from '../interface/application.entity.interface';
 import { TApplicationEntity } from '../type/application.entity.type';
 
-export class ApplicationEntity implements IApplicationEntity 
-{
+export class ApplicationEntity implements IApplicationEntity {
   id?: string;
   status?: string;
   typeOfLearning: string;

@@ -5,8 +5,7 @@ import { IUserService } from 'src/use-cases/user/interface/service/user.service.
 import { UserRole } from 'src/entiies/user/type/user.entity.type';
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) 
-{
+export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
     @Inject('userService')
     private readonly userService: IUserService,
@@ -18,8 +17,7 @@ export class JwtStrategy extends PassportStrategy(Strategy)
     });
   }
 
-  async validate(payload: { id: string, role: UserRole}) 
-  {
+  async validate(payload: { id: string; role: UserRole }) {
     const user = await this.userService.findById(payload.id);
 
     if (!user) {

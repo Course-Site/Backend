@@ -1,6 +1,16 @@
-import { Controller, Get, Delete, Put, Inject, Param, Post, Body, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Delete,
+  Put,
+  Inject,
+  Param,
+  Post,
+  Body,
+  UseGuards,
+} from '@nestjs/common';
 import { IApplicationService } from 'src/use-cases/application/interface/service/application.service.interface';
-import { 
+import {
   ApiBearerAuth,
   ApiTags,
   ApiOperation,
@@ -14,11 +24,9 @@ import { Response } from 'express';
 import { ICreateApplicationDto } from 'src/use-cases/application/interface/dto/create.application.dto.interface';
 import { IApplicationEntity } from 'src/entiies/application/interface/application.entity.interface';
 
-
 @Controller('application')
 @ApiTags('Application')
-export class ApplicationController 
-{
+export class ApplicationController {
   constructor(
     @Inject('applicationService')
     private readonly applicationService: IApplicationService,
@@ -42,11 +50,13 @@ export class ApplicationController
       },
     },
   })
-  @ApiResponse({ status: 201, description: 'The application has been successfully created.' })
+  @ApiResponse({
+    status: 201,
+    description: 'The application has been successfully created.',
+  })
   @ApiResponse({ status: 400, description: 'Bad Request.' })
-  async createApplication(@Body() data: ICreateApplicationDto) 
-  {
-    return await this.applicationService.createApplication(data)
+  async createApplication(@Body() data: ICreateApplicationDto) {
+    return await this.applicationService.createApplication(data);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -55,9 +65,8 @@ export class ApplicationController
   @ApiOperation({ summary: 'Get all applications' })
   @ApiResponse({ status: 200, description: 'Return all applications.' })
   @ApiResponse({ status: 404, description: 'Applications not found.' })
-  async findAllApplications() 
-  {
-    return await this.applicationService.findAllApplications()
+  async findAllApplications() {
+    return await this.applicationService.findAllApplications();
   }
 
   @UseGuards(JwtAuthGuard)
@@ -65,11 +74,13 @@ export class ApplicationController
   @Delete('delete/:id')
   @ApiOperation({ summary: 'Delete an application by its ID' })
   @ApiParam({ name: 'id', description: 'Application ID', type: 'string' })
-  @ApiResponse({ status: 200, description: 'The application has been successfully deleted.' })
+  @ApiResponse({
+    status: 200,
+    description: 'The application has been successfully deleted.',
+  })
   @ApiResponse({ status: 404, description: 'Application not found.' })
-  async deleteApplication(@Param('id') id: string) 
-  {
-    await this.applicationService.deleteApplication(id)
+  async deleteApplication(@Param('id') id: string) {
+    await this.applicationService.deleteApplication(id);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -92,11 +103,16 @@ export class ApplicationController
       },
     },
   })
-  @ApiResponse({ status: 200, description: 'application data has been changed.' })
+  @ApiResponse({
+    status: 200,
+    description: 'application data has been changed.',
+  })
   @ApiResponse({ status: 404, description: 'Application not found.' })
-  async update(@Param('id') id: string, @Body() application: IApplicationEntity) 
-  {
-    return await this.applicationService.update(id, application)
+  async update(
+    @Param('id') id: string,
+    @Body() application: IApplicationEntity,
+  ) {
+    return await this.applicationService.update(id, application);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -104,23 +120,31 @@ export class ApplicationController
   @Get('findById/:id')
   @ApiOperation({ summary: 'Get a application by its ID' })
   @ApiParam({ name: 'id', description: 'Application ID', type: 'string' })
-  @ApiResponse({ status: 200, description: 'Return the application with the given ID.' })
+  @ApiResponse({
+    status: 200,
+    description: 'Return the application with the given ID.',
+  })
   @ApiResponse({ status: 404, description: 'Application not found.' })
-  async findById(@Param('id') id: string) 
-  {
-    return await this.applicationService.findById(id)
+  async findById(@Param('id') id: string) {
+    return await this.applicationService.findById(id);
   }
 
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @Get('findByName/:fullName')
   @ApiOperation({ summary: 'Get a application by its Name' })
-  @ApiParam({ name: 'fullName', description: 'Application fullName', type: 'string' })
-  @ApiResponse({ status: 200, description: 'Return the application with the given fullname.' })
+  @ApiParam({
+    name: 'fullName',
+    description: 'Application fullName',
+    type: 'string',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Return the application with the given fullname.',
+  })
   @ApiResponse({ status: 404, description: 'Application not found.' })
-  async findByName(@Param('fullName') fullName: string) 
-  {
-      return await this.applicationService.findByName(fullName)
+  async findByName(@Param('fullName') fullName: string) {
+    return await this.applicationService.findByName(fullName);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -128,10 +152,12 @@ export class ApplicationController
   @Get('findByEmail/:email')
   @ApiOperation({ summary: 'Get a application by its email' })
   @ApiParam({ name: 'email', description: 'Application email', type: 'string' })
-  @ApiResponse({ status: 200, description: 'Return the application with the given email.' })
+  @ApiResponse({
+    status: 200,
+    description: 'Return the application with the given email.',
+  })
   @ApiResponse({ status: 404, description: 'Application not found.' })
-  async findByEmail(@Param('email') email: string) 
-  {
-      return await this.applicationService.findByEmail(email);
-  };
+  async findByEmail(@Param('email') email: string) {
+    return await this.applicationService.findByEmail(email);
+  }
 }
