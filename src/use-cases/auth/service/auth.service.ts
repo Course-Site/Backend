@@ -47,12 +47,6 @@ export class AuthService implements IAuthService
         );
       }
 
-      if (data.role !== UserRole.ADMIN && data.role !== UserRole.USER && data.role !== undefined) {
-        throw new ForbiddenException(
-          'Пользователь с такой ролью не может существовать',
-        );
-      }
-
       const userData = await this.userService.createUser(data);
 
       return {
