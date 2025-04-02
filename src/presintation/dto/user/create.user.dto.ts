@@ -1,5 +1,5 @@
 import { ICreateUserDto } from 'src/use-cases/user/interface/dto/create.user.dto.interface';
-import { UserRole } from 'src/entiies/user/type/user.entity.type';
+import { UserRole } from 'src/entiies/user/enums/user-role.enum';
 
 export class CreateUserDto implements ICreateUserDto {
   email: string;

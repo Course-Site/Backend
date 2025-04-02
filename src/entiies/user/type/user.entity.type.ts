@@ -1,7 +1,4 @@
-export enum UserRole {
-  ADMIN = 'admin',
-  USER = 'user',
-}
+import { UserRole } from '../enums/user-role.enum';
 
 export type TUserEntity = {
   id?: string;

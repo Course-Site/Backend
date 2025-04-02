@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Observable } from 'rxjs';
-import { UserRole } from 'src/entiies/user/type/user.entity.type'; // Предположим, что у вас есть перечисление UserRole
+import { UserRole } from 'src/entiies/user/enums/user-role.enum';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
@@ -15,10 +15,7 @@ export class RolesGuard implements CanActivate {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
-    const requiredRoles = this.reflector.get<UserRole[]>(
-      'roles',
-      context.getHandler(),
-    );
+    const requiredRoles = this.reflector.get<UserRole[]>('roles', context.getHandler());
     if (!requiredRoles) {
       return true; // Если роль не указана, доступ разрешен
     }

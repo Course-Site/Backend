@@ -1,34 +1,16 @@
-import {
-  Controller,
-  Get,
-  Delete,
-  Inject,
-  Param,
-  Post,
-  Req,
-  Res,
-  UseGuards,
-} from '@nestjs/common';
+import { Controller, Get, Delete, Inject, Param, UseGuards } from '@nestjs/common';
 import { IUserService } from 'src/use-cases/user/interface/service/user.service.interface';
-import {
-  ApiBearerAuth,
-  ApiTags,
-  ApiOperation,
-  ApiResponse,
-  ApiParam,
-  ApiBody,
-  ApiConsumes,
-} from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags, ApiOperation, ApiResponse, ApiParam } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard';
-import { Response } from 'express';
 import { UserId } from 'src/infrastructure/decorators/user-id.decorator';
 import { Roles } from 'src/infrastructure/decorators/roles.decorator';
 import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard'
-import { UserRole } from 'src/entiies/user/type/user.entity.type';
+import { UserRole } from 'src/entiies/user/enums/user-role.enum';
 
+@UseGuards(RolesGuard)
 @Controller('user')
 @ApiTags('User')
-@UseGuards(JwtAuthGuard, RolesGuard)
+@UseGuards(JwtAuthGuard)
 @ApiBearerAuth()
 @Roles(UserRole.ADMIN)
 export class UserController {
@@ -44,19 +26,6 @@ export class UserController {
   @ApiResponse({ status: 404, description: 'Users not found.' })
   async findAllUsers() {
     return await this.userService.findAllUsers();
-  }
-
-  //@UseGuards(RolesGuard)
-  @Delete('delete/:id')
-  @ApiOperation({ summary: 'Delete a user by his ID' })
-  @ApiParam({ name: 'id', description: 'User ID', type: 'string' })
-  @ApiResponse({
-    status: 200,
-    description: 'The user has been successfully deleted.',
-  })
-  @ApiResponse({ status: 404, description: 'User not found.' })
-  async deleteUser(@Param('id') id: string) {
-    await this.userService.deleteUser(id);
   }
 
   @Get('findById/:id')
@@ -88,5 +57,18 @@ export class UserController {
       name: user.name,
       role: user.role,
     };
+  }
+
+  //@UseGuards(RolesGuard)
+  @Delete('delete/:id')
+  @ApiOperation({ summary: 'Delete a user by his ID' })
+  @ApiParam({ name: 'id', description: 'User ID', type: 'string' })
+  @ApiResponse({
+    status: 200,
+    description: 'The user has been successfully deleted.',
+  })
+  @ApiResponse({ status: 404, description: 'User not found.' })
+  async deleteUser(@Param('id') id: string) {
+    await this.userService.deleteUser(id);
   }
 }

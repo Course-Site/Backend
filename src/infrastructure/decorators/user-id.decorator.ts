@@ -8,7 +8,7 @@ export const UserId = createParamDecorator(
 );
 import { UseGuards, applyDecorators } from '@nestjs/common';
 import { JwtAuthGuard } from '../JWT/guards/jwt.guard';
-import { UserRole } from 'src/entiies/user/type/user.entity.type';
+import { UserRole } from 'src/entiies/user/enums/user-role.enum';
 
 export function Auth(role: UserRole) {
   return applyDecorators(

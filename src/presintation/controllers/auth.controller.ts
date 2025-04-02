@@ -6,7 +6,7 @@ import { LocalAuthGuard } from 'src/infrastructure/JWT/guards/local.guard';
 import { Roles } from 'src/infrastructure/decorators/roles.decorator';
 import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard';
 import { CreateUserDto } from '../dto/user/create.user.dto';
-import { UserRole } from 'src/entiies/user/type/user.entity.type';
+import { UserRole } from 'src/entiies/user/enums/user-role.enum';
 import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard';
 
 @Controller('auth')

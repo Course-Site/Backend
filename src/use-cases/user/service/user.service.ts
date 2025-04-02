@@ -3,7 +3,6 @@ import { IUserService } from '../interface/service/user.service.interface';
 import { IUserRepository } from '../interface/repository/user.repository.interface';
 import { IUserEntity } from 'src/entiies/user/interface/user.entity.interface';
 import { ICreateUserDto } from '../interface/dto/create.user.dto.interface';
-import { UserRole } from 'src/entiies/user/type/user.entity.type';
 
 import * as bcrypt from 'bcrypt';
 
@@ -21,20 +20,12 @@ export class UserService implements IUserService {
       email: data.email,
       password: hash,
       name: data.name,
-      role: data.role || UserRole.USER,
+      role: data.role,
     });
   }
 
   async findAllUsers(): Promise<IUserEntity[]> {
     return await this.userRepository.findAllUsers();
-  }
-
-  async deleteUser(id: string): Promise<void> {
-    try {
-      return await this.userRepository.deleteUser(id);
-    } catch (error) {
-      throw new Error(error);
-    }
   }
 
   async findById(id: string): Promise<IUserEntity> {
@@ -43,5 +34,13 @@ export class UserService implements IUserService {
 
   async findByEmail(email: string): Promise<IUserEntity> {
     return await this.userRepository.findByEmail(email);
+  }
+  
+  async deleteUser(id: string): Promise<void> {
+    try {
+      return await this.userRepository.deleteUser(id);
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }

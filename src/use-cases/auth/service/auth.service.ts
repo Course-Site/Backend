@@ -5,7 +5,7 @@ import { IUserService } from '../../user/interface/service/user.service.interfac
 import { JwtService } from '@nestjs/jwt';
 import { UserEntity } from 'src/infrastructure/db/entities/user.entity';
 import * as bcrypt from 'bcrypt';
-import { UserRole } from 'src/entiies/user/type/user.entity.type';
+import { UserRole } from 'src/entiies/user/enums/user-role.enum';
 
 @Injectable()
 export class AuthService implements IAuthService {
@@ -42,16 +42,6 @@ export class AuthService implements IAuthService {
       if (candidate) {
         throw new ForbiddenException(
           'Пользователь с таким email уже существует',
-        );
-      }
-
-      if (
-        data.role !== UserRole.ADMIN &&
-        data.role !== UserRole.USER &&
-        data.role !== undefined
-      ) {
-        throw new ForbiddenException(
-          'Пользователь с такой ролью не может существовать',
         );
       }
 

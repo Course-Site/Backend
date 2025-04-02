@@ -16,7 +16,7 @@ import { UserEntity } from '../db/entities/user.entity';
     {
       provide: 'userService',
       useClass: UserService,
-    },
+    }
   ],
 })
 export class UserModule {}

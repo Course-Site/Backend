@@ -1,4 +1,5 @@
-import { UserRole } from '../type/user.entity.type';
+import { UserRole } from '../enums/user-role.enum';
+
 export interface IUserEntity {
   id?: string;
   email: string;
