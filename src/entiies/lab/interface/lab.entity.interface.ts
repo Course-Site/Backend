@@ -1,3 +1,4 @@
+import { TopicEntity } from 'src/infrastructure/db/entities/topic.entity'
 import { LabEntity } from '../entity/lab.entity';
 
 export interface ILabEntity {
@@ -5,4 +6,6 @@ export interface ILabEntity {
   title: string;
   description?: string;
   guidelineFileUrl: string;
+  topic: TopicEntity;
 }
+      

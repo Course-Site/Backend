@@ -9,6 +9,7 @@ import {
 import { TopicEntity } from './topic.entity';
 import { QuestionEntity } from './test_question.entity'
 import { TestResultEntity } from './test_result.entity'
+import { IsNotEmpty } from 'class-validator'
   
 
 @Entity()
@@ -17,6 +18,7 @@ export class TestEntity {
   id: string;
   
   @Column('varchar')
+  @IsNotEmpty()
   title: string;
   
   @Column('text', { nullable: true })

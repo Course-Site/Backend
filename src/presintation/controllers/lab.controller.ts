@@ -28,6 +28,7 @@ export class LabController {
         title: { type: 'string', default: 'test' },
         description: { type: 'string', default: 'test' },
         guidelineFileUrl: { type: 'string', default: 'test' },
+        topic: { type: 'string', default: 'test' },
       },
     },
   })
@@ -65,6 +66,7 @@ export class LabController {
         title: { type: 'string', default: 'test' },
         description: { type: 'string', default: 'test' },
         guidelineFileUrl: { type: 'string', default: 'test' },
+        topic: { type: 'string', default: 'test' },
       },
     },
   })

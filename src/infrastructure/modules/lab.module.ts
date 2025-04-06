@@ -10,7 +10,7 @@ import { LabResultEntity } from '../db/entities/lab_result.entity'
 import { LabResultRepository } from '../db/repositories/lab_result.repository'
 
 @Module({
-  imports: [TypeOrmModule.forFeature([LabEntity])],
+  imports: [TypeOrmModule.forFeature([LabEntity]), TopicEntity],
   controllers: [LabController],
   providers: [
 	{

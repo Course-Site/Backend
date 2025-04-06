@@ -16,7 +16,8 @@ export class LectureService implements ILectureService {
 
     return this.lectureRepository.createLecture({
       title: data.title,
-      content: data.content,
+      lectureFileUrl: data.lectureFileUrl,
+      topicId: data.topicId,
     });
   }
 

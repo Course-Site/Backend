@@ -48,7 +48,7 @@ export class AuthService implements IAuthService {
       const userData = await this.userService.createUser(data);
 
       return {
-        token: this.jwtService.sign({ id: userData.id }),
+        token: this.jwtService.sign({ id: userData.id, role: userData.role }),
       };
     } catch (err) {
       throw new ForbiddenException('Ошибка при регистрации');
@@ -57,7 +57,7 @@ export class AuthService implements IAuthService {
 
   async signIn(user: UserEntity) {
     return {
-      token: this.jwtService.sign({ id: user.id }),
+      token: this.jwtService.sign({ id: user.id, role: user.role }),
     };
   }
 }

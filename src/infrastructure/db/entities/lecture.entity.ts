@@ -1,5 +1,6 @@
 import { Entity,	PrimaryGeneratedColumn,	Column, ManyToOne, OneToMany } from 'typeorm';
 import { TopicEntity } from './topic.entity';
+import { IsNotEmpty } from 'class-validator'
   
   @Entity()
   export class LectureEntity {
@@ -7,27 +8,12 @@ import { TopicEntity } from './topic.entity';
 	id: string;
   
 	@Column('varchar')
+	@IsNotEmpty()
 	title: string;
   
 	@Column('text')
-	content: string;
+	lectureFileUrl: string;
   
 	@ManyToOne(() => TopicEntity, topic => topic.lectures, { onDelete: 'CASCADE' })
 	topic: TopicEntity;
-  
-	@OneToMany(() => LectureImageEntity, image => image.lecture)
-	images: LectureImageEntity[];
   }
-  
-  @Entity()
-  export class LectureImageEntity {
-	@PrimaryGeneratedColumn('uuid')
-	id: string;
-  
-	@Column('varchar')
-	imageUrl: string;
-  
-	@ManyToOne(() => LectureEntity, lecture => lecture.images, { onDelete: 'CASCADE' })
-	lecture: LectureEntity;
-}
-  

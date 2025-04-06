@@ -4,9 +4,10 @@ import {
 	Column,
 	OneToMany,
   } from 'typeorm';
-  import { LectureEntity } from './lecture.entity';
-  import { TestEntity } from './test.entity';
-  import { LabEntity } from './lab.entity';
+import { LectureEntity } from './lecture.entity';
+import { TestEntity } from './test.entity';
+import { LabEntity } from './lab.entity';
+import { IsNotEmpty } from 'class-validator'
   
   @Entity()
   export class TopicEntity {
@@ -14,10 +15,8 @@ import {
 	id: string;
   
 	@Column('varchar')
+	@IsNotEmpty()
 	title: string;
-  
-	@Column('text', { nullable: true })
-	description: string;
   
 	@OneToMany(() => LectureEntity, lecture => lecture.topic, { nullable: true })
 	lectures: LectureEntity[];

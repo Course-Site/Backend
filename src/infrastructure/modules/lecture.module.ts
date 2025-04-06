@@ -6,9 +6,10 @@ import { LectureRepository } from '../db/repositories/lecture.repository';
 import { LectureEntity } from '../db/entities/lecture.entity';
 import { LabResultEntity } from '../db/entities/lab_result.entity'
 import { LabResultRepository } from '../db/repositories/lab_result.repository'
+import { TopicEntity } from '../db/entities/topic.entity'
 
 @Module({
-  imports: [TypeOrmModule.forFeature([LectureEntity])],
+  imports: [TypeOrmModule.forFeature([LectureEntity]), TopicEntity],
   controllers: [LectureController],
   providers: [
 	{

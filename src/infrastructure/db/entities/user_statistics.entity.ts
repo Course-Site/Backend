@@ -4,7 +4,8 @@ import {
 	Column,
 	OneToOne,
   } from 'typeorm';
-  import { UserEntity } from './user.entity';
+import { UserEntity } from './user.entity';
+import { IsNotEmpty } from 'class-validator'
 
 
 @Entity()
@@ -13,9 +14,11 @@ export class UserStatisticsEntity {
   id: string;
 
   @Column('int', { default: 0 })
+  @IsNotEmpty()
   totalTestScore: number;
 
   @Column('int', { default: 0 })
+  @IsNotEmpty()
   totalLabScore: number;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

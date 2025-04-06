@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
   import { UserEntity } from './user.entity';
   import { TestEntity } from './test.entity';
+import { IsNotEmpty } from 'class-validator'
   
   @Entity()
   export class TestResultEntity {
@@ -8,9 +9,11 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 	id: string;
   
 	@Column('int')
+	@IsNotEmpty()
 	score: number;
 
 	@Column('float', { nullable: true }) 
+	@IsNotEmpty()
 	percentage: number;
 
 	@Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

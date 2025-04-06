@@ -26,7 +26,8 @@ export class LectureController {
 	schema: {
 	  properties: {
     title: { type: 'string', default: 'test' },
-    content: { type: 'string', default: 'test' },
+    lectureFileUrl: { type: 'string', default: 'test' },
+    topicId: { type: 'string', default: 'test' },
 	  },
 	},
   })
@@ -62,7 +63,8 @@ export class LectureController {
 	schema: {
 	  properties: {
     title: { type: 'string', default: 'test' },
-    content: { type: 'string', default: 'test' },
+    lectureFileUrl: { type: 'string', default: 'test' },
+    topicId: { type: 'string', default: 'test' },
 	  },
 	},
   })

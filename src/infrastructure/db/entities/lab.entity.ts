@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
 import { TopicEntity } from './topic.entity';
 import { LabResultEntity } from './lab_result.entity'
+import { IsNotEmpty } from 'class-validator'
 
 @Entity()
 export class LabEntity {
@@ -8,6 +9,7 @@ export class LabEntity {
   id: string;
 
   @Column('varchar')
+  @IsNotEmpty()
   title: string;
 
   @Column('text', { nullable: true })
@@ -20,5 +22,5 @@ export class LabEntity {
   topic: TopicEntity;
 
   @OneToMany(() => LabResultEntity, labResults => labResults.lab)
-  labResults: LabResultEntity;
+  labResults: LabResultEntity[];
 }

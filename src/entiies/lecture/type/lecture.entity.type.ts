@@ -1,5 +1,5 @@
 export type TLectureEntity = {
   id?: string;
   title: string;
-  content: string;
+  lectureFileUrl: string;
 };
