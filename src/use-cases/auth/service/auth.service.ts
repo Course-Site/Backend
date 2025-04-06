@@ -33,7 +33,12 @@ export class AuthService implements IAuthService {
       return result;
     }
 
-    return null;
+    return {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      role: user.role, 
+    };
   }
 
   async signUp(data: CreateUserDto): Promise<{ token: string }> {
@@ -46,7 +51,6 @@ export class AuthService implements IAuthService {
       }
 
       const userData = await this.userService.createUser(data);
-
       return {
         token: this.jwtService.sign({ id: userData.id, role: userData.role }),
       };
@@ -55,7 +59,8 @@ export class AuthService implements IAuthService {
     }
   }
 
-  async signIn(user: UserEntity) {
+  async signIn(user: { id: string; role: string }) {
+    if (!user.role) user.role = UserRole.USER; // Защита от undefined
     return {
       token: this.jwtService.sign({ id: user.id, role: user.role }),
     };

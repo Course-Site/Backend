@@ -12,12 +12,11 @@ export class LabService implements ILabService {
   ) {}
 
   async createLab(data: ICreateLabDto): Promise<ILabEntity> {
-
     return this.labRepository.createLab({
-	  title: data.title,
-	  description: data.description,
-	  guidelineFileUrl: data.guidelineFileUrl,
-    topic: data.topic,
+      title: data.title,
+      description: data.description,
+      guidelineFileUrl: data.guidelineFileUrl,
+      topic: data.topic,
     });
   }
 
@@ -29,10 +28,10 @@ export class LabService implements ILabService {
     return await this.labRepository.findById(id);
   }
 
-  async updateLab(id: string, lab: Partial<ILabEntity>): Promise<ILabEntity>{
+  async updateLab(id: string, lab: Partial<ILabEntity>): Promise<ILabEntity> {
     return await this.labRepository.updateLab(id, lab);
   }
-  
+
   async deleteLab(id: string): Promise<void> {
     try {
       return await this.labRepository.deleteLab(id);

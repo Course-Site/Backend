@@ -5,6 +5,9 @@ export interface IAnswerService {
   createAnswer(data: ICreateAnswerDto): Promise<IAnswerEntity>;
   findAllAnswers(): Promise<IAnswerEntity[]>;
   findById(id: string): Promise<IAnswerEntity>;
-  updateAnswer(id: string, answer: Partial<IAnswerEntity>): Promise<IAnswerEntity>;
+  updateAnswer(
+    id: string,
+    answer: Partial<IAnswerEntity>,
+  ): Promise<IAnswerEntity>;
   deleteAnswer(id: string): Promise<void>;
 }

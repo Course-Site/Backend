@@ -9,49 +9,49 @@ import { ILabEntity } from 'src/entiies/lab/interface/lab.entity.interface';
 @Injectable()
 export class LabRepository implements ILabRepository {
   constructor(
-	@InjectRepository(LabEntity)
-	private readonly labRepository: Repository<LabEntity>,
+    @InjectRepository(LabEntity)
+    private readonly labRepository: Repository<LabEntity>,
   ) {}
 
   async createLab(data: ICreateLabDto): Promise<ILabEntity> {
-	try {
-	  const lab = this.labRepository.create(data);
-	  return await this.labRepository.save(lab);
-	} catch (error) {
-	  throw error;
-	}
+    try {
+      const lab = this.labRepository.create(data);
+      return await this.labRepository.save(lab);
+    } catch (error) {
+      throw error;
+    }
   }
 
   async findAllLabs(): Promise<ILabEntity[]> {
-	try {
-	  return this.labRepository.find({});
-	} catch (error) {
-	  throw new Error('Labs not found');
-	}
+    try {
+      return this.labRepository.find({});
+    } catch (error) {
+      throw new Error('Labs not found');
+    }
   }
 
   async findById(labId: string): Promise<ILabEntity> {
-	try {
-	  return this.labRepository.findOne({ where: { id: labId } });
-	} catch (error) {
-	  throw new Error('Lab not found');
-	}
+    try {
+      return this.labRepository.findOne({ where: { id: labId } });
+    } catch (error) {
+      throw new Error('Lab not found');
+    }
   }
 
-  async updateLab(id: string, lab: Partial<ILabEntity>): Promise<ILabEntity>  {
-    try{
-    await this.labRepository.update(id, lab);
-    return this.labRepository.findOne({ where: { id } });
+  async updateLab(id: string, lab: Partial<ILabEntity>): Promise<ILabEntity> {
+    try {
+      await this.labRepository.update(id, lab);
+      return this.labRepository.findOne({ where: { id } });
     } catch {
       throw new Error('Lab not found');
     }
   }
 
   async deleteLab(id: string): Promise<void> {
-	try {
-	  await this.labRepository.delete(id);
-	} catch (error) {
-	  throw new Error(error);
-	}
+    try {
+      await this.labRepository.delete(id);
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }

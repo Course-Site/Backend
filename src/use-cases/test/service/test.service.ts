@@ -19,22 +19,25 @@ export class TestService implements ITestService {
   }
 
   async findAllTests(): Promise<ITestEntity[]> {
-      return await this.testRepository.findAllTests();
+    return await this.testRepository.findAllTests();
   }
-  
-    async findById(id: string): Promise<ITestEntity> {
-      return this.testRepository.findById(id);
+
+  async findById(id: string): Promise<ITestEntity> {
+    return this.testRepository.findById(id);
+  }
+
+  async updateTest(
+    id: string,
+    test: Partial<ITestEntity>,
+  ): Promise<ITestEntity> {
+    return await this.testRepository.updateTest(id, test);
+  }
+
+  async deleteTest(id: string): Promise<void> {
+    try {
+      return await this.testRepository.deleteTest(id);
+    } catch (error) {
+      throw new Error(error);
     }
-  
-    async updateTest(id: string, test: Partial<ITestEntity>): Promise<ITestEntity>{
-      return await this.testRepository.updateTest(id, test);
-    }
-  
-    async deleteTest(id: string): Promise<void> {
-      try {
-        return await this.testRepository.deleteTest(id);
-      } catch (error) {
-        throw new Error(error);
-      }
-    }
+  }
 }

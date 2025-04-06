@@ -12,10 +12,9 @@ export class QuestionService implements IQuestionService {
   ) {}
 
   async createQuestion(data: ICreateQuestionDto): Promise<IQuestionEntity> {
-
     return this.questionRepository.createQuestion({
-	  text: data.text,
-    imageUrl: data.imageUrl,
+      text: data.text,
+      imageUrl: data.imageUrl,
     });
   }
 
@@ -27,10 +26,13 @@ export class QuestionService implements IQuestionService {
     return await this.questionRepository.findById(id);
   }
 
-  async updateQuestion(id: string, question: Partial<IQuestionEntity>): Promise<IQuestionEntity>{
+  async updateQuestion(
+    id: string,
+    question: Partial<IQuestionEntity>,
+  ): Promise<IQuestionEntity> {
     return await this.questionRepository.updateQuestion(id, question);
   }
-  
+
   async deleteQuestion(id: string): Promise<void> {
     try {
       return await this.questionRepository.deleteQuestion(id);

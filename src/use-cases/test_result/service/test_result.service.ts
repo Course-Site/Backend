@@ -4,7 +4,6 @@ import { ITestResultRepository } from '../interface/repository/test_result.repos
 import { ITestResultEntity } from 'src/entiies/test_result/interface/test_result.entity.interface';
 import { ICreateTestResultDto } from '../interface/dto/create.test_result.dto.interface';
 
-
 @Injectable()
 export class TestResultService implements ITestResultService {
   constructor(
@@ -12,7 +11,9 @@ export class TestResultService implements ITestResultService {
     private readonly testresultRepository: ITestResultRepository,
   ) {}
 
-  async createTestResult(data: ICreateTestResultDto): Promise<ITestResultEntity> {
+  async createTestResult(
+    data: ICreateTestResultDto,
+  ): Promise<ITestResultEntity> {
     return this.testresultRepository.createTestResult({
       score: data.score,
       percentage: data.percentage,
@@ -21,22 +22,25 @@ export class TestResultService implements ITestResultService {
   }
 
   async findAllTestResult(): Promise<ITestResultEntity[]> {
-      return await this.testresultRepository.findAllTestResult();
+    return await this.testresultRepository.findAllTestResult();
+  }
+
+  async findById(id: string): Promise<ITestResultEntity> {
+    return this.testresultRepository.findById(id);
+  }
+
+  async updateTestResult(
+    id: string,
+    testresult: Partial<ITestResultEntity>,
+  ): Promise<ITestResultEntity> {
+    return await this.testresultRepository.updateTestResult(id, testresult);
+  }
+
+  async deleteTestResult(id: string): Promise<void> {
+    try {
+      return await this.testresultRepository.deleteTestResult(id);
+    } catch (error) {
+      throw new Error(error);
     }
-  
-    async findById(id: string): Promise<ITestResultEntity> {
-      return this.testresultRepository.findById(id);
-    }
-  
-    async updateTestResult(id: string, testresult: Partial<ITestResultEntity>): Promise<ITestResultEntity>{
-      return await this.testresultRepository.updateTestResult(id, testresult);
-    }
-  
-    async deleteTestResult(id: string): Promise<void> {
-      try {
-        return await this.testresultRepository.deleteTestResult(id);
-      } catch (error) {
-        throw new Error(error);
-      }
-    }
+  }
 }

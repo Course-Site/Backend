@@ -16,7 +16,7 @@ import { LabResultEntity } from '../db/entities/lab_result.entity';
     {
       provide: 'labresultService',
       useClass: LabResultService,
-    }
+    },
   ],
 })
 export class LabResultModule {}

@@ -1,12 +1,6 @@
-import {
-	Entity,
-	PrimaryGeneratedColumn,
-	Column,
-	OneToOne,
-  } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from 'typeorm';
 import { UserEntity } from './user.entity';
-import { IsNotEmpty } from 'class-validator'
-
+import { IsNotEmpty } from 'class-validator';
 
 @Entity()
 export class UserStatisticsEntity {
@@ -24,6 +18,6 @@ export class UserStatisticsEntity {
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   lastUpdated: Date;
 
-  @OneToOne(() => UserEntity, user => user.statistics)
+  @OneToOne(() => UserEntity, (user) => user.statistics)
   user: UserEntity;
 }

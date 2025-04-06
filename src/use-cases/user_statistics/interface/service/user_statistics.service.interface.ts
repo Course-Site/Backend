@@ -2,9 +2,14 @@ import { IUserStatisticsEntity } from 'src/entiies/user_statistics/interface/use
 import { ICreateUserStatisticsDto } from '../dto/create.user_statistics.dto.interface';
 
 export interface IUserStatisticsService {
-  createUserStatistics(data: ICreateUserStatisticsDto): Promise<IUserStatisticsEntity>;
+  createUserStatistics(
+    data: ICreateUserStatisticsDto,
+  ): Promise<IUserStatisticsEntity>;
   findAllUserStatistics(): Promise<IUserStatisticsEntity[]>;
   findById(id: string): Promise<IUserStatisticsEntity>;
-  updateUserStatistics(id: string, userstatistics: Partial<IUserStatisticsEntity>): Promise<IUserStatisticsEntity>;
+  updateUserStatistics(
+    id: string,
+    userstatistics: Partial<IUserStatisticsEntity>,
+  ): Promise<IUserStatisticsEntity>;
   deleteUserStatistics(id: string): Promise<void>;
 }

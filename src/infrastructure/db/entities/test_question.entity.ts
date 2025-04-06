@@ -1,6 +1,12 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
-import { AnswerEntity } from './test_answer.entity'
-import { TestEntity } from './test.entity'
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { AnswerEntity } from './test_answer.entity';
+import { TestEntity } from './test.entity';
 
 @Entity()
 export class QuestionEntity {
@@ -13,9 +19,11 @@ export class QuestionEntity {
   @Column('varchar')
   imageUrl: string;
 
-  @ManyToOne(() => TestEntity, test => test.questions, { onDelete: 'CASCADE' })
+  @ManyToOne(() => TestEntity, (test) => test.questions, {
+    onDelete: 'CASCADE',
+  })
   test: TestEntity;
-  
-  @OneToMany(() => AnswerEntity, answer => answer.question)
+
+  @OneToMany(() => AnswerEntity, (answer) => answer.question)
   answers: AnswerEntity[];
 }

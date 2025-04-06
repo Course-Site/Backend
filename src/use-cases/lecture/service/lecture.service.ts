@@ -4,7 +4,6 @@ import { ILectureRepository } from '../interface/repository/lecture.repository.i
 import { ILectureEntity } from 'src/entiies/lecture/interface/lecture.entity.interface';
 import { ICreateLectureDto } from '../interface/dto/create.lecture.dto.interface';
 
-
 @Injectable()
 export class LectureService implements ILectureService {
   constructor(
@@ -13,7 +12,6 @@ export class LectureService implements ILectureService {
   ) {}
 
   async createLecture(data: ICreateLectureDto): Promise<ILectureEntity> {
-
     return this.lectureRepository.createLecture({
       title: data.title,
       lectureFileUrl: data.lectureFileUrl,
@@ -29,7 +27,10 @@ export class LectureService implements ILectureService {
     return this.lectureRepository.findById(id);
   }
 
-  async updateLecture(id: string, lecture: Partial<ILectureEntity>): Promise<ILectureEntity>{
+  async updateLecture(
+    id: string,
+    lecture: Partial<ILectureEntity>,
+  ): Promise<ILectureEntity> {
     return await this.lectureRepository.updateLecture(id, lecture);
   }
 

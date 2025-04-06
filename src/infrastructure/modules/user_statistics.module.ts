@@ -16,7 +16,7 @@ import { UserStatisticsEntity } from '../db/entities/user_statistics.entity';
     {
       provide: 'userstatisticsService',
       useClass: UserStatisticsService,
-    }
+    },
   ],
 })
 export class UserStatisticsModule {}

@@ -1,7 +1,7 @@
 export type TTestResultEntity = {
   id?: string;
   score: number;
-  percentage
+  percentage;
   totalScore: number;
   completedAt: Date;
 };

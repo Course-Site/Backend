@@ -5,6 +5,9 @@ export interface IQuestionService {
   createQuestion(data: ICreateQuestionDto): Promise<IQuestionEntity>;
   findAllQuestions(): Promise<IQuestionEntity[]>;
   findById(id: string): Promise<IQuestionEntity>;
-  updateQuestion(id: string, question: Partial<IQuestionEntity>): Promise<IQuestionEntity>;
+  updateQuestion(
+    id: string,
+    question: Partial<IQuestionEntity>,
+  ): Promise<IQuestionEntity>;
   deleteQuestion(id: string): Promise<void>;
 }

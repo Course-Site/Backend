@@ -5,6 +5,9 @@ export interface ILabResultService {
   createLabResult(data: ICreateLabResultDto): Promise<ILabResultEntity>;
   findAllLabResult(): Promise<ILabResultEntity[]>;
   findById(id: string): Promise<ILabResultEntity>;
-  updateLabResult(id: string, labresult: Partial<ILabResultEntity>): Promise<ILabResultEntity>;
+  updateLabResult(
+    id: string,
+    labresult: Partial<ILabResultEntity>,
+  ): Promise<ILabResultEntity>;
   deleteLabResult(id: string): Promise<void>;
 }

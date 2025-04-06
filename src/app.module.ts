@@ -7,12 +7,11 @@ import { UserStatisticsModule } from './infrastructure/modules/user_statistics.m
 import { labModule } from './infrastructure/modules/lab.module';
 import { TestModule } from './infrastructure/modules/test.module';
 import { LectureModule } from './infrastructure/modules/lecture.module';
-import { TestResultModule } from './infrastructure/modules/test_result.module'
-import { LabResultModule } from './infrastructure/modules/lab_result.module'
-import { AnswerModule } from './infrastructure/modules/test_answer.module'
-import { QuestionModule } from './infrastructure/modules/test_question.module'
-import { TopicModule } from './infrastructure/modules/topic.module'
-
+import { TestResultModule } from './infrastructure/modules/test_result.module';
+import { LabResultModule } from './infrastructure/modules/lab_result.module';
+import { AnswerModule } from './infrastructure/modules/test_answer.module';
+import { QuestionModule } from './infrastructure/modules/test_question.module';
+import { TopicModule } from './infrastructure/modules/topic.module';
 
 @Module({
   imports: [
@@ -30,7 +29,7 @@ import { TopicModule } from './infrastructure/modules/topic.module'
     LectureModule,
     AnswerModule,
     QuestionModule,
-    TopicModule
+    TopicModule,
   ],
   controllers: [],
   providers: [],

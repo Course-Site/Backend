@@ -5,6 +5,9 @@ export interface ILectureRepository {
   createLecture(data: ICreateLectureDto): Promise<ILectureEntity>;
   findAllLectures(): Promise<ILectureEntity[]>;
   findById(id: string): Promise<ILectureEntity>;
-  updateLecture(id: string, lecture: Partial<ILectureEntity>): Promise<ILectureEntity>;
+  updateLecture(
+    id: string,
+    lecture: Partial<ILectureEntity>,
+  ): Promise<ILectureEntity>;
   deleteLecture(id: string): Promise<void>;
 }

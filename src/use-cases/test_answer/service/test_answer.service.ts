@@ -12,10 +12,9 @@ export class AnswerService implements IAnswerService {
   ) {}
 
   async createAnswer(data: ICreateAnswerDto): Promise<IAnswerEntity> {
-
     return this.answerRepository.createAnswer({
-	  text: data.text,
-    isCorrect: data.isCorrect,
+      text: data.text,
+      isCorrect: data.isCorrect,
     });
   }
 
@@ -27,10 +26,13 @@ export class AnswerService implements IAnswerService {
     return await this.answerRepository.findById(id);
   }
 
-  async updateAnswer(id: string, answer: Partial<IAnswerEntity>): Promise<IAnswerEntity>{
+  async updateAnswer(
+    id: string,
+    answer: Partial<IAnswerEntity>,
+  ): Promise<IAnswerEntity> {
     return await this.answerRepository.updateAnswer(id, answer);
   }
-  
+
   async deleteAnswer(id: string): Promise<void> {
     try {
       return await this.answerRepository.deleteAnswer(id);

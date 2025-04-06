@@ -16,7 +16,7 @@ import { TestResultEntity } from '../db/entities/test_result.entity';
     {
       provide: 'testresultService',
       useClass: TestResultService,
-    }
+    },
   ],
 })
 export class TestResultModule {}

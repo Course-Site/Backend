@@ -5,6 +5,9 @@ export interface ITestResultRepository {
   createTestResult(data: ICreateTestResultDto): Promise<ITestResultEntity>;
   findAllTestResult(): Promise<ITestResultEntity[]>;
   findById(id: string): Promise<ITestResultEntity>;
-  updateTestResult(id: string, testresult: Partial<ITestResultEntity>): Promise<ITestResultEntity>;
+  updateTestResult(
+    id: string,
+    testresult: Partial<ITestResultEntity>,
+  ): Promise<ITestResultEntity>;
   deleteTestResult(id: string): Promise<void>;
 }

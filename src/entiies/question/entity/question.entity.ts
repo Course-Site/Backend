@@ -9,6 +9,6 @@ export class QuestionEntity implements IQuestionEntity {
   constructor(data: TQuestionEntity) {
     this.id = data.id;
     this.text = data.text;
-    this.imageUrl = data.imageUrl
+    this.imageUrl = data.imageUrl;
   }
 }

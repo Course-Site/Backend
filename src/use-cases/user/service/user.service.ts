@@ -35,7 +35,7 @@ export class UserService implements IUserService {
   async findByEmail(email: string): Promise<IUserEntity> {
     return await this.userRepository.findByEmail(email);
   }
-  
+
   async deleteUser(id: string): Promise<void> {
     try {
       return await this.userRepository.deleteUser(id);

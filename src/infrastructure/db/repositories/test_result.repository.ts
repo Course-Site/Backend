@@ -9,49 +9,54 @@ import { ITestResultEntity } from 'src/entiies/test_result/interface/test_result
 @Injectable()
 export class TestResultRepository implements ITestResultRepository {
   constructor(
-	@InjectRepository(TestResultEntity)
-	private readonly testresultRepository: Repository<TestResultEntity>,
+    @InjectRepository(TestResultEntity)
+    private readonly testresultRepository: Repository<TestResultEntity>,
   ) {}
 
-  async createTestResult(data: ICreateTestResultDto): Promise<ITestResultEntity> {
-	try {
-	  const testresult = this.testresultRepository.create(data);
-	  return await this.testresultRepository.save(testresult);
-	} catch (error) {
-	  throw error;
-	}
+  async createTestResult(
+    data: ICreateTestResultDto,
+  ): Promise<ITestResultEntity> {
+    try {
+      const testresult = this.testresultRepository.create(data);
+      return await this.testresultRepository.save(testresult);
+    } catch (error) {
+      throw error;
+    }
   }
 
   async findAllTestResult(): Promise<ITestResultEntity[]> {
-	try {
-	  return this.testresultRepository.find({});
-	} catch (error) {
-	  throw new Error('TestResults not found');
-	}
+    try {
+      return this.testresultRepository.find({});
+    } catch (error) {
+      throw new Error('TestResults not found');
+    }
   }
 
   async findById(testresultId: string): Promise<ITestResultEntity> {
-	try {
-	  return this.testresultRepository.findOne({ where: { id: testresultId } });
-	} catch (error) {
-	  throw new Error('TestResult not found');
-	}
+    try {
+      return this.testresultRepository.findOne({ where: { id: testresultId } });
+    } catch (error) {
+      throw new Error('TestResult not found');
+    }
   }
 
-  async updateTestResult(id: string, testresult: Partial<ITestResultEntity>): Promise<ITestResultEntity>  {
-	try{
-	await this.testresultRepository.update(id, testresult);
-	return this.testresultRepository.findOne({ where: { id } });
-	} catch {
-	  throw new Error('TestResult not found');
-	}
+  async updateTestResult(
+    id: string,
+    testresult: Partial<ITestResultEntity>,
+  ): Promise<ITestResultEntity> {
+    try {
+      await this.testresultRepository.update(id, testresult);
+      return this.testresultRepository.findOne({ where: { id } });
+    } catch {
+      throw new Error('TestResult not found');
+    }
   }
 
   async deleteTestResult(id: string): Promise<void> {
-	try {
-	  await this.testresultRepository.delete(id);
-	} catch (error) {
-	  throw new Error(error);
-	}
+    try {
+      await this.testresultRepository.delete(id);
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }

@@ -35,12 +35,12 @@ export class UserEntity {
   @IsNotEmpty()
   role: UserRole;
 
-  @OneToMany(() => TestResultEntity, testResult => testResult.user)
+  @OneToMany(() => TestResultEntity, (testResult) => testResult.user)
   testResults: TestResultEntity[];
 
-  @OneToMany(() => LabResultEntity, labResult => labResult.user)
+  @OneToMany(() => LabResultEntity, (labResult) => labResult.user)
   labResults: LabResultEntity[];
 
-  @OneToOne(() => UserStatisticsEntity, stats => stats.user)
+  @OneToOne(() => UserStatisticsEntity, (stats) => stats.user)
   statistics: UserStatisticsEntity[];
 }

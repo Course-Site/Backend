@@ -1,4 +1,4 @@
-import { TopicEntity } from 'src/infrastructure/db/entities/topic.entity'
+import { TopicEntity } from 'src/infrastructure/db/entities/topic.entity';
 
 export type TLabEntity = {
   id?: string;

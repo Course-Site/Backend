@@ -9,49 +9,52 @@ import { ITopicEntity } from 'src/entiies/topic/interface/topic.entity.interface
 @Injectable()
 export class TopicRepository implements ITopicRepository {
   constructor(
-	@InjectRepository(TopicEntity)
-	private readonly topicRepository: Repository<TopicEntity>,
+    @InjectRepository(TopicEntity)
+    private readonly topicRepository: Repository<TopicEntity>,
   ) {}
 
   async createTopic(data: ICreateTopicDto): Promise<ITopicEntity> {
-	try {
-	  const topic = this.topicRepository.create(data);
-	  return await this.topicRepository.save(topic);
-	} catch (error) {
-	  throw error;
-	}
+    try {
+      const topic = this.topicRepository.create(data);
+      return await this.topicRepository.save(topic);
+    } catch (error) {
+      throw error;
+    }
   }
 
   async findAllTopics(): Promise<ITopicEntity[]> {
-	try {
-	  return this.topicRepository.find({});
-	} catch (error) {
-	  throw new Error('Topics not found');
-	}
+    try {
+      return this.topicRepository.find({});
+    } catch (error) {
+      throw new Error('Topics not found');
+    }
   }
 
   async findById(topicId: string): Promise<ITopicEntity> {
-	try {
-	  return this.topicRepository.findOne({ where: { id: topicId } });
-	} catch (error) {
-	  throw new Error('Topic not found');
-	}
+    try {
+      return this.topicRepository.findOne({ where: { id: topicId } });
+    } catch (error) {
+      throw new Error('Topic not found');
+    }
   }
 
-  async updateTopic(id: string, topic: Partial<ITopicEntity>): Promise<ITopicEntity>  {
-	try{
-	await this.topicRepository.update(id, topic);
-	return this.topicRepository.findOne({ where: { id } });
-	} catch {
-	  throw new Error('Topic not found');
-	}
+  async updateTopic(
+    id: string,
+    topic: Partial<ITopicEntity>,
+  ): Promise<ITopicEntity> {
+    try {
+      await this.topicRepository.update(id, topic);
+      return this.topicRepository.findOne({ where: { id } });
+    } catch {
+      throw new Error('Topic not found');
+    }
   }
 
   async deleteTopic(id: string): Promise<void> {
-	try {
-	  await this.topicRepository.delete(id);
-	} catch (error) {
-	  throw new Error(error);
-	}
+    try {
+      await this.topicRepository.delete(id);
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }

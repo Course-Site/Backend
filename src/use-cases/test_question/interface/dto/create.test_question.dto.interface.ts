@@ -1,4 +1,4 @@
 export interface ICreateQuestionDto {
-	text: string;
-	imageUrl: string;
+  text: string;
+  imageUrl: string;
 }

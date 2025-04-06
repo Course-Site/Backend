@@ -1,4 +1,4 @@
-import { TopicEntity } from 'src/infrastructure/db/entities/topic.entity'
+import { TopicEntity } from 'src/infrastructure/db/entities/topic.entity';
 import { ILabEntity } from '../interface/lab.entity.interface';
 import { TLabEntity } from '../type/lab.entity.type';
 

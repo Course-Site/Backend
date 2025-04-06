@@ -1,7 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 import { TopicEntity } from './topic.entity';
-import { LabResultEntity } from './lab_result.entity'
-import { IsNotEmpty } from 'class-validator'
+import { LabResultEntity } from './lab_result.entity';
+import { IsNotEmpty } from 'class-validator';
 
 @Entity()
 export class LabEntity {
@@ -18,9 +24,9 @@ export class LabEntity {
   @Column('varchar')
   guidelineFileUrl: string;
 
-  @ManyToOne(() => TopicEntity, topic => topic.labs, { onDelete: 'CASCADE' })
+  @ManyToOne(() => TopicEntity, (topic) => topic.labs, { onDelete: 'CASCADE' })
   topic: TopicEntity;
 
-  @OneToMany(() => LabResultEntity, labResults => labResults.lab)
+  @OneToMany(() => LabResultEntity, (labResults) => labResults.lab)
   labResults: LabResultEntity[];
 }

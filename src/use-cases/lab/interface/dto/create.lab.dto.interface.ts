@@ -1,8 +1,8 @@
-import { TopicEntity } from 'src/infrastructure/db/entities/topic.entity'
+import { TopicEntity } from 'src/infrastructure/db/entities/topic.entity';
 
 export interface ICreateLabDto {
-	title: string;
-	description: string;
-	guidelineFileUrl: string;
-	topic: TopicEntity;
+  title: string;
+  description: string;
+  guidelineFileUrl: string;
+  topic: TopicEntity;
 }

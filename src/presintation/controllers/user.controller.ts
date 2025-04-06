@@ -1,10 +1,23 @@
-import { Controller, Get, Delete, Inject, Param, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Delete,
+  Inject,
+  Param,
+  UseGuards,
+} from '@nestjs/common';
 import { IUserService } from 'src/use-cases/user/interface/service/user.service.interface';
-import { ApiBearerAuth, ApiTags, ApiOperation, ApiResponse, ApiParam } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiParam,
+} from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard';
 import { UserId } from 'src/infrastructure/decorators/user-id.decorator';
 import { Roles } from 'src/infrastructure/decorators/roles.decorator';
-import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard'
+import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard';
 import { UserRole } from 'src/entiies/user/enums/user-role.enum';
 
 @UseGuards(RolesGuard)

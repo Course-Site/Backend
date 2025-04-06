@@ -4,7 +4,6 @@ import { ILabResultRepository } from '../interface/repository/lab_result.reposit
 import { ILabResultEntity } from 'src/entiies/lab_result/interface/lab_result.entity.interface';
 import { ICreateLabResultDto } from '../interface/dto/create.lab_result.dto.interface';
 
-
 @Injectable()
 export class LabResultService implements ILabResultService {
   constructor(
@@ -21,22 +20,25 @@ export class LabResultService implements ILabResultService {
   }
 
   async findAllLabResult(): Promise<ILabResultEntity[]> {
-      return await this.labresultRepository.findAllLabResult();
+    return await this.labresultRepository.findAllLabResult();
+  }
+
+  async findById(id: string): Promise<ILabResultEntity> {
+    return this.labresultRepository.findById(id);
+  }
+
+  async updateLabResult(
+    id: string,
+    LabResult: Partial<ILabResultEntity>,
+  ): Promise<ILabResultEntity> {
+    return await this.labresultRepository.updateLabResult(id, LabResult);
+  }
+
+  async deleteLabResult(id: string): Promise<void> {
+    try {
+      return await this.labresultRepository.deleteLabResult(id);
+    } catch (error) {
+      throw new Error(error);
     }
-  
-    async findById(id: string): Promise<ILabResultEntity> {
-      return this.labresultRepository.findById(id);
-    }
-  
-    async updateLabResult(id: string, LabResult: Partial<ILabResultEntity>): Promise<ILabResultEntity>{
-      return await this.labresultRepository.updateLabResult(id, LabResult);
-    }
-  
-    async deleteLabResult(id: string): Promise<void> {
-      try {
-        return await this.labresultRepository.deleteLabResult(id);
-      } catch (error) {
-        throw new Error(error);
-      }
-    }
+  }
 }
