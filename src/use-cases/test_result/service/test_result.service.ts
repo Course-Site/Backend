@@ -1,4 +1,4 @@
-import { Inject, Injectable, ForbiddenException } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { ITestResultService } from '../interface/service/test_result.service.interface';
 import { ITestResultRepository } from '../interface/repository/test_result.repository.interface';
 import { ITestResultEntity } from 'src/entiies/test_result/interface/test_result.entity.interface';
@@ -18,6 +18,8 @@ export class TestResultService implements ITestResultService {
       score: data.score,
       percentage: data.percentage,
       completedAt: data.completedAt,
+      userId: data.userId,
+      testId: data.testId,
     });
   }
 

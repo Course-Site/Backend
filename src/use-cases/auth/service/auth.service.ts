@@ -3,7 +3,6 @@ import { IAuthService } from '../interface/service/auth.service.interface';
 import { ForbiddenException, Inject, Injectable } from '@nestjs/common';
 import { IUserService } from '../../user/interface/service/user.service.interface';
 import { JwtService } from '@nestjs/jwt';
-import { UserEntity } from 'src/infrastructure/db/entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { UserRole } from 'src/entiies/user/enums/user-role.enum';
 
@@ -29,6 +28,7 @@ export class AuthService implements IAuthService {
     const pass = bcrypt.compareSync(password, user.password);
 
     if (user && pass) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password, ...result } = user;
       return result;
     }
@@ -37,7 +37,7 @@ export class AuthService implements IAuthService {
       id: user.id,
       email: user.email,
       name: user.name,
-      role: user.role, 
+      role: user.role,
     };
   }
 

@@ -6,11 +6,15 @@ export class LabResultEntity implements ILabResultEntity {
   submissionFileUrl?: string;
   score?: number;
   submittedAt: Date;
+  userId: string;
+  labId: string;
 
   constructor(data: TLabResultEntity) {
     this.id = data.id;
     this.submissionFileUrl = data.submissionFileUrl;
     this.score = data.score;
     this.submittedAt = data.submittedAt;
+    this.userId = data.userId;
+    this.labId = data.labId;
   }
 }

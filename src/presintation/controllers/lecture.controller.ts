@@ -17,7 +17,6 @@ import {
   ApiResponse,
   ApiParam,
   ApiBody,
-  ApiConsumes,
 } from '@nestjs/swagger';
 import { ICreateLectureDto } from 'src/use-cases/lecture/interface/dto/create.lecture.dto.interface';
 import { ILectureEntity } from 'src/entiies/lecture/interface/lecture.entity.interface';
@@ -44,7 +43,7 @@ export class LectureController {
     schema: {
       properties: {
         title: { type: 'string', default: 'test' },
-        lectureFileUrl: { type: 'string', default: 'test' },
+        content: { type: 'string', default: 'test' },
         topicId: { type: 'string', default: 'test' },
       },
     },
@@ -87,7 +86,7 @@ export class LectureController {
     schema: {
       properties: {
         title: { type: 'string', default: 'test' },
-        lectureFileUrl: { type: 'string', default: 'test' },
+        content: { type: 'string', default: 'test' },
         topicId: { type: 'string', default: 'test' },
       },
     },

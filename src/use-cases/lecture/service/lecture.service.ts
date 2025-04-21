@@ -14,7 +14,7 @@ export class LectureService implements ILectureService {
   async createLecture(data: ICreateLectureDto): Promise<ILectureEntity> {
     return this.lectureRepository.createLecture({
       title: data.title,
-      lectureFileUrl: data.lectureFileUrl,
+      content: data.content,
       topicId: data.topicId,
     });
   }

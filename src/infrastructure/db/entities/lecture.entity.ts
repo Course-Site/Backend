@@ -1,10 +1,4 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-  OneToMany,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { TopicEntity } from './topic.entity';
 import { IsNotEmpty } from 'class-validator';
 
@@ -17,11 +11,16 @@ export class LectureEntity {
   @IsNotEmpty()
   title: string;
 
-  @Column('text')
-  lectureFileUrl: string;
+  @Column('varchar')
+  content: string;
 
-  @ManyToOne(() => TopicEntity, (topic) => topic.lectures, {
-    onDelete: 'CASCADE',
-  })
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  addedAt: Date;
+
+  @Column('uuid')
+  topicId: string; 
+
+  @ManyToOne(() => TopicEntity, (topic) => topic.lectures, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'topicId' })
   topic: TopicEntity;
 }

@@ -1,4 +1,4 @@
-export interface ICreateAnswerDto {
+export interface ICreateTestAnswerDto {
   text: string;
   isCorrect: boolean;
 }

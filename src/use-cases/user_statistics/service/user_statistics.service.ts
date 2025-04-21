@@ -1,4 +1,4 @@
-import { Inject, Injectable, ForbiddenException } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { IUserStatisticsService } from '../interface/service/user_statistics.service.interface';
 import { IUserStatisticsRepository } from '../interface/repository/user_statistics.repository.interface';
 import { IUserStatisticsEntity } from 'src/entiies/user_statistics/interface/user_statistics.entity.interface';

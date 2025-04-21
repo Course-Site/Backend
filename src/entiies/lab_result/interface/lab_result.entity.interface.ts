@@ -3,4 +3,6 @@ export interface ILabResultEntity {
   submissionFileUrl?: string;
   score?: number;
   submittedAt: Date;
+  userId: string;
+  labId: string;
 }

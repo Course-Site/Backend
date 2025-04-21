@@ -4,12 +4,10 @@ import { LectureController } from 'src/presintation/controllers/lecture.controll
 import { LectureService } from 'src/use-cases/lecture/service/lecture.service';
 import { LectureRepository } from '../db/repositories/lecture.repository';
 import { LectureEntity } from '../db/entities/lecture.entity';
-import { LabResultEntity } from '../db/entities/lab_result.entity';
-import { LabResultRepository } from '../db/repositories/lab_result.repository';
 import { TopicEntity } from '../db/entities/topic.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([LectureEntity]), TopicEntity],
+  imports: [TypeOrmModule.forFeature([LectureEntity])],
   controllers: [LectureController],
   providers: [
     {

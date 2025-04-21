@@ -1,32 +1,31 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-  OneToMany,
-} from 'typeorm';
-import { TopicEntity } from './topic.entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
 import { LabResultEntity } from './lab_result.entity';
-import { IsNotEmpty } from 'class-validator';
+import { TopicEntity } from './topic.entity'
 
 @Entity()
 export class LabEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column('varchar')
-  @IsNotEmpty()
+  @Column('varchar', { nullable: true })
   title: string;
 
-  @Column('text', { nullable: true })
+  @Column('varchar', { nullable: true })
   description: string;
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   guidelineFileUrl: string;
 
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  submittedAt: Date;
+
+  @Column('uuid')
+  topicId: string; 
+
   @ManyToOne(() => TopicEntity, (topic) => topic.labs, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'topicId' })
   topic: TopicEntity;
 
-  @OneToMany(() => LabResultEntity, (labResults) => labResults.lab)
-  labResults: LabResultEntity[];
+  @OneToMany(() => LabResultEntity, (labResult) => labResult.labs)
+  labResult: LabResultEntity[];
 }

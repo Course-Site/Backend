@@ -1,4 +1,3 @@
-import { IUserEntity } from 'src/entiies/user/interface/user.entity.interface';
 import { CreateUserDto } from 'src/presintation/dto/user/create.user.dto';
 import { UserRole } from 'src/entiies/user/enums/user-role.enum';
 

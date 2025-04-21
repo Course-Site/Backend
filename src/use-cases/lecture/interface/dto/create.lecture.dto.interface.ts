@@ -1,5 +1,5 @@
 export interface ICreateLectureDto {
   title: string;
-  lectureFileUrl: string;
+  content: string;
   topicId: string;
 }

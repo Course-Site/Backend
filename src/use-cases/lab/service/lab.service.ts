@@ -15,8 +15,9 @@ export class LabService implements ILabService {
     return this.labRepository.createLab({
       title: data.title,
       description: data.description,
+      topicId: data.topicId,
       guidelineFileUrl: data.guidelineFileUrl,
-      topic: data.topic,
+      labResultId: data.labResultId,
     });
   }
 

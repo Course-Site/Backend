@@ -1,19 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ICreateQuestionDto } from 'src/use-cases/test_question/interface/dto/create.test_question.dto.interface';
-import { IQuestionRepository } from 'src/use-cases/test_question/interface/repository/test_question.repository.interface';
+import { ITestQuestionRepository } from 'src/use-cases/test_question/interface/repository/test_question.repository.interface';
 import { QuestionEntity } from '../entities/test_question.entity';
 import { Repository } from 'typeorm';
-import { IQuestionEntity } from 'src/entiies/question/interface/question.entity.interface';
+import { ITestQuestionEntity } from 'src/entiies/test_question/interface/test_question.entity.interface';
 
 @Injectable()
-export class QuestionRepository implements IQuestionRepository {
+export class QuestionRepository implements ITestQuestionRepository {
   constructor(
     @InjectRepository(QuestionEntity)
     private readonly questionRepository: Repository<QuestionEntity>,
   ) {}
 
-  async createQuestion(data: ICreateQuestionDto): Promise<IQuestionEntity> {
+  async createQuestion(data: ICreateQuestionDto): Promise<ITestQuestionEntity> {
     try {
       const question = this.questionRepository.create(data);
       return await this.questionRepository.save(question);
@@ -22,7 +22,7 @@ export class QuestionRepository implements IQuestionRepository {
     }
   }
 
-  async findAllQuestions(): Promise<IQuestionEntity[]> {
+  async findAllQuestions(): Promise<ITestQuestionEntity[]> {
     try {
       return this.questionRepository.find({});
     } catch (error) {
@@ -30,7 +30,7 @@ export class QuestionRepository implements IQuestionRepository {
     }
   }
 
-  async findById(questionId: string): Promise<IQuestionEntity> {
+  async findById(questionId: string): Promise<ITestQuestionEntity> {
     try {
       return this.questionRepository.findOne({ where: { id: questionId } });
     } catch (error) {
@@ -40,8 +40,8 @@ export class QuestionRepository implements IQuestionRepository {
 
   async updateQuestion(
     id: string,
-    question: Partial<IQuestionEntity>,
-  ): Promise<IQuestionEntity> {
+    question: Partial<ITestQuestionEntity>,
+  ): Promise<ITestQuestionEntity> {
     try {
       await this.questionRepository.update(id, question);
       return this.questionRepository.findOne({ where: { id } });

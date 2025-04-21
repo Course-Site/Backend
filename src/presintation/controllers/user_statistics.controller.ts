@@ -17,7 +17,6 @@ import {
   ApiResponse,
   ApiParam,
   ApiBody,
-  ApiConsumes,
 } from '@nestjs/swagger';
 import { ICreateUserStatisticsDto } from 'src/use-cases/user_statistics/interface/dto/create.user_statistics.dto.interface';
 import { IUserStatisticsEntity } from 'src/entiies/user_statistics/interface/user_statistics.entity.interface';

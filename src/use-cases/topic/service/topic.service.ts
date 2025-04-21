@@ -1,4 +1,4 @@
-import { Inject, Injectable, ForbiddenException } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { ITopicService } from '../interface/service/topic.service.interface';
 import { ITopicRepository } from '../interface/repository/topic.repository.interface';
 import { ITopicEntity } from 'src/entiies/topic/interface/topic.entity.interface';

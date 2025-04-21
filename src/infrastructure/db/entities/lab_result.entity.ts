@@ -1,14 +1,7 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-  OneToOne,
-  JoinColumn,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { UserEntity } from './user.entity';
-import { TestEntity } from './test.entity';
 import { LabEntity } from './lab.entity';
+import { UserStatisticsEntity } from './user_statistics.entity'
 
 @Entity()
 export class LabResultEntity {
@@ -24,9 +17,20 @@ export class LabResultEntity {
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   submittedAt: Date;
 
-  @ManyToOne(() => UserEntity, (user) => user.labResults)
+  @Column('uuid')
+  userId: string; 
+
+  @Column('uuid')
+  labId: string; 
+
+  @ManyToOne(() => UserEntity, (user) => user.labResult)
+  @JoinColumn({ name: 'userId' })
   user: UserEntity;
 
-  @ManyToOne(() => LabEntity, (lab) => lab.labResults)
-  lab: LabEntity;
+  @ManyToOne(() => LabEntity, (lab) => lab.labResult)
+  @JoinColumn({ name: 'labId' })
+  labs: LabEntity;
+
+  @ManyToOne(() => UserStatisticsEntity, (userStatistics) => userStatistics.labResult)
+  statistics: UserStatisticsEntity[];
 }

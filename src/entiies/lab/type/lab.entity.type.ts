@@ -5,5 +5,6 @@ export type TLabEntity = {
   title: string;
   description?: string;
   guidelineFileUrl: string;
-  topic: TopicEntity;
+  submittedAt: Date;
+  topicId: string;
 };

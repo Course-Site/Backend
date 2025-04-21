@@ -1,4 +1,4 @@
-import { Inject, Injectable, ForbiddenException } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { ITestService } from '../interface/service/test.service.interface';
 import { ITestRepository } from '../interface/repository/test.repository.interface';
 import { ITestEntity } from 'src/entiies/test/interface/test.entity.interface';
@@ -15,6 +15,7 @@ export class TestService implements ITestService {
     return this.testRepository.createTest({
       title: data.title,
       description: data.description,
+      topicId: data.topicId
     });
   }
 

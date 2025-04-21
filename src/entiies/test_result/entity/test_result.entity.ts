@@ -7,6 +7,8 @@ export class TestResultEntity implements ITestResultEntity {
   percentage: number;
   totalScore: number;
   completedAt: Date;
+  userId: string;
+  testId: string;
 
   constructor(data: TTestResultEntity) {
     this.id = data.id;
@@ -14,5 +16,7 @@ export class TestResultEntity implements ITestResultEntity {
     this.percentage = data.percentage;
     this.totalScore = data.totalScore;
     this.completedAt = data.completedAt;
+    this.userId = data.userId;
+    this.testId = data.testId;
   }
 }

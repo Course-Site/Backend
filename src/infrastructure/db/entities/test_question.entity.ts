@@ -1,11 +1,12 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { AnswerEntity } from './test_answer.entity';
+import { TestAnswerEntity } from './test_answer.entity';
 import { TestEntity } from './test.entity';
 
 @Entity()
@@ -14,16 +15,21 @@ export class QuestionEntity {
   id: string;
 
   @Column('text')
-  text: string;
+  questionText: string;
 
   @Column('varchar')
   imageUrl: string;
 
-  @ManyToOne(() => TestEntity, (test) => test.questions, {
-    onDelete: 'CASCADE',
-  })
+  @Column('varchar')
+  number: string;
+
+  @Column('uuid')
+  testId: string; 
+  
+  @ManyToOne(() => TestEntity, (test) => test.questions, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'testId' })
   test: TestEntity;
 
-  @OneToMany(() => AnswerEntity, (answer) => answer.question)
-  answers: AnswerEntity[];
+  @OneToMany(() => TestAnswerEntity, (answer) => answer.question)
+  answers: TestAnswerEntity[];
 }

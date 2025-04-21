@@ -3,4 +3,6 @@ export interface ITestResultEntity {
   score: number;
   percentage: number;
   completedAt: Date;
+  userId: string;
+  testId: string;
 }

@@ -17,7 +17,6 @@ import {
   ApiResponse,
   ApiParam,
   ApiBody,
-  ApiConsumes,
 } from '@nestjs/swagger';
 import { ICreateTestDto } from 'src/use-cases/test/interface/dto/create.test.dto.interface';
 import { ITestEntity } from 'src/entiies/test/interface/test.entity.interface';
@@ -45,6 +44,7 @@ export class TestController {
       properties: {
         title: { type: 'string', default: 'test' },
         description: { type: 'string', default: 'test' },
+        topicId: { type: 'string', default: 'test' },
       },
     },
   })
@@ -87,6 +87,7 @@ export class TestController {
       properties: {
         title: { type: 'string', default: 'test' },
         description: { type: 'string', default: 'test' },
+        topicId: { type: 'string', default: 'test' },
       },
     },
   })

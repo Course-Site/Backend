@@ -17,7 +17,6 @@ import {
   ApiResponse,
   ApiParam,
   ApiBody,
-  ApiConsumes,
 } from '@nestjs/swagger';
 import { ICreateTopicDto } from 'src/use-cases/topic/interface/dto/create.topic.dto.interface';
 import { ITopicEntity } from 'src/entiies/topic/interface/topic.entity.interface';

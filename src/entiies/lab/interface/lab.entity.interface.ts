@@ -1,10 +1,10 @@
-import { TopicEntity } from 'src/infrastructure/db/entities/topic.entity';
-import { LabEntity } from '../entity/lab.entity';
+import { ITopicEntity } from 'src/entiies/topic/interface/topic.entity.interface'
 
 export interface ILabEntity {
   id?: string;
   title: string;
   description?: string;
   guidelineFileUrl: string;
-  topic: TopicEntity;
+  submittedAt: Date;
+  topicId: string;
 }

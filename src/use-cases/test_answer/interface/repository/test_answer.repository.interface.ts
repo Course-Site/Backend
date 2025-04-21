@@ -1,13 +1,13 @@
-import { IAnswerEntity } from 'src/entiies/answer/interface/answer.entity.interface';
-import { ICreateAnswerDto } from '../dto/create.test_answer.dto.interface';
+import { ITestAnswerEntity } from 'src/entiies/test_answer/interface/test_answer.entity.interface';
+import { ICreateTestAnswerDto } from '../dto/create.test_answer.dto.interface';
 
-export interface IAnswerRepository {
-  createAnswer(data: ICreateAnswerDto): Promise<IAnswerEntity>;
-  findAllAnswers(): Promise<IAnswerEntity[]>;
-  findById(id: string): Promise<IAnswerEntity>;
+export interface ITestAnswerRepository {
+  createAnswer(data: ICreateTestAnswerDto): Promise<ITestAnswerEntity>;
+  findAllAnswers(): Promise<ITestAnswerEntity[]>;
+  findById(id: string): Promise<ITestAnswerEntity>;
   updateAnswer(
     id: string,
-    answer: Partial<IAnswerEntity>,
-  ): Promise<IAnswerEntity>;
+    answer: Partial<ITestAnswerEntity>,
+  ): Promise<ITestAnswerEntity>;
   deleteAnswer(id: string): Promise<void>;
 }

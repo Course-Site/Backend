@@ -1,5 +1,5 @@
-export type TAnswerEntity = {
+export interface ITestAnswerEntity {
   id?: string;
   text: string;
   isCorrect: boolean;
-};
+}

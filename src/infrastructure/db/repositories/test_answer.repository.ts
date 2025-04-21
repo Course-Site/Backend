@@ -1,38 +1,38 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ICreateAnswerDto } from 'src/use-cases/test_answer/interface/dto/create.test_answer.dto.interface';
-import { IAnswerRepository } from 'src/use-cases/test_answer/interface/repository/test_answer.repository.interface';
-import { AnswerEntity } from '../entities/test_answer.entity';
+import { ICreateTestAnswerDto } from 'src/use-cases/test_answer/interface/dto/create.test_answer.dto.interface';
+import { ITestAnswerRepository } from 'src/use-cases/test_answer/interface/repository/test_answer.repository.interface';
+import { TestAnswerEntity } from '../entities/test_answer.entity';
 import { Repository } from 'typeorm';
-import { IAnswerEntity } from 'src/entiies/answer/interface/answer.entity.interface';
+import { ITestAnswerEntity } from 'src/entiies/test_answer/interface/test_answer.entity.interface';
 
 @Injectable()
-export class AnswerRepository implements IAnswerRepository {
+export class TestAnswerRepository implements ITestAnswerRepository {
   constructor(
-    @InjectRepository(AnswerEntity)
-    private readonly answerRepository: Repository<AnswerEntity>,
+    @InjectRepository(TestAnswerEntity)
+    private readonly testAnswerRepository: Repository<TestAnswerEntity>,
   ) {}
 
-  async createAnswer(data: ICreateAnswerDto): Promise<IAnswerEntity> {
+  async createAnswer(data: ICreateTestAnswerDto): Promise<ITestAnswerEntity> {
     try {
-      const answer = this.answerRepository.create(data);
-      return await this.answerRepository.save(answer);
+      const answer = this.testAnswerRepository.create(data);
+      return await this.testAnswerRepository.save(answer);
     } catch (error) {
       throw error;
     }
   }
 
-  async findAllAnswers(): Promise<IAnswerEntity[]> {
+  async findAllAnswers(): Promise<ITestAnswerEntity[]> {
     try {
-      return this.answerRepository.find({});
+      return this.testAnswerRepository.find({});
     } catch (error) {
       throw new Error('Answers not found');
     }
   }
 
-  async findById(answerId: string): Promise<IAnswerEntity> {
+  async findById(answerId: string): Promise<ITestAnswerEntity> {
     try {
-      return this.answerRepository.findOne({ where: { id: answerId } });
+      return this.testAnswerRepository.findOne({ where: { id: answerId } });
     } catch (error) {
       throw new Error('Answer not found');
     }
@@ -40,11 +40,11 @@ export class AnswerRepository implements IAnswerRepository {
 
   async updateAnswer(
     id: string,
-    answer: Partial<IAnswerEntity>,
-  ): Promise<IAnswerEntity> {
+    answer: Partial<ITestAnswerEntity>,
+  ): Promise<ITestAnswerEntity> {
     try {
-      await this.answerRepository.update(id, answer);
-      return this.answerRepository.findOne({ where: { id } });
+      await this.testAnswerRepository.update(id, answer);
+      return this.testAnswerRepository.findOne({ where: { id } });
     } catch {
       throw new Error('Answer not found');
     }
@@ -52,7 +52,7 @@ export class AnswerRepository implements IAnswerRepository {
 
   async deleteAnswer(id: string): Promise<void> {
     try {
-      await this.answerRepository.delete(id);
+      await this.testAnswerRepository.delete(id);
     } catch (error) {
       throw new Error(error);
     }

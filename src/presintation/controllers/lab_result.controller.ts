@@ -17,7 +17,6 @@ import {
   ApiResponse,
   ApiParam,
   ApiBody,
-  ApiConsumes,
 } from '@nestjs/swagger';
 import { ICreateLabResultDto } from 'src/use-cases/lab_result/interface/dto/create.lab_result.dto.interface';
 import { ILabResultEntity } from 'src/entiies/lab_result/interface/lab_result.entity.interface';
@@ -46,6 +45,8 @@ export class LabResultController {
         submissionFileUrl: { type: 'string', default: 'test' },
         score: { type: 'number', default: '0' },
         submittedAt: { type: 'Date', default: '01.04.2025' },
+        userId: { type: 'string', default: '0' },
+        labId: { type: 'string', default: '0' },
       },
     },
   })
@@ -89,6 +90,8 @@ export class LabResultController {
         submissionFileUrl: { type: 'string', default: 'test' },
         score: { type: 'number', default: '0' },
         submittedAt: { type: 'Date', default: '01.04.2025' },
+        userId: { type: 'string', default: '0' },
+        labId: { type: 'string', default: '0' },
       },
     },
   })

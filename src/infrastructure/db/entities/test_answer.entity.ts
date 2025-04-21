@@ -1,14 +1,8 @@
-import {
-  Column,
-  Entity,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { QuestionEntity } from './test_question.entity';
 
 @Entity()
-export class AnswerEntity {
+export class TestAnswerEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -18,6 +12,10 @@ export class AnswerEntity {
   @Column({ type: 'boolean', default: false })
   isCorrect: boolean;
 
-  @ManyToOne(() => QuestionEntity, (question) => question.answers)
+  @Column('uuid')
+  testQuestionId: string; 
+
+  @ManyToOne(() => QuestionEntity, (question) => question.answers, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'testQuestionId' })
   question: QuestionEntity;
 }

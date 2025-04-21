@@ -17,7 +17,6 @@ import {
   ApiResponse,
   ApiParam,
   ApiBody,
-  ApiConsumes,
 } from '@nestjs/swagger';
 import { ICreateLabDto } from 'src/use-cases/lab/interface/dto/create.lab.dto.interface';
 import { ILabEntity } from 'src/entiies/lab/interface/lab.entity.interface';
@@ -46,7 +45,7 @@ export class LabController {
         title: { type: 'string', default: 'test' },
         description: { type: 'string', default: 'test' },
         guidelineFileUrl: { type: 'string', default: 'test' },
-        topic: { type: 'string', default: 'test' },
+        topicId: { type: 'string', default: 'test' },
       },
     },
   })
@@ -90,7 +89,7 @@ export class LabController {
         title: { type: 'string', default: 'test' },
         description: { type: 'string', default: 'test' },
         guidelineFileUrl: { type: 'string', default: 'test' },
-        topic: { type: 'string', default: 'test' },
+        topicId: { type: 'string', default: 'test' },
       },
     },
   })

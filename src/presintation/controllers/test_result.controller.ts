@@ -17,7 +17,6 @@ import {
   ApiResponse,
   ApiParam,
   ApiBody,
-  ApiConsumes,
 } from '@nestjs/swagger';
 import { ICreateTestResultDto } from 'src/use-cases/test_result/interface/dto/create.test_result.dto.interface';
 import { ITestResultEntity } from 'src/entiies/test_result/interface/test_result.entity.interface';
@@ -43,9 +42,11 @@ export class TestResultController {
   @ApiBody({
     schema: {
       properties: {
-        score: { type: 'number', default: 'test' },
-        percentage: { type: 'number', default: 'test' },
+        score: { type: 'number', default: '0' },
+        percentage: { type: 'number', default: '0' },
         complitedAt: { type: 'Date', default: '01.04.2025' },
+        userId: { type: 'string', default: 'test'  },
+        testId: { type: 'string', default: 'test'  },
       },
     },
   })
@@ -86,9 +87,11 @@ export class TestResultController {
   @ApiBody({
     schema: {
       properties: {
-        score: { type: 'number', default: 'test' },
-        percentage: { type: 'number', default: 'test' },
+        score: { type: 'number', default: '0' },
+        percentage: { type: 'number', default: '0' },
         complitedAt: { type: 'Date', default: '01.04.2025' },
+        userId: { type: 'string', default: 'test'  },
+        testId: { type: 'string', default: 'test'  },
       },
     },
   })

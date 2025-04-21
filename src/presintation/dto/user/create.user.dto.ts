@@ -2,7 +2,7 @@ import { ICreateUserDto } from 'src/use-cases/user/interface/dto/create.user.dto
 import { UserRole } from 'src/entiies/user/enums/user-role.enum';
 
 export class CreateUserDto implements ICreateUserDto {
-  id?: string
+  id?: string;
   email: string;
   password: string;
   name: string;

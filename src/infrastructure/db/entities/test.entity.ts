@@ -4,7 +4,7 @@ import {
   Column,
   ManyToOne,
   OneToMany,
-  JoinTable,
+  JoinColumn,
 } from 'typeorm';
 import { TopicEntity } from './topic.entity';
 import { QuestionEntity } from './test_question.entity';
@@ -23,12 +23,19 @@ export class TestEntity {
   @Column('text', { nullable: true })
   description: string;
 
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  addedAt: Date;
+
+  @Column('uuid')
+  topicId: string; 
+
   @ManyToOne(() => TopicEntity, (topic) => topic.tests, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'topicId' })
   topic: TopicEntity;
 
   @OneToMany(() => QuestionEntity, (question) => question.test)
   questions: QuestionEntity[];
 
   @OneToMany(() => TestResultEntity, (result) => result.test)
-  results: TestResultEntity;
+  testResult: TestResultEntity[];
 }

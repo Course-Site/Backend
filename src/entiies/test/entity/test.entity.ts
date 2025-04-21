@@ -5,10 +5,12 @@ export class TestEntity implements ITestEntity {
   id?: string;
   title: string;
   description: string;
+  topicId: string;
 
   constructor(data: TTestEntity) {
     this.id = data.id;
     this.title = data.title;
     this.description = data.description;
+    this.topicId = data.topicId;
   }
 }

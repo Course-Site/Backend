@@ -1,4 +1,4 @@
-import { Inject, Injectable, ForbiddenException } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { ILabResultService } from '../interface/service/lab_result.service.interface';
 import { ILabResultRepository } from '../interface/repository/lab_result.repository.interface';
 import { ILabResultEntity } from 'src/entiies/lab_result/interface/lab_result.entity.interface';
@@ -16,6 +16,8 @@ export class LabResultService implements ILabResultService {
       submissionFileUrl: data.submissionFileUrl,
       score: data.score,
       submittedAt: data.submittedAt,
+      userId: data.userId,
+      labId: data.labId,
     });
   }
 
