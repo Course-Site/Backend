@@ -7,7 +7,7 @@ export class LabEntity implements ILabEntity {
   id?: string;
   title: string;
   description?: string;
-  guidelineFileUrl: string;
+  content: string;
   submittedAt: Date;
   topicId: string;
 
@@ -15,7 +15,7 @@ export class LabEntity implements ILabEntity {
     this.id = data.id;
     this.title = data.title;
     this.description = data.description;
-    this.guidelineFileUrl = data.guidelineFileUrl;
+    this.content = data.content;
     this.submittedAt = data.submittedAt;
     this.topicId = data.topicId;
   }

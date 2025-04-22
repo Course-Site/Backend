@@ -14,7 +14,7 @@ export class LabEntity {
   description: string;
 
   @Column('varchar', { nullable: true })
-  guidelineFileUrl: string;
+  content: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   submittedAt: Date;

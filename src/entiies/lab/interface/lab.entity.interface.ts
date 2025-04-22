@@ -4,7 +4,7 @@ export interface ILabEntity {
   id?: string;
   title: string;
   description?: string;
-  guidelineFileUrl: string;
+  content: string;
   submittedAt: Date;
   topicId: string;
 }

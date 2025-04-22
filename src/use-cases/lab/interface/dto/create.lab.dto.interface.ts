@@ -5,6 +5,6 @@ export interface ICreateLabDto {
   title: string;
   description: string;
   topicId: string;
-  guidelineFileUrl: string;
+  content: string;
   labResultId: string;
 }

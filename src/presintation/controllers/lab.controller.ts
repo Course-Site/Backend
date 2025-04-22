@@ -44,7 +44,7 @@ export class LabController {
       properties: {
         title: { type: 'string', default: 'test' },
         description: { type: 'string', default: 'test' },
-        guidelineFileUrl: { type: 'string', default: 'test' },
+        content: { type: 'string', default: 'test' },
         topicId: { type: 'string', default: 'test' },
       },
     },
@@ -88,7 +88,7 @@ export class LabController {
       properties: {
         title: { type: 'string', default: 'test' },
         description: { type: 'string', default: 'test' },
-        guidelineFileUrl: { type: 'string', default: 'test' },
+        content: { type: 'string', default: 'test' },
         topicId: { type: 'string', default: 'test' },
       },
     },

@@ -16,7 +16,7 @@ export class LabService implements ILabService {
       title: data.title,
       description: data.description,
       topicId: data.topicId,
-      guidelineFileUrl: data.guidelineFileUrl,
+      content: data.content,
       labResultId: data.labResultId,
     });
   }
