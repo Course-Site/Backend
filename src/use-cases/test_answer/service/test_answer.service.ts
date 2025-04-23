@@ -7,35 +7,36 @@ import { ICreateTestAnswerDto } from '../interface/dto/create.test_answer.dto.in
 @Injectable()
 export class TestAnswerService implements ITestAnswerService {
   constructor(
-    @Inject('answerRepository')
-    private readonly answerRepository: ITestAnswerRepository,
+    @Inject('testAnswerRepository')
+    private readonly testAnswerRepository: ITestAnswerRepository,
   ) {}
 
-  async createAnswer(data: ICreateTestAnswerDto): Promise<ITestAnswerEntity> {
-    return this.answerRepository.createAnswer({
+  async createTestAnswer(data: ICreateTestAnswerDto): Promise<ITestAnswerEntity> {
+    return this.testAnswerRepository.createTestAnswer({
       text: data.text,
       isCorrect: data.isCorrect,
+      testQuestionId: data.testQuestionId,
     });
   }
 
-  async findAllAnswers(): Promise<ITestAnswerEntity[]> {
-    return await this.answerRepository.findAllAnswers();
+  async findAllTestAnswers(): Promise<ITestAnswerEntity[]> {
+    return await this.testAnswerRepository.findAllTestAnswers();
   }
 
   async findById(id: string): Promise<ITestAnswerEntity> {
-    return await this.answerRepository.findById(id);
+    return await this.testAnswerRepository.findById(id);
   }
 
-  async updateAnswer(
+  async updateTestAnswer(
     id: string,
     answer: Partial<ITestAnswerEntity>,
   ): Promise<ITestAnswerEntity> {
-    return await this.answerRepository.updateAnswer(id, answer);
+    return await this.testAnswerRepository.updateTestAnswer(id, answer);
   }
 
-  async deleteAnswer(id: string): Promise<void> {
+  async deleteTestAnswer(id: string): Promise<void> {
     try {
-      return await this.answerRepository.deleteAnswer(id);
+      return await this.testAnswerRepository.deleteTestAnswer(id);
     } catch (error) {
       throw new Error(error);
     }

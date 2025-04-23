@@ -1,13 +1,13 @@
 import { ITestQuestionEntity } from 'src/entiies/test_question/interface/test_question.entity.interface';
-import { ICreateQuestionDto } from '../dto/create.test_question.dto.interface';
+import { ICreateTestQuestionDto } from '../dto/create.test_question.dto.interface';
 
 export interface ITestQuestionRepository {
-  createQuestion(data: ICreateQuestionDto): Promise<ITestQuestionEntity>;
-  findAllQuestions(): Promise<ITestQuestionEntity[]>;
+  createTestQuestion(data: ICreateTestQuestionDto): Promise<ITestQuestionEntity>;
+  findAllTestQuestions(): Promise<ITestQuestionEntity[]>;
   findById(id: string): Promise<ITestQuestionEntity>;
-  updateQuestion(
+  updateTestQuestion(
     id: string,
     question: Partial<ITestQuestionEntity>,
   ): Promise<ITestQuestionEntity>;
-  deleteQuestion(id: string): Promise<void>;
+  deleteTestQuestion(id: string): Promise<void>;
 }

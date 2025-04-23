@@ -18,6 +18,7 @@ export class LabResultService implements ILabResultService {
       submittedAt: data.submittedAt,
       userId: data.userId,
       labId: data.labId,
+      userStatisticsId: data.userStatisticsId,
     });
   }
 

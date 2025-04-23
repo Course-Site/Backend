@@ -5,4 +5,5 @@ export interface ITestResultEntity {
   completedAt: Date;
   userId: string;
   testId: string;
+  userStatisticsId: string; 
 }

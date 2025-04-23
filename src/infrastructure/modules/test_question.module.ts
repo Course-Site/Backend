@@ -1,21 +1,22 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { QuestionService } from 'src/use-cases/test_question/service/test_question.service';
-import { QuestionRepository } from '../db/repositories/test_question.repository';
-import { QuestionEntity } from '../db/entities/test_question.entity';
+import { TestQuestionService } from 'src/use-cases/test_question/service/test_question.service';
+import { TestQuestionRepository } from '../db/repositories/test_question.repository';
+import { TestQuestionEntity } from '../db/entities/test_question.entity';
+import { TestQuestionController } from 'src/presintation/controllers/test_question.controller'
 
 @Module({
-  imports: [TypeOrmModule.forFeature([QuestionEntity])],
-  //controllers: [QuestionController],
+  imports: [TypeOrmModule.forFeature([TestQuestionEntity])],
+  controllers: [TestQuestionController],
   providers: [
     {
-      provide: 'questionRepository',
-      useClass: QuestionRepository,
+      provide: 'testQuestionRepository',
+      useClass: TestQuestionRepository,
     },
     {
-      provide: 'questionService',
-      useClass: QuestionService,
+      provide: 'testQuestionService',
+      useClass: TestQuestionService,
     },
   ],
 })
-export class QuestionModule {}
+export class TestQuestionModule {}

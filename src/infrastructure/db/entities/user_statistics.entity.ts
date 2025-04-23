@@ -23,21 +23,13 @@ export class UserStatisticsEntity {
   @Column('uuid')
   userId: string; 
 
-  @Column('uuid')
-  labResultId: string; 
-
-  @Column('uuid')
-  testResultId: string; 
-
   @OneToOne(() => UserEntity, (user) => user.statistics)
   @JoinColumn({ name: 'userId' })
   user: UserEntity;
 
   @OneToMany(() => LabResultEntity, (labResult) => labResult.statistics)
-  @JoinColumn({ name: 'labResultId' })
   labResult: LabResultEntity;
   
   @OneToMany(() => TestResultEntity, (testResult) => testResult.statistics)
-  @JoinColumn({ name: 'testResultId' })
   testResult: TestResultEntity;
 }

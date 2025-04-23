@@ -7,7 +7,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { TopicEntity } from './topic.entity';
-import { QuestionEntity } from './test_question.entity';
+import { TestQuestionEntity } from './test_question.entity';
 import { TestResultEntity } from './test_result.entity';
 import { IsNotEmpty } from 'class-validator';
 
@@ -33,8 +33,8 @@ export class TestEntity {
   @JoinColumn({ name: 'topicId' })
   topic: TopicEntity;
 
-  @OneToMany(() => QuestionEntity, (question) => question.test)
-  questions: QuestionEntity[];
+  @OneToMany(() => TestQuestionEntity, (question) => question.test)
+  questions: TestQuestionEntity;
 
   @OneToMany(() => TestResultEntity, (result) => result.test)
   testResult: TestResultEntity[];

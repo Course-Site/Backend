@@ -6,4 +6,5 @@ export type TTestResultEntity = {
   completedAt: Date;
   userId: string;
   testId: string;
+  userStatisticsId: string; 
 };

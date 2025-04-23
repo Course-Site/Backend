@@ -23,6 +23,9 @@ export class LabResultEntity {
   @Column('uuid')
   labId: string; 
 
+  @Column('uuid')
+  userStatisticsId: string; 
+
   @ManyToOne(() => UserEntity, (user) => user.labResult)
   @JoinColumn({ name: 'userId' })
   user: UserEntity;
@@ -32,5 +35,6 @@ export class LabResultEntity {
   labs: LabEntity;
 
   @ManyToOne(() => UserStatisticsEntity, (userStatistics) => userStatistics.labResult)
-  statistics: UserStatisticsEntity[];
+  @JoinColumn({ name: 'userStatisticsId' })
+  statistics: UserStatisticsEntity;
 }

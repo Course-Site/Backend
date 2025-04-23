@@ -1,18 +1,18 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { IQuestionService } from '../interface/service/test_question.service.interface';
+import { ITestQuestionService } from '../interface/service/test_question.service.interface';
 import { ITestQuestionRepository } from '../interface/repository/test_question.repository.interface';
 import { ITestQuestionEntity } from 'src/entiies/test_question/interface/test_question.entity.interface';
-import { ICreateQuestionDto } from '../interface/dto/create.test_question.dto.interface';
+import { ICreateTestQuestionDto } from '../interface/dto/create.test_question.dto.interface';
 
 @Injectable()
-export class QuestionService implements IQuestionService {
+export class TestQuestionService implements ITestQuestionService {
   constructor(
-    @Inject('questionRepository')
-    private readonly questionRepository: ITestQuestionRepository,
+    @Inject('testQuestionRepository')
+    private readonly testQuestionRepository: ITestQuestionRepository,
   ) {}
 
-  async createQuestion(data: ICreateQuestionDto): Promise<ITestQuestionEntity> {
-    return this.questionRepository.createQuestion({
+  async createTestQuestion(data: ICreateTestQuestionDto): Promise<ITestQuestionEntity> {
+    return this.testQuestionRepository.createTestQuestion({
       text: data.text,
       imageUrl: data.imageUrl,
       number: data.number,
@@ -20,24 +20,24 @@ export class QuestionService implements IQuestionService {
     });
   }
 
-  async findAllQuestions(): Promise<ITestQuestionEntity[]> {
-    return await this.questionRepository.findAllQuestions();
+  async findAllTestQuestions(): Promise<ITestQuestionEntity[]> {
+    return await this.testQuestionRepository.findAllTestQuestions();
   }
 
   async findById(id: string): Promise<ITestQuestionEntity> {
-    return await this.questionRepository.findById(id);
+    return await this.testQuestionRepository.findById(id);
   }
 
-  async updateQuestion(
+  async updateTestQuestion(
     id: string,
     question: Partial<ITestQuestionEntity>,
   ): Promise<ITestQuestionEntity> {
-    return await this.questionRepository.updateQuestion(id, question);
+    return await this.testQuestionRepository.updateTestQuestion(id, question);
   }
 
-  async deleteQuestion(id: string): Promise<void> {
+  async deleteTestQuestion(id: string): Promise<void> {
     try {
-      return await this.questionRepository.deleteQuestion(id);
+      return await this.testQuestionRepository.deleteTestQuestion(id);
     } catch (error) {
       throw new Error(error);
     }

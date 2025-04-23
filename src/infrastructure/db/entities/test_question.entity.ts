@@ -10,7 +10,7 @@ import { TestAnswerEntity } from './test_answer.entity';
 import { TestEntity } from './test.entity';
 
 @Entity()
-export class QuestionEntity {
+export class TestQuestionEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

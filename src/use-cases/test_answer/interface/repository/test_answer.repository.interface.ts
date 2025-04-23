@@ -2,12 +2,12 @@ import { ITestAnswerEntity } from 'src/entiies/test_answer/interface/test_answer
 import { ICreateTestAnswerDto } from '../dto/create.test_answer.dto.interface';
 
 export interface ITestAnswerRepository {
-  createAnswer(data: ICreateTestAnswerDto): Promise<ITestAnswerEntity>;
-  findAllAnswers(): Promise<ITestAnswerEntity[]>;
+  createTestAnswer(data: ICreateTestAnswerDto): Promise<ITestAnswerEntity>;
+  findAllTestAnswers(): Promise<ITestAnswerEntity[]>;
   findById(id: string): Promise<ITestAnswerEntity>;
-  updateAnswer(
+  updateTestAnswer(
     id: string,
     answer: Partial<ITestAnswerEntity>,
   ): Promise<ITestAnswerEntity>;
-  deleteAnswer(id: string): Promise<void>;
+  deleteTestAnswer(id: string): Promise<void>;
 }

@@ -1,30 +1,30 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ICreateQuestionDto } from 'src/use-cases/test_question/interface/dto/create.test_question.dto.interface';
+import { ICreateTestQuestionDto } from 'src/use-cases/test_question/interface/dto/create.test_question.dto.interface';
 import { ITestQuestionRepository } from 'src/use-cases/test_question/interface/repository/test_question.repository.interface';
-import { QuestionEntity } from '../entities/test_question.entity';
+import { TestQuestionEntity } from '../entities/test_question.entity';
 import { Repository } from 'typeorm';
 import { ITestQuestionEntity } from 'src/entiies/test_question/interface/test_question.entity.interface';
 
 @Injectable()
-export class QuestionRepository implements ITestQuestionRepository {
+export class TestQuestionRepository implements ITestQuestionRepository {
   constructor(
-    @InjectRepository(QuestionEntity)
-    private readonly questionRepository: Repository<QuestionEntity>,
+    @InjectRepository(TestQuestionEntity)
+    private readonly TestQuestionRepository: Repository<TestQuestionEntity>,
   ) {}
 
-  async createQuestion(data: ICreateQuestionDto): Promise<ITestQuestionEntity> {
+  async createTestQuestion(data: ICreateTestQuestionDto): Promise<ITestQuestionEntity> {
     try {
-      const question = this.questionRepository.create(data);
-      return await this.questionRepository.save(question);
+      const question = this.TestQuestionRepository.create(data);
+      return await this.TestQuestionRepository.save(question);
     } catch (error) {
       throw error;
     }
   }
 
-  async findAllQuestions(): Promise<ITestQuestionEntity[]> {
+  async findAllTestQuestions(): Promise<ITestQuestionEntity[]> {
     try {
-      return this.questionRepository.find({});
+      return this.TestQuestionRepository.find({});
     } catch (error) {
       throw new Error('Questions not found');
     }
@@ -32,27 +32,27 @@ export class QuestionRepository implements ITestQuestionRepository {
 
   async findById(questionId: string): Promise<ITestQuestionEntity> {
     try {
-      return this.questionRepository.findOne({ where: { id: questionId } });
+      return this.TestQuestionRepository.findOne({ where: { id: questionId } });
     } catch (error) {
       throw new Error('Question not found');
     }
   }
 
-  async updateQuestion(
+  async updateTestQuestion(
     id: string,
     question: Partial<ITestQuestionEntity>,
   ): Promise<ITestQuestionEntity> {
     try {
-      await this.questionRepository.update(id, question);
-      return this.questionRepository.findOne({ where: { id } });
+      await this.TestQuestionRepository.update(id, question);
+      return this.TestQuestionRepository.findOne({ where: { id } });
     } catch {
       throw new Error('Question not found');
     }
   }
 
-  async deleteQuestion(id: string): Promise<void> {
+  async deleteTestQuestion(id: string): Promise<void> {
     try {
-      await this.questionRepository.delete(id);
+      await this.TestQuestionRepository.delete(id);
     } catch (error) {
       throw new Error(error);
     }

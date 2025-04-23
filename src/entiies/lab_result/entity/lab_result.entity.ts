@@ -8,6 +8,7 @@ export class LabResultEntity implements ILabResultEntity {
   submittedAt: Date;
   userId: string;
   labId: string;
+  userStatisticsId: string; 
 
   constructor(data: TLabResultEntity) {
     this.id = data.id;
@@ -16,5 +17,6 @@ export class LabResultEntity implements ILabResultEntity {
     this.submittedAt = data.submittedAt;
     this.userId = data.userId;
     this.labId = data.labId;
+    this.userStatisticsId = data.userStatisticsId;
   }
 }

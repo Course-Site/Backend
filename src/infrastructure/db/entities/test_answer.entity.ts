@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { QuestionEntity } from './test_question.entity';
+import { TestQuestionEntity } from './test_question.entity';
 
 @Entity()
 export class TestAnswerEntity {
@@ -15,7 +15,7 @@ export class TestAnswerEntity {
   @Column('uuid')
   testQuestionId: string; 
 
-  @ManyToOne(() => QuestionEntity, (question) => question.answers, { onDelete: 'CASCADE' })
+  @ManyToOne(() => TestQuestionEntity, (question) => question.answers, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'testQuestionId' })
-  question: QuestionEntity;
+  question: TestQuestionEntity;
 }

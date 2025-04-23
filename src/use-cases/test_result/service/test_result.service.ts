@@ -20,6 +20,7 @@ export class TestResultService implements ITestResultService {
       completedAt: data.completedAt,
       userId: data.userId,
       testId: data.testId,
+      userStatisticsId: data.userStatisticsId,
     });
   }
 
