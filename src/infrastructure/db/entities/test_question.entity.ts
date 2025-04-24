@@ -15,7 +15,7 @@ export class TestQuestionEntity {
   id: string;
 
   @Column('text')
-  questionText: string;
+  text: string;
 
   @Column('varchar')
   imageUrl: string;

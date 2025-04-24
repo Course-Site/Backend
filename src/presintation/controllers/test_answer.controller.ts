@@ -42,7 +42,6 @@ import {
 	@ApiBody({
 	  schema: {
 		properties: {
-		  title: { type: 'string', default: 'test' },
 		  text: { type: 'string', default: 'test' },
       	  isCorrect: { type: 'bool', default: '0' },
       	  testQuestionId: { type: 'string', default: 'test' },
@@ -86,10 +85,9 @@ import {
 	@ApiBody({
 	  schema: {
 		properties: {
-		  title: { type: 'string', default: 'test' },
 		  text: { type: 'string', default: 'test' },
-		  isCorrect: { type: 'bool', default: '0' },
-		  testQuestionId: { type: 'string', default: 'test' },
+      	  isCorrect: { type: 'bool', default: '0' },
+      	  testQuestionId: { type: 'string', default: 'test' },
 		},
 	  },
 	})

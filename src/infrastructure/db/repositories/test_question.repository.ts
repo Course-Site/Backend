@@ -22,6 +22,11 @@ export class TestQuestionRepository implements ITestQuestionRepository {
     }
   }
 
+  async createManyTestQuestions(data: ICreateTestQuestionDto[]): Promise<TestQuestionEntity[]> {
+    const questions = data.map(item => this.TestQuestionRepository.create(item));
+    return this.TestQuestionRepository.save(questions);
+  }
+
   async findAllTestQuestions(): Promise<ITestQuestionEntity[]> {
     try {
       return this.TestQuestionRepository.find({});

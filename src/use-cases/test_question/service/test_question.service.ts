@@ -1,8 +1,9 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { ITestQuestionService } from '../interface/service/test_question.service.interface';
 import { ITestQuestionRepository } from '../interface/repository/test_question.repository.interface';
 import { ITestQuestionEntity } from 'src/entiies/test_question/interface/test_question.entity.interface';
 import { ICreateTestQuestionDto } from '../interface/dto/create.test_question.dto.interface';
+import { CreateTestQuestionDto } from 'src/presintation/dto/test/create.test_question.dto'
 
 @Injectable()
 export class TestQuestionService implements ITestQuestionService {
@@ -18,6 +19,15 @@ export class TestQuestionService implements ITestQuestionService {
       number: data.number,
       testId: data.testId,
     });
+  }
+
+  async createManyTestQuestions(data: ICreateTestQuestionDto[]) {
+    const testIds = new Set(data.map(q => q.testId));
+    if (testIds.size > 1) {
+      throw new BadRequestException('All questions must belong to the same test');
+    }
+
+    return this.testQuestionRepository.createManyTestQuestions(data);
   }
 
   async findAllTestQuestions(): Promise<ITestQuestionEntity[]> {

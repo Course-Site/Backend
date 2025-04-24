@@ -9,8 +9,8 @@ import { TestModule } from './infrastructure/modules/test.module';
 import { LectureModule } from './infrastructure/modules/lecture.module';
 import { TestResultModule } from './infrastructure/modules/test_result.module';
 import { LabResultModule } from './infrastructure/modules/lab_result.module';
-import { AnswerModule } from './infrastructure/modules/test_answer.module';
-import { QuestionModule } from './infrastructure/modules/test_question.module';
+import { TestAnswerModule } from './infrastructure/modules/test_answer.module';
+import { TestQuestionModule } from './infrastructure/modules/test_question.module';
 import { TopicModule } from './infrastructure/modules/topic.module';
 
 @Module({
@@ -27,8 +27,8 @@ import { TopicModule } from './infrastructure/modules/topic.module';
     TestModule,
     TestResultModule,
     LectureModule,
-    AnswerModule,
-    QuestionModule,
+    TestAnswerModule,
+    TestQuestionModule,
     TopicModule,
   ],
   controllers: [],

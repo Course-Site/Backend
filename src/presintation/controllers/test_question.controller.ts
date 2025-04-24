@@ -24,6 +24,7 @@ import {
   import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard';
   import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard';
   import { UserRole } from 'src/entiies/user/enums/user-role.enum';
+import { CreateTestQuestionDto } from '../dto/test/create.test_question.dto'
   
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
@@ -42,7 +43,6 @@ import {
 	@ApiBody({
 	  schema: {
 		properties: {
-		  title: { type: 'string', default: 'test' },
 		  text: { type: 'string', default: 'test' },
       	  imageUrl: { type: 'string', default: 'test' },
           number: { type: 'string', default: '1' },
@@ -58,6 +58,36 @@ import {
 	async createTestQuestion(@Body() data: ICreateTestQuestionDto) {
 	  return await this.testQuestionService.createTestQuestion(data);
 	}
+
+	@Post('massCreate')
+	@ApiBody({
+		description: 'Массив вопросов для создания',
+		type: [CreateTestQuestionDto],
+		examples: {
+		  basic: {
+			summary: 'Пример запроса',
+			value: {
+			  questions: [
+				{
+				  text: "Что такое Dependency Injection?",
+				  imageUrl: "https://example.com/di.jpg",
+				  number: "1",
+				  testId: "585aff0c-ba6d-460d-9b40-021b57c81750"
+				},
+				{
+				  text: "Как работает Middleware в NestJS?",
+				  imageUrl: "https://example.com/middleware.jpg",
+				  number: "2",
+				  testId: "585aff0c-ba6d-460d-9b40-021b57c81750"
+				}
+			  ]
+			}
+		  }
+		}
+	  })
+  	async createBulk(@Body() body: { questions: ICreateTestQuestionDto[] }) {
+    	return this.testQuestionService.createManyTestQuestions(body.questions);
+  	}
   
 	@Get('getAll')
 	@ApiOperation({ summary: 'Get all test questions' })
@@ -87,7 +117,6 @@ import {
 	@ApiBody({
 	  schema: {
 		properties: {
-		  title: { type: 'string', default: 'test' },
 		  text: { type: 'string', default: 'test' },
 		  imageUrl: { type: 'string', default: 'test' },
 		  number: { type: 'string', default: '1' },

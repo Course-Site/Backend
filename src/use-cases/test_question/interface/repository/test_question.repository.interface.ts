@@ -3,6 +3,7 @@ import { ICreateTestQuestionDto } from '../dto/create.test_question.dto.interfac
 
 export interface ITestQuestionRepository {
   createTestQuestion(data: ICreateTestQuestionDto): Promise<ITestQuestionEntity>;
+  createManyTestQuestions(data: ICreateTestQuestionDto[]): Promise<ITestQuestionEntity[]>;
   findAllTestQuestions(): Promise<ITestQuestionEntity[]>;
   findById(id: string): Promise<ITestQuestionEntity>;
   updateTestQuestion(
