@@ -4,5 +4,4 @@ export interface ICreateLabResultDto {
   submittedAt: Date;
   userId: string;
   labId: string;
-  userStatisticsId: string; 
 }

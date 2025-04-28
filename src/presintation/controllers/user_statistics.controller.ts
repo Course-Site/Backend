@@ -31,8 +31,8 @@ import { UserRole } from 'src/entiies/user/enums/user-role.enum';
 @ApiTags('User_Statistics')
 export class UserStatisticsController {
   constructor(
-    @Inject('userstatisticsService')
-    private readonly userstatisticsService: IUserStatisticsService,
+    @Inject('userStatisticsService')
+    private readonly userStatisticsService: IUserStatisticsService,
   ) {}
 
   @UseGuards(RolesGuard)
@@ -45,6 +45,7 @@ export class UserStatisticsController {
         totalTestScore: { type: 'number', default: '0' },
         totalLabScore: { type: 'number', default: '0' },
         lastUpdated: { type: 'Date', default: '01.04.2025' },
+        userId: { type: 'string', default: 'test'  },
       },
     },
   })
@@ -54,7 +55,7 @@ export class UserStatisticsController {
   })
   @ApiResponse({ status: 400, description: 'Bad Request.' })
   async createUserStatistics(@Body() data: ICreateUserStatisticsDto) {
-    return await this.userstatisticsService.createUserStatistics(data);
+    return await this.userStatisticsService.createUserStatistics(data);
   }
 
   @Get('getAll')
@@ -62,7 +63,7 @@ export class UserStatisticsController {
   @ApiResponse({ status: 200, description: 'Return all userstatistics.' })
   @ApiResponse({ status: 404, description: 'UserStatistics not found.' })
   async findAllUserStatisticss() {
-    return await this.userstatisticsService.findAllUserStatistics();
+    return await this.userStatisticsService.findAllUserStatistics();
   }
 
   @UseGuards(JwtAuthGuard)
@@ -76,7 +77,7 @@ export class UserStatisticsController {
   })
   @ApiResponse({ status: 404, description: 'UserStatistics not found.' })
   async findById(@Param('id') id: string) {
-    return await this.userstatisticsService.findById(id);
+    return await this.userStatisticsService.findById(id);
   }
 
   @Delete('delete/:id')
@@ -88,7 +89,7 @@ export class UserStatisticsController {
   })
   @ApiResponse({ status: 404, description: 'UserStatistics not found.' })
   async deleteUserStatistics(@Param('id') id: string) {
-    await this.userstatisticsService.deleteUserStatistics(id);
+    await this.userStatisticsService.deleteUserStatistics(id);
   }
 
   @Put(':id')
@@ -100,6 +101,7 @@ export class UserStatisticsController {
         totalTestScore: { type: 'number', default: '0' },
         totalLabScore: { type: 'number', default: '0' },
         lastUpdated: { type: 'Date', default: '01.04.2025' },
+        userId: { type: 'string', default: 'test'  },
       },
     },
   })
@@ -112,7 +114,7 @@ export class UserStatisticsController {
     @Param('id') id: string,
     @Body() userstatistics: IUserStatisticsEntity,
   ) {
-    return await this.userstatisticsService.updateUserStatistics(
+    return await this.userStatisticsService.updateUserStatistics(
       id,
       userstatistics,
     );

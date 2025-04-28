@@ -9,7 +9,6 @@ export class TestResultEntity implements ITestResultEntity {
   completedAt: Date;
   userId: string;
   testId: string;
-  userStatisticsId: string; 
 
   constructor(data: TTestResultEntity) {
     this.id = data.id;
@@ -19,6 +18,5 @@ export class TestResultEntity implements ITestResultEntity {
     this.completedAt = data.completedAt;
     this.userId = data.userId;
     this.testId = data.testId;
-    this.userStatisticsId = data.userStatisticsId;
   }
 }

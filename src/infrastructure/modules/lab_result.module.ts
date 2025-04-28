@@ -4,9 +4,12 @@ import { LabResultController } from 'src/presintation/controllers/lab_result.con
 import { LabResultService } from 'src/use-cases/lab_result/service/lab_result.service';
 import { LabResultRepository } from '../db/repositories/lab_result.repository';
 import { LabResultEntity } from '../db/entities/lab_result.entity';
+import { UserStatisticsModule } from './user_statistics.module'
 
 @Module({
-  imports: [TypeOrmModule.forFeature([LabResultEntity])],
+  imports: [TypeOrmModule.forFeature([LabResultEntity]),
+  UserStatisticsModule,
+  ],
   controllers: [LabResultController],
   providers: [
     {

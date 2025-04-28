@@ -47,7 +47,6 @@ export class TestResultController {
         complitedAt: { type: 'Date', default: '01.04.2025' },
         userId: { type: 'string', default: 'test'  },
         testId: { type: 'string', default: 'test'  },
-        userStatisticsId: { type: 'string', default: '0' },
       },
     },
   })
@@ -93,7 +92,6 @@ export class TestResultController {
         complitedAt: { type: 'Date', default: '01.04.2025' },
         userId: { type: 'string', default: 'test'  },
         testId: { type: 'string', default: 'test'  },
-        userStatisticsId: { type: 'string', default: '0' },
       },
     },
   })

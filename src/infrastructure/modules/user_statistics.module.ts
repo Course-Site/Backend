@@ -10,13 +10,14 @@ import { UserStatisticsEntity } from '../db/entities/user_statistics.entity';
   controllers: [UserStatisticsController],
   providers: [
     {
-      provide: 'userstatisticsRepository',
+      provide: 'userStatisticsRepository',
       useClass: UserStatisticsRepository,
     },
     {
-      provide: 'userstatisticsService',
+      provide: 'userStatisticsService',
       useClass: UserStatisticsService,
     },
   ],
+  exports: ['userStatisticsService'],
 })
 export class UserStatisticsModule {}

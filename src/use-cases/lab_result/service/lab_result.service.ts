@@ -3,22 +3,26 @@ import { ILabResultService } from '../interface/service/lab_result.service.inter
 import { ILabResultRepository } from '../interface/repository/lab_result.repository.interface';
 import { ILabResultEntity } from 'src/entiies/lab_result/interface/lab_result.entity.interface';
 import { ICreateLabResultDto } from '../interface/dto/create.lab_result.dto.interface';
+import { UserStatisticsService } from 'src/use-cases/user_statistics/service/user_statistics.service'
+import { IUserStatisticsService } from 'src/use-cases/user_statistics/interface/service/user_statistics.service.interface'
 
 @Injectable()
 export class LabResultService implements ILabResultService {
   constructor(
     @Inject('labresultRepository')
     private readonly labresultRepository: ILabResultRepository,
+    @Inject('userStatisticsService')
+    private readonly userStatisticsService: IUserStatisticsService,
   ) {}
 
   async createLabResult(data: ICreateLabResultDto): Promise<ILabResultEntity> {
+    await this.userStatisticsService.updateLabStatistics(data.userId, data.score);
     return this.labresultRepository.createLabResult({
       submissionFileUrl: data.submissionFileUrl,
       score: data.score,
       submittedAt: data.submittedAt,
       userId: data.userId,
       labId: data.labId,
-      userStatisticsId: data.userStatisticsId,
     });
   }
 
@@ -32,10 +36,21 @@ export class LabResultService implements ILabResultService {
 
   async updateLabResult(
     id: string,
-    LabResult: Partial<ILabResultEntity>,
+    labResult: Partial<ILabResultEntity>,
   ): Promise<ILabResultEntity> {
-    return await this.labresultRepository.updateLabResult(id, LabResult);
+    const oldLabResult = await this.labresultRepository.findById(id);
+    const updatedLabResult = await this.labresultRepository.updateLabResult(id, labResult);
+    if (updatedLabResult.userId && updatedLabResult.score !== undefined) {
+      const scoreDifference = (updatedLabResult.score || 0) - (oldLabResult.score || 0);
+      await this.userStatisticsService.updateLabStatistics(
+        updatedLabResult.userId,
+        scoreDifference,
+      );
+    }
+    return updatedLabResult;
   }
+  
+  
 
   async deleteLabResult(id: string): Promise<void> {
     try {

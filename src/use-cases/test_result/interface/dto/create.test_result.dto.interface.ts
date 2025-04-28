@@ -4,5 +4,4 @@ export interface ICreateTestResultDto {
   completedAt: Date;
   userId: string;
   testId: string;
-  userStatisticsId: string; 
 }

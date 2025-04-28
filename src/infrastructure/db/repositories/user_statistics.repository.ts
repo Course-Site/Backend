@@ -10,15 +10,15 @@ import { IUserStatisticsEntity } from 'src/entiies/user_statistics/interface/use
 export class UserStatisticsRepository implements IUserStatisticsRepository {
   constructor(
     @InjectRepository(UserStatisticsEntity)
-    private readonly userstatisticsRepository: Repository<UserStatisticsEntity>,
+    private readonly userStatisticsRepository: Repository<UserStatisticsEntity>,
   ) {}
 
   async createUserStatistics(
     data: ICreateUserStatisticsDto,
   ): Promise<IUserStatisticsEntity> {
     try {
-      const userstatistics = this.userstatisticsRepository.create(data);
-      return await this.userstatisticsRepository.save(userstatistics);
+      const userstatistics = this.userStatisticsRepository.create(data);
+      return await this.userStatisticsRepository.save(userstatistics);
     } catch (error) {
       throw error;
     }
@@ -26,15 +26,15 @@ export class UserStatisticsRepository implements IUserStatisticsRepository {
 
   async findAllUserStatistics(): Promise<IUserStatisticsEntity[]> {
     try {
-      return this.userstatisticsRepository.find({});
+      return this.userStatisticsRepository.find({});
     } catch (error) {
-      throw new Error('UserStatisticss not found');
+      throw new Error('UserStatistics not found');
     }
   }
 
   async findById(userstatisticsId: string): Promise<IUserStatisticsEntity> {
     try {
-      return this.userstatisticsRepository.findOne({
+      return this.userStatisticsRepository.findOne({
         where: { id: userstatisticsId },
       });
     } catch (error) {
@@ -47,8 +47,8 @@ export class UserStatisticsRepository implements IUserStatisticsRepository {
     userstatistics: Partial<IUserStatisticsEntity>,
   ): Promise<IUserStatisticsEntity> {
     try {
-      await this.userstatisticsRepository.update(id, userstatistics);
-      return this.userstatisticsRepository.findOne({ where: { id } });
+      await this.userStatisticsRepository.update(id, userstatistics);
+      return this.userStatisticsRepository.findOne({ where: { id } });
     } catch {
       throw new Error('UserStatistics not found');
     }
@@ -56,9 +56,33 @@ export class UserStatisticsRepository implements IUserStatisticsRepository {
 
   async deleteUserStatistics(id: string): Promise<void> {
     try {
-      await this.userstatisticsRepository.delete(id);
+      await this.userStatisticsRepository.delete(id);
     } catch (error) {
       throw new Error(error);
     }
+  }
+
+  async updateTestStatistics(userId: string, score: number): Promise<void> {
+    await this.userStatisticsRepository
+      .createQueryBuilder()
+      .update(UserStatisticsEntity)
+      .set({
+        totalTestScore: () => `"totalTestScore" + ${score}`,
+        lastUpdated: new Date(),
+      })
+      .where('userId = :userId', { userId })
+      .execute();
+  }
+
+  async updateLabStatistics(userId: string, score: number): Promise<void> {
+    await this.userStatisticsRepository
+      .createQueryBuilder()
+      .update(UserStatisticsEntity)
+      .set({
+        totalLabScore: () => `"totalLabScore" + ${score}`,
+        lastUpdated: new Date(),
+      })
+      .where('userId = :userId', { userId })
+      .execute();
   }
 }

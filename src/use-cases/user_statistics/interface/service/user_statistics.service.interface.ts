@@ -12,4 +12,6 @@ export interface IUserStatisticsService {
     userstatistics: Partial<IUserStatisticsEntity>,
   ): Promise<IUserStatisticsEntity>;
   deleteUserStatistics(id: string): Promise<void>;
+  updateTestStatistics(userId: string, score: number): Promise<void>;
+  updateLabStatistics(userId: string, score: number): Promise<void>;
 }

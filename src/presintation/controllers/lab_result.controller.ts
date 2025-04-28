@@ -47,7 +47,6 @@ export class LabResultController {
         submittedAt: { type: 'Date', default: '01.04.2025' },
         userId: { type: 'string', default: '0' },
         labId: { type: 'string', default: '0' },
-        userStatisticsId: { type: 'string', default: '0' },
       },
     },
   })
@@ -93,7 +92,6 @@ export class LabResultController {
         submittedAt: { type: 'Date', default: '01.04.2025' },
         userId: { type: 'string', default: '0' },
         labId: { type: 'string', default: '0' },
-        userStatisticsId: { type: 'string', default: '0' },
       },
     },
   })
