@@ -5,11 +5,14 @@ import { TestResultService } from 'src/use-cases/test_result/service/test_result
 import { TestResultRepository } from '../db/repositories/test_result.repository';
 import { TestResultEntity } from '../db/entities/test_result.entity';
 import { UserStatisticsModule } from './user_statistics.module'
+import { TestModule } from './test.module'
+import { TestRepository } from '../db/repositories/test.repository'
 
 
 @Module({
   imports: [TypeOrmModule.forFeature([TestResultEntity]),
   UserStatisticsModule,
+  TestModule,
   ],
   controllers: [TestResultController],
   providers: [
@@ -20,6 +23,10 @@ import { UserStatisticsModule } from './user_statistics.module'
     {
       provide: 'testresultService',
       useClass: TestResultService,
+    },
+    {
+      provide: 'testRepository',
+      useClass: TestRepository,
     },
   ],
 })

@@ -6,12 +6,15 @@ import { ICreateTestResultDto } from '../interface/dto/create.test_result.dto.in
 import { CreateUserDto } from 'src/presintation/dto/user/create.user.dto'
 import { IUserStatisticsService } from 'src/use-cases/user_statistics/interface/service/user_statistics.service.interface'
 import { UserStatisticsService } from 'src/use-cases/user_statistics/service/user_statistics.service'
+import { ITestRepository } from 'src/use-cases/test/interface/repository/test.repository.interface'
 
 @Injectable()
 export class TestResultService implements ITestResultService {
   constructor(
     @Inject('testresultRepository')
     private readonly testresultRepository: ITestResultRepository,
+    @Inject('testRepository')
+    private readonly testRepository: ITestRepository,
     @Inject('userStatisticsService')
     private readonly userStatisticsService: IUserStatisticsService,
   ) {}
@@ -20,9 +23,11 @@ export class TestResultService implements ITestResultService {
     data: ICreateTestResultDto,
   ): Promise<ITestResultEntity> {
     await this.userStatisticsService.updateTestStatistics(data.userId, data.score);
+    const test = await this.testRepository.findById(data.testId);
+    const percent = (data.score / test.maxScore) * 100;
     return this.testresultRepository.createTestResult({
       score: data.score,
-      percentage: data.percentage,
+      percentage: percent,
       completedAt: data.completedAt,
       userId: data.userId,
       testId: data.testId,
@@ -42,6 +47,13 @@ export class TestResultService implements ITestResultService {
     testResult: Partial<ITestResultEntity>,
   ): Promise<ITestResultEntity> {
     const oldTestResult = await this.testresultRepository.findById(id);
+
+    if (testResult.score !== undefined) {
+      const test = await this.testRepository.findById(oldTestResult.testId);
+      const newPercentage = (testResult.score / test.maxScore) * 100;
+      testResult.percentage = newPercentage;
+    }
+    
     const updatedTestResult = await this.testresultRepository.updateTestResult(id, testResult);
     if (updatedTestResult.userId && updatedTestResult.score !== undefined) {
       const scoreDifference = (updatedTestResult.score || 0) - (oldTestResult.score || 0);

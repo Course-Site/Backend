@@ -45,6 +45,7 @@ export class TestController {
         title: { type: 'string', default: 'test' },
         description: { type: 'string', default: 'test' },
         topicId: { type: 'string', default: 'test' },
+        maxScore: { type: 'number', default: '5'},
       },
     },
   })
@@ -88,6 +89,7 @@ export class TestController {
         title: { type: 'string', default: 'test' },
         description: { type: 'string', default: 'test' },
         topicId: { type: 'string', default: 'test' },
+        maxScore: { type: 'number', default: '5'},
       },
     },
   })

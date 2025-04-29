@@ -7,4 +7,5 @@ export type TLabEntity = {
   content: string;
   submittedAt: Date;
   topicId: string;
+  maxScore: number;
 };

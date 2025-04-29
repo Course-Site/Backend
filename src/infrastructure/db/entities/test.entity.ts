@@ -20,13 +20,18 @@ export class TestEntity {
   @IsNotEmpty()
   title: string;
 
-  @Column('text', { nullable: true })
+  @Column('text')
   description: string;
+
+  @Column({type: 'int', default: 5})
+  @IsNotEmpty()
+  maxScore: number;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   addedAt: Date;
 
   @Column('uuid')
+  @IsNotEmpty()
   topicId: string; 
 
   @ManyToOne(() => TopicEntity, (topic) => topic.tests, { onDelete: 'CASCADE' })

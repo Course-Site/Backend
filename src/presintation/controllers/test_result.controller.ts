@@ -43,7 +43,6 @@ export class TestResultController {
     schema: {
       properties: {
         score: { type: 'number', default: '0' },
-        percentage: { type: 'number', default: '0' },
         complitedAt: { type: 'Date', default: '01.04.2025' },
         userId: { type: 'string', default: 'test'  },
         testId: { type: 'string', default: 'test'  },
@@ -88,7 +87,6 @@ export class TestResultController {
     schema: {
       properties: {
         score: { type: 'number', default: '0' },
-        percentage: { type: 'number', default: '0' },
         complitedAt: { type: 'Date', default: '01.04.2025' },
         userId: { type: 'string', default: 'test'  },
         testId: { type: 'string', default: 'test'  },

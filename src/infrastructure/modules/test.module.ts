@@ -19,5 +19,9 @@ import { TopicEntity } from '../db/entities/topic.entity'
       useClass: TestService,
     },
   ],
+  exports: [
+    'testRepository',
+    TypeOrmModule,
+  ],
 })
 export class TestModule {}

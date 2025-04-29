@@ -21,6 +21,7 @@ export class UserStatisticsEntity {
   lastUpdated: Date;
 
   @Column('uuid')
+  @IsNotEmpty()
   userId: string; 
 
   @OneToOne(() => UserEntity, (user) => user.statistics)

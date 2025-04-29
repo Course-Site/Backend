@@ -5,6 +5,7 @@ export class TestEntity implements ITestEntity {
   id?: string;
   title: string;
   description: string;
+  maxScore: number;
   topicId: string;
 
   constructor(data: TTestEntity) {
@@ -12,5 +13,6 @@ export class TestEntity implements ITestEntity {
     this.title = data.title;
     this.description = data.description;
     this.topicId = data.topicId;
+    this.maxScore = data.maxScore;
   }
 }

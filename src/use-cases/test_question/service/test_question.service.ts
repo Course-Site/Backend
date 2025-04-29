@@ -15,7 +15,6 @@ export class TestQuestionService implements ITestQuestionService {
   async createTestQuestion(data: ICreateTestQuestionDto): Promise<ITestQuestionEntity> {
     return this.testQuestionRepository.createTestQuestion({
       text: data.text,
-      imageUrl: data.imageUrl,
       number: data.number,
       testId: data.testId,
     });

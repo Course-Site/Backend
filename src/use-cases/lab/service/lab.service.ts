@@ -14,10 +14,9 @@ export class LabService implements ILabService {
   async createLab(data: ICreateLabDto): Promise<ILabEntity> {
     return this.labRepository.createLab({
       title: data.title,
-      description: data.description,
       topicId: data.topicId,
       content: data.content,
-      labResultId: data.labResultId,
+      maxScore: data.maxScore,
     });
   }
 

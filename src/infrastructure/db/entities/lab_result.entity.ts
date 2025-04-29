@@ -2,6 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 't
 import { UserEntity } from './user.entity';
 import { LabEntity } from './lab.entity';
 import { UserStatisticsEntity } from './user_statistics.entity'
+import { IsNotEmpty } from 'class-validator'
 
 @Entity()
 export class LabResultEntity {
@@ -12,15 +13,22 @@ export class LabResultEntity {
   submissionFileUrl?: string;
 
   @Column('int', { nullable: true })
+  @IsNotEmpty()
   score: number;
 
+  @Column('float')
+  @IsNotEmpty()
+  percentage: number;
+  
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   submittedAt: Date;
 
   @Column('uuid')
+  @IsNotEmpty()
   userId: string; 
 
   @Column('uuid')
+  @IsNotEmpty()
   labId: string; 
 
   @ManyToOne(() => UserEntity, (user) => user.labResult)

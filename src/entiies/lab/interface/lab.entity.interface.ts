@@ -7,4 +7,5 @@ export interface ILabEntity {
   content: string;
   submittedAt: Date;
   topicId: string;
+  maxScore: number;
 }

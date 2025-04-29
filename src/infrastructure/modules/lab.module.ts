@@ -19,5 +19,9 @@ import { TopicEntity } from '../db/entities/topic.entity';
       useClass: LabService,
     },
   ],
+  exports: [
+    'labRepository',
+    TypeOrmModule,
+  ],
 })
 export class labModule {}

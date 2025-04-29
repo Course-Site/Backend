@@ -21,9 +21,11 @@ export class TestResultEntity {
   completedAt: Date;
 
   @Column('uuid')
+  @IsNotEmpty()
   userId: string; 
   
   @Column('uuid')
+  @IsNotEmpty()
   testId: string; 
   
   @ManyToOne(() => UserEntity, (user) => user.testResult)

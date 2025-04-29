@@ -5,10 +5,13 @@ import { LabResultService } from 'src/use-cases/lab_result/service/lab_result.se
 import { LabResultRepository } from '../db/repositories/lab_result.repository';
 import { LabResultEntity } from '../db/entities/lab_result.entity';
 import { UserStatisticsModule } from './user_statistics.module'
+import { labModule } from './lab.module'
+import { LabRepository } from '../db/repositories/lab.repository'
 
 @Module({
   imports: [TypeOrmModule.forFeature([LabResultEntity]),
   UserStatisticsModule,
+  labModule,
   ],
   controllers: [LabResultController],
   providers: [
@@ -19,6 +22,10 @@ import { UserStatisticsModule } from './user_statistics.module'
     {
       provide: 'labresultService',
       useClass: LabResultService,
+    },
+    {
+      provide: 'labRepository',
+      useClass: LabRepository,
     },
   ],
 })

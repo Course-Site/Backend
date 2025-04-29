@@ -10,6 +10,7 @@ export class LabEntity implements ILabEntity {
   content: string;
   submittedAt: Date;
   topicId: string;
+  maxScore: number;
 
   constructor(data: TLabEntity) {
     this.id = data.id;
@@ -18,5 +19,6 @@ export class LabEntity implements ILabEntity {
     this.content = data.content;
     this.submittedAt = data.submittedAt;
     this.topicId = data.topicId;
+    this.maxScore = data.maxScore;
   }
 }

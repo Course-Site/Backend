@@ -15,6 +15,7 @@ export class TestService implements ITestService {
     return this.testRepository.createTest({
       title: data.title,
       description: data.description,
+      maxScore: data.maxScore,
       topicId: data.topicId
     });
   }

@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import { TestAnswerEntity } from './test_answer.entity';
 import { TestEntity } from './test.entity';
+import { IsNotEmpty } from 'class-validator'
 
 @Entity()
 export class TestQuestionEntity {
@@ -15,15 +16,15 @@ export class TestQuestionEntity {
   id: string;
 
   @Column('text')
+  @IsNotEmpty()
   text: string;
 
   @Column('varchar')
-  imageUrl: string;
-
-  @Column('varchar')
+  @IsNotEmpty()
   number: string;
 
   @Column('uuid')
+  @IsNotEmpty()
   testId: string; 
   
   @ManyToOne(() => TestEntity, (test) => test.questions, { onDelete: 'CASCADE' })

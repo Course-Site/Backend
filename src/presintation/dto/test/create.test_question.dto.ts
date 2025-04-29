@@ -3,7 +3,6 @@ import { ICreateTestQuestionDto } from 'src/use-cases/test_question/interface/dt
 export class CreateTestQuestionDto implements ICreateTestQuestionDto {
 	id?: string;
   	text: string;
-  	imageUrl: string;
   	number: string;
   	testId: string;
 }
