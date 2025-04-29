@@ -80,18 +80,6 @@ export class UserStatisticsController {
     return await this.userStatisticsService.findById(id);
   }
 
-  @Delete('delete/:id')
-  @ApiOperation({ summary: 'Delete a userstatistics by its ID' })
-  @ApiParam({ name: 'id', description: 'UserStatistics ID', type: 'string' })
-  @ApiResponse({
-    status: 200,
-    description: 'The userstatistics has been successfully deleted.',
-  })
-  @ApiResponse({ status: 404, description: 'UserStatistics not found.' })
-  async deleteUserStatistics(@Param('id') id: string) {
-    await this.userStatisticsService.deleteUserStatistics(id);
-  }
-
   @Put(':id')
   @ApiOperation({ summary: 'Change the userstatistics data' })
   @ApiParam({ name: 'id', description: 'UserStatistics ID', type: 'string' })
@@ -118,5 +106,17 @@ export class UserStatisticsController {
       id,
       userstatistics,
     );
+  }
+
+  @Delete('delete/:id')
+  @ApiOperation({ summary: 'Delete a userstatistics by its ID' })
+  @ApiParam({ name: 'id', description: 'UserStatistics ID', type: 'string' })
+  @ApiResponse({
+    status: 200,
+    description: 'The userstatistics has been successfully deleted.',
+  })
+  @ApiResponse({ status: 404, description: 'UserStatistics not found.' })
+  async deleteUserStatistics(@Param('id') id: string) {
+    await this.userStatisticsService.deleteUserStatistics(id);
   }
 }

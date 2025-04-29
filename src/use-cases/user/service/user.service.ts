@@ -3,6 +3,7 @@ import { IUserService } from '../interface/service/user.service.interface';
 import { IUserRepository } from '../interface/repository/user.repository.interface';
 import { IUserEntity } from 'src/entiies/user/interface/user.entity.interface';
 import { ICreateUserDto } from '../interface/dto/create.user.dto.interface';
+import { IUserStatisticsService } from 'src/use-cases/user_statistics/interface/service/user_statistics.service.interface'
 
 import * as bcrypt from 'bcrypt';
 
@@ -11,17 +12,28 @@ export class UserService implements IUserService {
   constructor(
     @Inject('userRepository')
     private readonly userRepository: IUserRepository,
+    @Inject('userStatisticsService')
+    private readonly userStatisticsService: IUserStatisticsService,
   ) {}
 
   async createUser(data: ICreateUserDto): Promise<IUserEntity> {
     const hash = bcrypt.hashSync(data.password, 10);
 
-    return this.userRepository.createUser({
+    const newUser = await this.userRepository.createUser({
       email: data.email,
       password: hash,
       name: data.name,
       role: data.role,
     });
+
+    await this.userStatisticsService.createUserStatistics({
+      userId: newUser.id,
+      totalTestScore: 0,
+      totalLabScore: 0,
+      lastUpdated: new Date(),
+    });
+
+    return newUser
   }
 
   async findAllUsers(): Promise<IUserEntity[]> {

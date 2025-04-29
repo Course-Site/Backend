@@ -4,9 +4,12 @@ import { UserController } from 'src/presintation/controllers/user.controller';
 import { UserService } from 'src/use-cases/user/service/user.service';
 import { UserRepository } from '../db/repositories/user.repository';
 import { UserEntity } from '../db/entities/user.entity';
+import { UserStatisticsModule } from './user_statistics.module'
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UserEntity])],
+  imports: [TypeOrmModule.forFeature([UserEntity]),
+  UserStatisticsModule,
+  ],
   controllers: [UserController],
   providers: [
     {
@@ -18,5 +21,6 @@ import { UserEntity } from '../db/entities/user.entity';
       useClass: UserService,
     },
   ],
+  exports: ['userService'],
 })
 export class UserModule {}

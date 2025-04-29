@@ -33,8 +33,6 @@ import { UserEntity } from '../db/entities/user.entity';
   controllers: [AuthController],
   providers: [
     { provide: 'authService', useClass: AuthService },
-    { provide: 'userService', useClass: UserService },
-    { provide: 'userRepository', useClass: UserRepository },
     LocalStrategy,
     JwtStrategy,
   ],

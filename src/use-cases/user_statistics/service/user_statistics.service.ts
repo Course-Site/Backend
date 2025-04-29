@@ -15,12 +15,13 @@ export class UserStatisticsService implements IUserStatisticsService {
   async createUserStatistics(
     data: ICreateUserStatisticsDto,
   ): Promise<IUserStatisticsEntity> {
-    return this.userStatisticsRepository.createUserStatistics({
+    const result = this.userStatisticsRepository.createUserStatistics({
       totalTestScore: data.totalTestScore,
       totalLabScore: data.totalLabScore,
       lastUpdated: data.lastUpdated,
       userId: data.userId,
     });
+    return result
   }
 
   async findAllUserStatistics(): Promise<IUserStatisticsEntity[]> {

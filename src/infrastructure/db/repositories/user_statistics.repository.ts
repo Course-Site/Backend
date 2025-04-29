@@ -18,7 +18,8 @@ export class UserStatisticsRepository implements IUserStatisticsRepository {
   ): Promise<IUserStatisticsEntity> {
     try {
       const userstatistics = this.userStatisticsRepository.create(data);
-      return await this.userStatisticsRepository.save(userstatistics);
+      const savedStatistics = await this.userStatisticsRepository.save(userstatistics);
+      return savedStatistics
     } catch (error) {
       throw error;
     }
