@@ -18,8 +18,9 @@ export class UserStatisticsRepository implements IUserStatisticsRepository {
   ): Promise<IUserStatisticsEntity> {
     try {
       const userstatistics = this.userStatisticsRepository.create(data);
-      const savedStatistics = await this.userStatisticsRepository.save(userstatistics);
-      return savedStatistics
+      const savedStatistics =
+        await this.userStatisticsRepository.save(userstatistics);
+      return savedStatistics;
     } catch (error) {
       throw error;
     }
@@ -63,17 +64,17 @@ export class UserStatisticsRepository implements IUserStatisticsRepository {
     }
   }
 
-  async updateTestStatistics(userId: string, score: number): Promise<void> {
+  async updateTestStatistics(userId: string, newScore: number): Promise<void> {
     await this.userStatisticsRepository
       .createQueryBuilder()
       .update(UserStatisticsEntity)
       .set({
-        totalTestScore: () => `"totalTestScore" + ${score}`,
+        totalTestScore: newScore,
         lastUpdated: new Date(),
       })
       .where('userId = :userId', { userId })
       .execute();
-  }
+  }  
 
   async updateLabStatistics(userId: string, score: number): Promise<void> {
     await this.userStatisticsRepository

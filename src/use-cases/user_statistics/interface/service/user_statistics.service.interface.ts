@@ -5,6 +5,7 @@ export interface IUserStatisticsService {
   createUserStatistics(
     data: ICreateUserStatisticsDto,
   ): Promise<IUserStatisticsEntity>;
+  recalculateTestStatistic(userId: string): Promise<IUserStatisticsEntity | void>
   findAllUserStatistics(): Promise<IUserStatisticsEntity[]>;
   findById(id: string): Promise<IUserStatisticsEntity>;
   updateUserStatistics(

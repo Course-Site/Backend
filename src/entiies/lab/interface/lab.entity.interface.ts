@@ -1,4 +1,4 @@
-import { ITopicEntity } from 'src/entiies/topic/interface/topic.entity.interface'
+import { ITopicEntity } from 'src/entiies/topic/interface/topic.entity.interface';
 
 export interface ILabEntity {
   id?: string;

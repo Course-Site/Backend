@@ -31,8 +31,8 @@ import { UserRole } from 'src/entiies/user/enums/user-role.enum';
 @ApiTags('TestResult')
 export class TestResultController {
   constructor(
-    @Inject('testresultService')
-    private readonly testresultService: ITestResultService,
+    @Inject('testResultService')
+    private readonly testResultService: ITestResultService,
   ) {}
 
   @UseGuards(RolesGuard)
@@ -44,8 +44,8 @@ export class TestResultController {
       properties: {
         score: { type: 'number', default: '0' },
         complitedAt: { type: 'Date', default: '01.04.2025' },
-        userId: { type: 'string', default: 'test'  },
-        testId: { type: 'string', default: 'test'  },
+        userId: { type: 'string', default: 'test' },
+        testId: { type: 'string', default: 'test' },
       },
     },
   })
@@ -55,7 +55,7 @@ export class TestResultController {
   })
   @ApiResponse({ status: 400, description: 'Bad Request.' })
   async createTestResult(@Body() data: ICreateTestResultDto) {
-    return await this.testresultService.createTestResult(data);
+    return await this.testResultService.createTestResult(data);
   }
 
   @Get('getAll')
@@ -63,7 +63,7 @@ export class TestResultController {
   @ApiResponse({ status: 200, description: 'Return all testresults.' })
   @ApiResponse({ status: 404, description: 'TestResults not found.' })
   async findAllTestResults() {
-    return await this.testresultService.findAllTestResult();
+    return await this.testResultService.findAllTestResult();
   }
 
   @UseGuards(JwtAuthGuard)
@@ -77,7 +77,7 @@ export class TestResultController {
   })
   @ApiResponse({ status: 404, description: 'TestResult not found.' })
   async findById(@Param('id') id: string) {
-    return await this.testresultService.findById(id);
+    return await this.testResultService.findById(id);
   }
 
   @Put(':id')
@@ -88,8 +88,8 @@ export class TestResultController {
       properties: {
         score: { type: 'number', default: '0' },
         complitedAt: { type: 'Date', default: '01.04.2025' },
-        userId: { type: 'string', default: 'test'  },
-        testId: { type: 'string', default: 'test'  },
+        userId: { type: 'string', default: 'test' },
+        testId: { type: 'string', default: 'test' },
       },
     },
   })
@@ -99,7 +99,7 @@ export class TestResultController {
   })
   @ApiResponse({ status: 404, description: 'TestResult not found.' })
   async update(@Param('id') id: string, @Body() testresult: ITestResultEntity) {
-    return await this.testresultService.updateTestResult(id, testresult);
+    return await this.testResultService.updateTestResult(id, testresult);
   }
 
   @Delete('delete/:id')
@@ -111,6 +111,6 @@ export class TestResultController {
   })
   @ApiResponse({ status: 404, description: 'TestResult not found.' })
   async deleteTestResult(@Param('id') id: string) {
-    await this.testresultService.deleteTestResult(id);
+    await this.testResultService.deleteTestResult(id);
   }
 }

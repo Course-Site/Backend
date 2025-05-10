@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ICreateTestQuestionDto } from 'src/use-cases/test_question/interface/dto/create.test_question.dto.interface';
-import { ITestQuestionRepository } from 'src/use-cases/test_question/interface/repository/test_question.repository.interface';
+import { ICreateTestQuestionDto } from 'src/use-cases/test/test_question/interface/dto/create.test_question.dto.interface';
+import { ITestQuestionRepository } from 'src/use-cases/test/test_question/interface/repository/test_question.repository.interface';
 import { TestQuestionEntity } from '../entities/test_question.entity';
 import { Repository } from 'typeorm';
-import { ITestQuestionEntity } from 'src/entiies/test_question/interface/test_question.entity.interface';
+import { ITestQuestionEntity } from 'src/entiies/test/test_question/interface/test_question.entity.interface';
 
 @Injectable()
 export class TestQuestionRepository implements ITestQuestionRepository {
@@ -13,7 +13,9 @@ export class TestQuestionRepository implements ITestQuestionRepository {
     private readonly TestQuestionRepository: Repository<TestQuestionEntity>,
   ) {}
 
-  async createTestQuestion(data: ICreateTestQuestionDto): Promise<ITestQuestionEntity> {
+  async createTestQuestion(
+    data: ICreateTestQuestionDto,
+  ): Promise<ITestQuestionEntity> {
     try {
       const question = this.TestQuestionRepository.create(data);
       return await this.TestQuestionRepository.save(question);
@@ -22,8 +24,12 @@ export class TestQuestionRepository implements ITestQuestionRepository {
     }
   }
 
-  async createManyTestQuestions(data: ICreateTestQuestionDto[]): Promise<TestQuestionEntity[]> {
-    const questions = data.map(item => this.TestQuestionRepository.create(item));
+  async createManyTestQuestions(
+    data: ICreateTestQuestionDto[],
+  ): Promise<TestQuestionEntity[]> {
+    const questions = data.map((item) =>
+      this.TestQuestionRepository.create(item),
+    );
     return this.TestQuestionRepository.save(questions);
   }
 
@@ -37,7 +43,9 @@ export class TestQuestionRepository implements ITestQuestionRepository {
 
   async findById(questionId: string): Promise<ITestQuestionEntity> {
     try {
-      return this.TestQuestionRepository.findOne({ where: { id: questionId } });
+      return this.TestQuestionRepository.findOne({
+        where: { id: questionId },
+      });
     } catch (error) {
       throw new Error('Question not found');
     }

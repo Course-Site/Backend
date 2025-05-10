@@ -1,6 +1,12 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { TestQuestionEntity } from './test_question.entity';
-import { IsNotEmpty } from 'class-validator'
+import { IsNotEmpty } from 'class-validator';
 
 @Entity()
 export class TestAnswerEntity {
@@ -17,9 +23,11 @@ export class TestAnswerEntity {
 
   @Column('uuid')
   @IsNotEmpty()
-  testQuestionId: string; 
+  testQuestionId: string;
 
-  @ManyToOne(() => TestQuestionEntity, (question) => question.answers, { onDelete: 'CASCADE' })
+  @ManyToOne(() => TestQuestionEntity, (question) => question.answers, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'testQuestionId' })
   question: TestQuestionEntity;
 }

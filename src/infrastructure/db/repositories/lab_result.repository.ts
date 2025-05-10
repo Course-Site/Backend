@@ -32,7 +32,9 @@ export class LabResultRepository implements ILabResultRepository {
 
   async findById(labresultId: string): Promise<ILabResultEntity> {
     try {
-      return this.labresultRepository.findOne({ where: { id: labresultId } });
+      return this.labresultRepository.findOne({
+        where: { id: labresultId },
+      });
     } catch (error) {
       throw new Error('LabResult not found');
     }

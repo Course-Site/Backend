@@ -1,4 +1,4 @@
-import { ITopicEntity } from 'src/entiies/topic/interface/topic.entity.interface'
+import { ITopicEntity } from 'src/entiies/topic/interface/topic.entity.interface';
 import { TopicEntity } from 'src/infrastructure/db/entities/topic.entity';
 
 export interface ICreateLabDto {

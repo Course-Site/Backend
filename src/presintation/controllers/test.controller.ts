@@ -9,7 +9,7 @@ import {
   Body,
   UseGuards,
 } from '@nestjs/common';
-import { ITestService } from 'src/use-cases/test/interface/service/test.service.interface';
+import { ITestService } from 'src/use-cases/test/test/interface/service/test.service.interface';
 import {
   ApiBearerAuth,
   ApiTags,
@@ -18,8 +18,8 @@ import {
   ApiParam,
   ApiBody,
 } from '@nestjs/swagger';
-import { ICreateTestDto } from 'src/use-cases/test/interface/dto/create.test.dto.interface';
-import { ITestEntity } from 'src/entiies/test/interface/test.entity.interface';
+import { ICreateTestDto } from 'src/use-cases/test/test/interface/dto/create.test.dto.interface';
+import { ITestEntity } from 'src/entiies/test/test/interface/test.entity.interface';
 import { Roles } from 'src/infrastructure/decorators/roles.decorator';
 import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard';
 import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard';
@@ -45,7 +45,8 @@ export class TestController {
         title: { type: 'string', default: 'test' },
         description: { type: 'string', default: 'test' },
         topicId: { type: 'string', default: 'test' },
-        maxScore: { type: 'number', default: '5'},
+        maxScore: { type: 'number', default: '5' },
+        maxAttempts: { type: 'number', default: '5' },
       },
     },
   })
@@ -89,7 +90,8 @@ export class TestController {
         title: { type: 'string', default: 'test' },
         description: { type: 'string', default: 'test' },
         topicId: { type: 'string', default: 'test' },
-        maxScore: { type: 'number', default: '5'},
+        maxScore: { type: 'number', default: '5' },
+        maxAttempts: { type: 'number', default: '5' },
       },
     },
   })

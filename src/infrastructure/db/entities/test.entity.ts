@@ -10,6 +10,8 @@ import { TopicEntity } from './topic.entity';
 import { TestQuestionEntity } from './test_question.entity';
 import { TestResultEntity } from './test_result.entity';
 import { IsNotEmpty } from 'class-validator';
+import { ScoreMethod } from 'src/entiies/test/test/enums/score_method'
+import { UserTestStatisticsEntity } from './user_test_statistics.entity'
 
 @Entity()
 export class TestEntity {
@@ -23,18 +25,28 @@ export class TestEntity {
   @Column('text')
   description: string;
 
-  @Column({type: 'int', default: 5})
+  @Column({ type: 'int', default: 5 })
   @IsNotEmpty()
   maxScore: number;
+
+  @Column({ type: 'int', default: 1 })
+  @IsNotEmpty()
+  maxAttempts: number;
+
+  @Column({ type: 'enum', enum: ScoreMethod, default: ScoreMethod.AVERAGE })
+  @IsNotEmpty()
+  scoreMethod: ScoreMethod
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   addedAt: Date;
 
   @Column('uuid')
   @IsNotEmpty()
-  topicId: string; 
+  topicId: string;
 
-  @ManyToOne(() => TopicEntity, (topic) => topic.tests, { onDelete: 'CASCADE' })
+  @ManyToOne(() => TopicEntity, (topic) => topic.tests, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'topicId' })
   topic: TopicEntity;
 
@@ -43,4 +55,7 @@ export class TestEntity {
 
   @OneToMany(() => TestResultEntity, (result) => result.test)
   testResult: TestResultEntity[];
+
+  @ManyToOne(() => UserTestStatisticsEntity, (stats) => stats.test)
+  testStatistics: UserTestStatisticsEntity[];
 }

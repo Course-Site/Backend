@@ -1,7 +1,7 @@
 import { TopicEntity } from 'src/infrastructure/db/entities/topic.entity';
 import { ILabEntity } from '../interface/lab.entity.interface';
 import { TLabEntity } from '../type/lab.entity.type';
-import { ITopicEntity } from 'src/entiies/topic/interface/topic.entity.interface'
+import { ITopicEntity } from 'src/entiies/topic/interface/topic.entity.interface';
 
 export class LabEntity implements ILabEntity {
   id?: string;

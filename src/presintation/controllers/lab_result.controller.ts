@@ -95,7 +95,10 @@ export class LabResultController {
       },
     },
   })
-  @ApiResponse({ status: 200, description: 'labresult data has been changed.' })
+  @ApiResponse({
+    status: 200,
+    description: 'labresult data has been changed.',
+  })
   @ApiResponse({ status: 404, description: 'LabResult not found.' })
   async update(@Param('id') id: string, @Body() labresult: ILabResultEntity) {
     return await this.labresultService.updateLabResult(id, labresult);

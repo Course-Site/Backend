@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { TestAnswerEntity } from './test_answer.entity';
 import { TestEntity } from './test.entity';
-import { IsNotEmpty } from 'class-validator'
+import { IsNotEmpty } from 'class-validator';
 
 @Entity()
 export class TestQuestionEntity {
@@ -25,9 +25,11 @@ export class TestQuestionEntity {
 
   @Column('uuid')
   @IsNotEmpty()
-  testId: string; 
-  
-  @ManyToOne(() => TestEntity, (test) => test.questions, { onDelete: 'CASCADE' })
+  testId: string;
+
+  @ManyToOne(() => TestEntity, (test) => test.questions, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'testId' })
   test: TestEntity;
 

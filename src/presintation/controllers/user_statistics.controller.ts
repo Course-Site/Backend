@@ -45,7 +45,7 @@ export class UserStatisticsController {
         totalTestScore: { type: 'number', default: '0' },
         totalLabScore: { type: 'number', default: '0' },
         lastUpdated: { type: 'Date', default: '01.04.2025' },
-        userId: { type: 'string', default: 'test'  },
+        userId: { type: 'string', default: 'test' },
       },
     },
   })
@@ -89,7 +89,7 @@ export class UserStatisticsController {
         totalTestScore: { type: 'number', default: '0' },
         totalLabScore: { type: 'number', default: '0' },
         lastUpdated: { type: 'Date', default: '01.04.2025' },
-        userId: { type: 'string', default: 'test'  },
+        userId: { type: 'string', default: 'test' },
       },
     },
   })

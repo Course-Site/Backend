@@ -45,7 +45,7 @@ export class LabController {
         title: { type: 'string', default: 'test' },
         content: { type: 'string', default: 'test' },
         topicId: { type: 'string', default: 'test' },
-        maxScore: { type: 'number', default: '5'},
+        maxScore: { type: 'number', default: '5' },
       },
     },
   })
@@ -89,7 +89,7 @@ export class LabController {
         title: { type: 'string', default: 'test' },
         content: { type: 'string', default: 'test' },
         topicId: { type: 'string', default: 'test' },
-        maxScore: { type: 'number', default: '5'},
+        maxScore: { type: 'number', default: '5' },
       },
     },
   })

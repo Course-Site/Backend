@@ -32,12 +32,32 @@ export class TestResultRepository implements ITestResultRepository {
     }
   }
 
+  async findAllByUserAndTest(userId: string, testId: string) {
+    return this.testresultRepository.find({
+      where: {
+        user: { id: userId },
+        test: { id: testId },
+      },
+      relations: ['user', 'test'],
+    });
+  }
+  
+
   async findById(testresultId: string): Promise<ITestResultEntity> {
     try {
-      return this.testresultRepository.findOne({ where: { id: testresultId } });
+      return this.testresultRepository.findOne({
+        where: { id: testresultId },
+      });
     } catch (error) {
       throw new Error('TestResult not found');
     }
+  }
+
+  async findResultsByUserAndTest(userId: string, testId: string): Promise<ITestResultEntity[]> {
+    return this.testresultRepository.find({
+      where: { userId, testId },
+      order: { completedAt: 'DESC' },
+    });
   }
 
   async updateTestResult(

@@ -1,8 +1,14 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 import { UserEntity } from './user.entity';
 import { LabEntity } from './lab.entity';
-import { UserStatisticsEntity } from './user_statistics.entity'
-import { IsNotEmpty } from 'class-validator'
+import { UserStatisticsEntity } from './user_statistics.entity';
+import { IsNotEmpty } from 'class-validator';
 
 @Entity()
 export class LabResultEntity {
@@ -19,17 +25,17 @@ export class LabResultEntity {
   @Column('float')
   @IsNotEmpty()
   percentage: number;
-  
+
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   submittedAt: Date;
 
   @Column('uuid')
   @IsNotEmpty()
-  userId: string; 
+  userId: string;
 
   @Column('uuid')
   @IsNotEmpty()
-  labId: string; 
+  labId: string;
 
   @ManyToOne(() => UserEntity, (user) => user.labResult)
   @JoinColumn({ name: 'userId' })
@@ -39,7 +45,10 @@ export class LabResultEntity {
   @JoinColumn({ name: 'labId' })
   labs: LabEntity;
 
-  @ManyToOne(() => UserStatisticsEntity, (userStatistics) => userStatistics.labResult)
+  @ManyToOne(
+    () => UserStatisticsEntity,
+    (userStatistics) => userStatistics.labResult,
+  )
   @JoinColumn({ name: 'userStatisticsId' })
   statistics: UserStatisticsEntity;
 }

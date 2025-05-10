@@ -3,9 +3,9 @@ import { ILabResultService } from '../interface/service/lab_result.service.inter
 import { ILabResultRepository } from '../interface/repository/lab_result.repository.interface';
 import { ILabResultEntity } from 'src/entiies/lab_result/interface/lab_result.entity.interface';
 import { ICreateLabResultDto } from '../interface/dto/create.lab_result.dto.interface';
-import { UserStatisticsService } from 'src/use-cases/user_statistics/service/user_statistics.service'
-import { IUserStatisticsService } from 'src/use-cases/user_statistics/interface/service/user_statistics.service.interface'
-import { ILabRepository } from 'src/use-cases/lab/interface/repository/lab.repository.interface'
+import { UserStatisticsService } from 'src/use-cases/user_statistics/service/user_statistics.service';
+import { IUserStatisticsService } from 'src/use-cases/user_statistics/interface/service/user_statistics.service.interface';
+import { ILabRepository } from 'src/use-cases/lab/interface/repository/lab.repository.interface';
 
 @Injectable()
 export class LabResultService implements ILabResultService {
@@ -19,7 +19,10 @@ export class LabResultService implements ILabResultService {
   ) {}
 
   async createLabResult(data: ICreateLabResultDto): Promise<ILabResultEntity> {
-    await this.userStatisticsService.updateLabStatistics(data.userId, data.score);
+    await this.userStatisticsService.updateLabStatistics(
+      data.userId,
+      data.score,
+    );
     const lab = await this.labRepository.findById(data.labId);
     const percent = (data.score / lab.maxScore) * 100;
     return this.labresultRepository.createLabResult({
@@ -52,9 +55,13 @@ export class LabResultService implements ILabResultService {
       labResult.percentage = newPercentage;
     }
 
-    const updatedLabResult = await this.labresultRepository.updateLabResult(id, labResult);
+    const updatedLabResult = await this.labresultRepository.updateLabResult(
+      id,
+      labResult,
+    );
     if (updatedLabResult.userId && updatedLabResult.score !== undefined) {
-      const scoreDifference = (updatedLabResult.score || 0) - (oldLabResult.score || 0);
+      const scoreDifference =
+        (updatedLabResult.score || 0) - (oldLabResult.score || 0);
       await this.userStatisticsService.updateLabStatistics(
         updatedLabResult.userId,
         scoreDifference,
@@ -62,8 +69,6 @@ export class LabResultService implements ILabResultService {
     }
     return updatedLabResult;
   }
-  
-  
 
   async deleteLabResult(id: string): Promise<void> {
     try {

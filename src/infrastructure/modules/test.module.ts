@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TestController } from 'src/presintation/controllers/test.controller';
-import { TestService } from 'src/use-cases/test/service/test.service';
+import { TestService } from 'src/use-cases/test/test/service/test.service';
 import { TestRepository } from '../db/repositories/test.repository';
 import { TestEntity } from '../db/entities/test.entity';
-import { TopicEntity } from '../db/entities/topic.entity'
+import { TopicEntity } from '../db/entities/topic.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([TestEntity])],
@@ -19,9 +19,6 @@ import { TopicEntity } from '../db/entities/topic.entity'
       useClass: TestService,
     },
   ],
-  exports: [
-    'testRepository',
-    TypeOrmModule,
-  ],
+  exports: ['testRepository', TypeOrmModule],
 })
 export class TestModule {}

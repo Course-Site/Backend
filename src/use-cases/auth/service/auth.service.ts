@@ -52,7 +52,10 @@ export class AuthService implements IAuthService {
 
       const userData = await this.userService.createUser(data);
       return {
-        token: this.jwtService.sign({ id: userData.id, role: userData.role }),
+        token: this.jwtService.sign({
+          id: userData.id,
+          role: userData.role,
+        }),
       };
     } catch (err) {
       throw new ForbiddenException('Ошибка при регистрации');

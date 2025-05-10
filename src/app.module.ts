@@ -12,6 +12,7 @@ import { LabResultModule } from './infrastructure/modules/lab_result.module';
 import { TestAnswerModule } from './infrastructure/modules/test_answer.module';
 import { TestQuestionModule } from './infrastructure/modules/test_question.module';
 import { TopicModule } from './infrastructure/modules/topic.module';
+import { UserTestStatisticsModule } from './infrastructure/modules/user_test_statistics.module'
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { TopicModule } from './infrastructure/modules/topic.module';
     }),
     TypeOrmComponent,
     AuthModule,
-    UserModule, 
+    UserModule,
     TopicModule,
     labModule,
     LabResultModule,
@@ -29,6 +30,7 @@ import { TopicModule } from './infrastructure/modules/topic.module';
     TestQuestionModule,
     TestResultModule,
     LectureModule,
+    UserTestStatisticsModule,
     UserStatisticsModule,
   ],
   controllers: [],

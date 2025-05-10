@@ -10,6 +10,7 @@ import { IsEmail, IsNotEmpty, MaxLength, MinLength } from 'class-validator';
 import { LabResultEntity } from './lab_result.entity';
 import { TestResultEntity } from './test_result.entity';
 import { UserStatisticsEntity } from './user_statistics.entity';
+import { UserTestStatisticsEntity } from './user_test_statistics.entity'
 
 @Entity()
 export class UserEntity {
@@ -43,4 +44,7 @@ export class UserEntity {
 
   @OneToOne(() => UserStatisticsEntity, (stats) => stats.user)
   statistics: UserStatisticsEntity[];
+
+  @OneToOne(() => UserTestStatisticsEntity, (statistics) => statistics.user)
+  testStatistics: UserTestStatisticsEntity;
 }

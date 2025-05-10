@@ -3,7 +3,7 @@ import { IUserService } from '../interface/service/user.service.interface';
 import { IUserRepository } from '../interface/repository/user.repository.interface';
 import { IUserEntity } from 'src/entiies/user/interface/user.entity.interface';
 import { ICreateUserDto } from '../interface/dto/create.user.dto.interface';
-import { IUserStatisticsService } from 'src/use-cases/user_statistics/interface/service/user_statistics.service.interface'
+import { IUserStatisticsService } from 'src/use-cases/user_statistics/interface/service/user_statistics.service.interface';
 
 import * as bcrypt from 'bcrypt';
 
@@ -33,7 +33,7 @@ export class UserService implements IUserService {
       lastUpdated: new Date(),
     });
 
-    return newUser
+    return newUser;
   }
 
   async findAllUsers(): Promise<IUserEntity[]> {

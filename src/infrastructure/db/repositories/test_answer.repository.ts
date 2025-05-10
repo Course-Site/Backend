@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ICreateTestAnswerDto } from 'src/use-cases/test_answer/interface/dto/create.test_answer.dto.interface';
-import { ITestAnswerRepository } from 'src/use-cases/test_answer/interface/repository/test_answer.repository.interface';
+import { ICreateTestAnswerDto } from 'src/use-cases/test/test_answer/interface/dto/create.test_answer.dto.interface';
+import { ITestAnswerRepository } from 'src/use-cases/test/test_answer/interface/repository/test_answer.repository.interface';
 import { TestAnswerEntity } from '../entities/test_answer.entity';
 import { Repository } from 'typeorm';
-import { ITestAnswerEntity } from 'src/entiies/test_answer/interface/test_answer.entity.interface';
+import { ITestAnswerEntity } from 'src/entiies/test/test_answer/interface/test_answer.entity.interface';
 
 @Injectable()
 export class TestAnswerRepository implements ITestAnswerRepository {
@@ -13,7 +13,9 @@ export class TestAnswerRepository implements ITestAnswerRepository {
     private readonly TestAnswerRepository: Repository<TestAnswerEntity>,
   ) {}
 
-  async createTestAnswer(data: ICreateTestAnswerDto): Promise<ITestAnswerEntity> {
+  async createTestAnswer(
+    data: ICreateTestAnswerDto,
+  ): Promise<ITestAnswerEntity> {
     try {
       const answer = this.TestAnswerRepository.create(data);
       return await this.TestAnswerRepository.save(answer);
@@ -32,7 +34,9 @@ export class TestAnswerRepository implements ITestAnswerRepository {
 
   async findById(answerId: string): Promise<ITestAnswerEntity> {
     try {
-      return this.TestAnswerRepository.findOne({ where: { id: answerId } });
+      return this.TestAnswerRepository.findOne({
+        where: { id: answerId },
+      });
     } catch (error) {
       throw new Error('Answer not found');
     }
