@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ICreateLabResultDto } from 'src/use-cases/lab_result/interface/dto/create.lab_result.dto.interface';
-import { ILabResultRepository } from 'src/use-cases/lab_result/interface/repository/lab_result.repository.interface';
+import { ICreateLabResultDto } from 'src/use-cases/lab/lab_result/interface/dto/create.lab_result.dto.interface';
+import { ILabResultRepository } from 'src/use-cases/lab/lab_result/interface/repository/lab_result.repository.interface';
 import { LabResultEntity } from '../entities/lab_result.entity';
 import { Repository } from 'typeorm';
-import { ILabResultEntity } from 'src/entiies/lab_result/interface/lab_result.entity.interface';
+import { ILabResultEntity } from 'src/entiies/lab/lab_result/interface/lab_result.entity.interface';
 
 @Injectable()
 export class LabResultRepository implements ILabResultRepository {

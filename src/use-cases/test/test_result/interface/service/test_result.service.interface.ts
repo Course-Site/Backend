@@ -1,4 +1,4 @@
-import { ITestResultEntity } from 'src/entiies/test_result/interface/test_result.entity.interface';
+import { ITestResultEntity } from 'src/entiies/test/test_result/interface/test_result.entity.interface';
 import { ICreateTestResultDto } from '../dto/create.test_result.dto.interface';
 
 export interface ITestResultService {

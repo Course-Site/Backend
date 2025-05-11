@@ -41,11 +41,4 @@ export class TestResultEntity {
   @ManyToOne(() => TestEntity, (test) => test.testResult)
   @JoinColumn({ name: 'testId' })
   test: TestEntity;
-
-  @ManyToOne(
-    () => UserStatisticsEntity,
-    (userStatistics) => userStatistics.testResult,
-  )
-  @JoinColumn({ name: 'userStatisticsId' })
-  statistics: UserStatisticsEntity;
 }

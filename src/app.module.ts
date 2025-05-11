@@ -12,7 +12,8 @@ import { LabResultModule } from './infrastructure/modules/lab_result.module';
 import { TestAnswerModule } from './infrastructure/modules/test_answer.module';
 import { TestQuestionModule } from './infrastructure/modules/test_question.module';
 import { TopicModule } from './infrastructure/modules/topic.module';
-import { UserTestStatisticsModule } from './infrastructure/modules/user_test_statistics.module'
+import { UserTestStatisticsModule } from './infrastructure/modules/user_test_statistics.module';
+import { TestEvaluationModule } from './infrastructure/modules/evaluation.module'
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { UserTestStatisticsModule } from './infrastructure/modules/user_test_sta
     LectureModule,
     UserTestStatisticsModule,
     UserStatisticsModule,
+    TestEvaluationModule,
   ],
   controllers: [],
   providers: [],

@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ICreateTestResultDto } from 'src/use-cases/test_result/interface/dto/create.test_result.dto.interface';
-import { ITestResultRepository } from 'src/use-cases/test_result/interface/repository/test_result.repository.interface';
+import { ICreateTestResultDto } from 'src/use-cases/test/test_result/interface/dto/create.test_result.dto.interface';
+import { ITestResultRepository } from 'src/use-cases/test/test_result/interface/repository/test_result.repository.interface';
 import { TestResultEntity } from '../entities/test_result.entity';
 import { Repository } from 'typeorm';
-import { ITestResultEntity } from 'src/entiies/test_result/interface/test_result.entity.interface';
+import { ITestResultEntity } from 'src/entiies/test/test_result/interface/test_result.entity.interface';
 
 @Injectable()
 export class TestResultRepository implements ITestResultRepository {
@@ -41,7 +41,6 @@ export class TestResultRepository implements ITestResultRepository {
       relations: ['user', 'test'],
     });
   }
-  
 
   async findById(testresultId: string): Promise<ITestResultEntity> {
     try {
@@ -53,7 +52,10 @@ export class TestResultRepository implements ITestResultRepository {
     }
   }
 
-  async findResultsByUserAndTest(userId: string, testId: string): Promise<ITestResultEntity[]> {
+  async findResultsByUserAndTest(
+    userId: string,
+    testId: string,
+  ): Promise<ITestResultEntity[]> {
     return this.testresultRepository.find({
       where: { userId, testId },
       order: { completedAt: 'DESC' },

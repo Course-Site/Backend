@@ -4,9 +4,8 @@ export const User = createParamDecorator(
   (data: unknown, ctx: ExecutionContext) => {
     const request = ctx.switchToHttp().getRequest();
 
-    // Возвращаем только нужные поля
     return {
-      id: request.user?.user?.id, // Учитываем вложенность
+      id: request.user?.user?.id,
       role: request.user?.user?.role,
     };
   },

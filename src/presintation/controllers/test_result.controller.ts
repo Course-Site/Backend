@@ -9,7 +9,7 @@ import {
   Body,
   UseGuards,
 } from '@nestjs/common';
-import { ITestResultService } from 'src/use-cases/test_result/interface/service/test_result.service.interface';
+import { ITestResultService } from 'src/use-cases/test/test_result/interface/service/test_result.service.interface';
 import {
   ApiBearerAuth,
   ApiTags,
@@ -18,8 +18,8 @@ import {
   ApiParam,
   ApiBody,
 } from '@nestjs/swagger';
-import { ICreateTestResultDto } from 'src/use-cases/test_result/interface/dto/create.test_result.dto.interface';
-import { ITestResultEntity } from 'src/entiies/test_result/interface/test_result.entity.interface';
+import { ICreateTestResultDto } from 'src/use-cases/test/test_result/interface/dto/create.test_result.dto.interface';
+import { ITestResultEntity } from 'src/entiies/test/test_result/interface/test_result.entity.interface';
 import { Roles } from 'src/infrastructure/decorators/roles.decorator';
 import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard';
 import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard';
@@ -38,7 +38,7 @@ export class TestResultController {
   @UseGuards(RolesGuard)
   @Roles(UserRole.ADMIN)
   @Post('create')
-  @ApiOperation({ summary: 'Create a new testresult' })
+  @ApiOperation({ summary: 'Create a new testResult' })
   @ApiBody({
     schema: {
       properties: {
@@ -51,7 +51,7 @@ export class TestResultController {
   })
   @ApiResponse({
     status: 201,
-    description: 'The testresult has been successfully created.',
+    description: 'The testResult has been successfully created.',
   })
   @ApiResponse({ status: 400, description: 'Bad Request.' })
   async createTestResult(@Body() data: ICreateTestResultDto) {

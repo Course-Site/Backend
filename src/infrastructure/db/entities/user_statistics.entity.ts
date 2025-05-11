@@ -37,7 +37,4 @@ export class UserStatisticsEntity {
 
   @OneToMany(() => LabResultEntity, (labResult) => labResult.statistics)
   labResult: LabResultEntity;
-
-  @OneToMany(() => TestResultEntity, (testResult) => testResult.statistics)
-  testResult: TestResultEntity;
 }

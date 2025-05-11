@@ -21,13 +21,17 @@ export class TestAnswerEntity {
   @IsNotEmpty()
   isCorrect: boolean;
 
+  @Column({ type: 'int', default: 1 })
+  @IsNotEmpty()
+  score: number;
+
   @Column('uuid')
   @IsNotEmpty()
-  testQuestionId: string;
+  questionId: string;
 
   @ManyToOne(() => TestQuestionEntity, (question) => question.answers, {
     onDelete: 'CASCADE',
   })
-  @JoinColumn({ name: 'testQuestionId' })
+  @JoinColumn({ name: 'questionId' })
   question: TestQuestionEntity;
 }

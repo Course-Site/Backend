@@ -44,7 +44,8 @@ export class TestAnswerController {
       properties: {
         text: { type: 'string', default: 'test' },
         isCorrect: { type: 'bool', default: '0' },
-        testQuestionId: { type: 'string', default: 'test' },
+        questionId: { type: 'string', default: 'test' },
+        score: { type: 'number', default: '1' },
       },
     },
   })
@@ -87,7 +88,8 @@ export class TestAnswerController {
       properties: {
         text: { type: 'string', default: 'test' },
         isCorrect: { type: 'bool', default: '0' },
-        testQuestionId: { type: 'string', default: 'test' },
+        questionId: { type: 'string', default: 'test' },
+        score: { type: 'number', default: '1' },
       },
     },
   })

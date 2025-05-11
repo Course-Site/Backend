@@ -1,5 +1,6 @@
 export interface ICreateTestAnswerDto {
   text: string;
   isCorrect: boolean;
-  testQuestionId: string;
+  score: number;
+  questionId: string;
 }

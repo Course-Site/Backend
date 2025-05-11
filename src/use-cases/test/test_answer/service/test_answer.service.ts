@@ -17,7 +17,8 @@ export class TestAnswerService implements ITestAnswerService {
     return this.testAnswerRepository.createTestAnswer({
       text: data.text,
       isCorrect: data.isCorrect,
-      testQuestionId: data.testQuestionId,
+      questionId: data.questionId,
+      score: data.score,
     });
   }
 

@@ -1,4 +1,4 @@
-import { ScoreMethod } from '../enums/score_method'
+import { ScoreMethod } from '../enums/score_method';
 
 export interface ITestEntity {
   id?: string;

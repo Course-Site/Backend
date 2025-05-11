@@ -1,4 +1,4 @@
-import { ScoreMethod } from 'src/entiies/test/test/enums/score_method'
+import { ScoreMethod } from 'src/entiies/test/test/enums/score_method';
 
 export interface ICreateTestDto {
   title: string;
@@ -6,5 +6,5 @@ export interface ICreateTestDto {
   maxScore: number;
   description: string;
   maxAttempts: number;
-  scoreMethod: ScoreMethod
+  scoreMethod: ScoreMethod;
 }

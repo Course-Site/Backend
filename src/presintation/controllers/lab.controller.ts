@@ -9,7 +9,7 @@ import {
   Body,
   UseGuards,
 } from '@nestjs/common';
-import { ILabService } from 'src/use-cases/lab/interface/service/lab.service.interface';
+import { ILabService } from 'src/use-cases/lab/lab/interface/service/lab.service.interface';
 import {
   ApiBearerAuth,
   ApiTags,
@@ -18,7 +18,7 @@ import {
   ApiParam,
   ApiBody,
 } from '@nestjs/swagger';
-import { ICreateLabDto } from 'src/use-cases/lab/interface/dto/create.lab.dto.interface';
+import { ICreateLabDto } from 'src/use-cases/lab/lab/interface/dto/create.lab.dto.interface';
 import { ILabEntity } from 'src/entiies/lab/interface/lab.entity.interface';
 import { Roles } from 'src/infrastructure/decorators/roles.decorator';
 import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard';

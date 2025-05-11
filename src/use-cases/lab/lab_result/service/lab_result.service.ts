@@ -1,11 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ILabResultService } from '../interface/service/lab_result.service.interface';
 import { ILabResultRepository } from '../interface/repository/lab_result.repository.interface';
-import { ILabResultEntity } from 'src/entiies/lab_result/interface/lab_result.entity.interface';
+import { ILabResultEntity } from 'src/entiies/lab/lab_result/interface/lab_result.entity.interface';
 import { ICreateLabResultDto } from '../interface/dto/create.lab_result.dto.interface';
 import { UserStatisticsService } from 'src/use-cases/user_statistics/service/user_statistics.service';
 import { IUserStatisticsService } from 'src/use-cases/user_statistics/interface/service/user_statistics.service.interface';
-import { ILabRepository } from 'src/use-cases/lab/interface/repository/lab.repository.interface';
+import { ILabRepository } from '../../lab/interface/repository/lab.repository.interface';
 
 @Injectable()
 export class LabResultService implements ILabResultService {

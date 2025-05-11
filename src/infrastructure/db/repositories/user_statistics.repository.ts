@@ -74,7 +74,7 @@ export class UserStatisticsRepository implements IUserStatisticsRepository {
       })
       .where('userId = :userId', { userId })
       .execute();
-  }  
+  }
 
   async updateLabStatistics(userId: string, score: number): Promise<void> {
     await this.userStatisticsRepository

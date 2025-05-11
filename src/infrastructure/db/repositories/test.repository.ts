@@ -5,6 +5,7 @@ import { ITestRepository } from 'src/use-cases/test/test/interface/repository/te
 import { TestEntity } from '../entities/test.entity';
 import { Repository } from 'typeorm';
 import { ITestEntity } from 'src/entiies/test/test/interface/test.entity.interface';
+import { ITestWithQuestionsEntity } from 'src/entiies/test/test/interface/test_with_questions.entity.interface'
 
 @Injectable()
 export class TestRepository implements ITestRepository {
@@ -56,5 +57,12 @@ export class TestRepository implements ITestRepository {
     } catch (error) {
       throw new Error(error);
     }
+  }
+
+  async findWithQuestions(testId: string): Promise<ITestWithQuestionsEntity> {
+    return this.testRepository.findOne({
+      where: { id: testId },
+      relations: ['questions', 'questions.answers'],
+    }) as unknown as ITestWithQuestionsEntity;
   }
 }

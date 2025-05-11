@@ -1,5 +1,5 @@
 import { IUserTestStatisticsEntity } from '../interface/user_test_statistics.entity.interface';
-import { TUserTestStatisticsEntity } from '../type/user_test_statistics.entity.type'
+import { TUserTestStatisticsEntity } from '../type/user_test_statistics.entity.type';
 
 export class UserTestStatisticsEntity implements IUserTestStatisticsEntity {
   id?: string;

@@ -1,4 +1,4 @@
-import { ScoreMethod } from '../enums/score_method'
+import { ScoreMethod } from '../enums/score_method';
 import { ITestEntity } from '../interface/test.entity.interface';
 import { TTestEntity } from '../type/test.entity.type';
 

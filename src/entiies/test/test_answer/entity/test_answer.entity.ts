@@ -5,12 +5,14 @@ export class TestAnswerEntity implements ITestAnswerEntity {
   id?: string;
   text: string;
   isCorrect: boolean;
-  testQuestionId: string;
+  questionId: string;
+  score: number;
 
   constructor(data: TTestAnswerEntity) {
     this.id = data.id;
     this.text = data.text;
     this.isCorrect = data.isCorrect;
-    this.testQuestionId = data.testQuestionId;
+    this.questionId = data.questionId;
+    this.score = data.score;
   }
 }

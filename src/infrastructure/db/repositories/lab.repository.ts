@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ICreateLabDto } from 'src/use-cases/lab/interface/dto/create.lab.dto.interface';
-import { ILabRepository } from 'src/use-cases/lab/interface/repository/lab.repository.interface';
+import { ICreateLabDto } from 'src/use-cases/lab/lab/interface/dto/create.lab.dto.interface';
+import { ILabRepository } from 'src/use-cases/lab/lab/interface/repository/lab.repository.interface';
 import { LabEntity } from '../entities/lab.entity';
 import { Repository } from 'typeorm';
 import { ILabEntity } from 'src/entiies/lab/interface/lab.entity.interface';

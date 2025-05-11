@@ -1,4 +1,4 @@
-import { ILabResultEntity } from 'src/entiies/lab_result/interface/lab_result.entity.interface';
+import { ILabResultEntity } from 'src/entiies/lab/lab_result/interface/lab_result.entity.interface';
 import { ICreateLabResultDto } from '../dto/create.lab_result.dto.interface';
 
 export interface ILabResultService {
