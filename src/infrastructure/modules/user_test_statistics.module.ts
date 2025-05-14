@@ -5,7 +5,7 @@ import { UserTestStatisticsRepository } from '../db/repositories/user_test_stati
 import { UserTestStatisticsEntity } from '../db/entities/user_test_statistics.entity';
 import { TestResultRepository } from '../db/repositories/test_result.repository';
 import { TestResultEntity } from '../db/entities/test_result.entity';
-import { UserTestStatisticsController } from 'src/presintation/controllers/user_test_statistics.controller'
+import { UserTestStatisticsController } from 'src/presintation/controllers/user_test_statistics.controller';
 
 @Module({
   imports: [

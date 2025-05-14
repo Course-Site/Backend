@@ -29,7 +29,8 @@ export class UserStatisticsService implements IUserStatisticsService {
   async recalculateTestStatistic(
     userId: string,
   ): Promise<IUserStatisticsEntity | void> {
-    const stats = await this.userTestStatisticsRepository.findAllByUserId(userId);
+    const stats =
+      await this.userTestStatisticsRepository.findAllByUserId(userId);
     if (stats.length === 0) return;
 
     const totalScore = stats.reduce(

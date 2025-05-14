@@ -43,7 +43,7 @@ export class TestResultController {
     schema: {
       properties: {
         score: { type: 'number', default: '0' },
-        complitedAt: { type: 'Date', default: '01.04.2025' },
+        completedAt: { type: 'Date', default: '01.04.2025' },
         userId: { type: 'string', default: 'test' },
         testId: { type: 'string', default: 'test' },
       },
@@ -59,8 +59,8 @@ export class TestResultController {
   }
 
   @Get('getAll')
-  @ApiOperation({ summary: 'Get all testresults' })
-  @ApiResponse({ status: 200, description: 'Return all testresults.' })
+  @ApiOperation({ summary: 'Get all testResults' })
+  @ApiResponse({ status: 200, description: 'Return all testResults.' })
   @ApiResponse({ status: 404, description: 'TestResults not found.' })
   async findAllTestResults() {
     return await this.testResultService.findAllTestResult();
@@ -69,11 +69,11 @@ export class TestResultController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @Get('findById/:id')
-  @ApiOperation({ summary: 'Get a testresult by its ID' })
+  @ApiOperation({ summary: 'Get a testResult by its ID' })
   @ApiParam({ name: 'id', description: 'TestResult ID', type: 'string' })
   @ApiResponse({
     status: 200,
-    description: 'Return the testresult with the given ID.',
+    description: 'Return the testResult with the given ID.',
   })
   @ApiResponse({ status: 404, description: 'TestResult not found.' })
   async findById(@Param('id') id: string) {
@@ -81,13 +81,13 @@ export class TestResultController {
   }
 
   @Put(':id')
-  @ApiOperation({ summary: 'Change the testresult data' })
+  @ApiOperation({ summary: 'Change the testResult data' })
   @ApiParam({ name: 'id', description: 'TestResult ID', type: 'string' })
   @ApiBody({
     schema: {
       properties: {
         score: { type: 'number', default: '0' },
-        complitedAt: { type: 'Date', default: '01.04.2025' },
+        completedAt: { type: 'Date', default: '01.04.2025' },
         userId: { type: 'string', default: 'test' },
         testId: { type: 'string', default: 'test' },
       },
@@ -95,19 +95,19 @@ export class TestResultController {
   })
   @ApiResponse({
     status: 200,
-    description: 'testresult data has been changed.',
+    description: 'testResult data has been changed.',
   })
   @ApiResponse({ status: 404, description: 'TestResult not found.' })
-  async update(@Param('id') id: string, @Body() testresult: ITestResultEntity) {
-    return await this.testResultService.updateTestResult(id, testresult);
+  async update(@Param('id') id: string, @Body() testResult: ITestResultEntity) {
+    return await this.testResultService.updateTestResult(id, testResult);
   }
 
   @Delete('delete/:id')
-  @ApiOperation({ summary: 'Delete a testresult by its ID' })
+  @ApiOperation({ summary: 'Delete a testResult by its ID' })
   @ApiParam({ name: 'id', description: 'TestResult ID', type: 'string' })
   @ApiResponse({
     status: 200,
-    description: 'The testresult has been successfully deleted.',
+    description: 'The testResult has been successfully deleted.',
   })
   @ApiResponse({ status: 404, description: 'TestResult not found.' })
   async deleteTestResult(@Param('id') id: string) {

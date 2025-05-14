@@ -21,7 +21,7 @@ export class TestAnswerEntity {
   @IsNotEmpty()
   isCorrect: boolean;
 
-  @Column({ type: 'int', default: 1 })
+  @Column({ type: 'float', default: 1 })
   @IsNotEmpty()
   score: number;
 

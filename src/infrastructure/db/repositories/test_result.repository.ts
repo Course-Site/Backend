@@ -10,15 +10,15 @@ import { ITestResultEntity } from 'src/entiies/test/test_result/interface/test_r
 export class TestResultRepository implements ITestResultRepository {
   constructor(
     @InjectRepository(TestResultEntity)
-    private readonly testresultRepository: Repository<TestResultEntity>,
+    private readonly testResultRepository: Repository<TestResultEntity>,
   ) {}
 
   async createTestResult(
     data: ICreateTestResultDto,
   ): Promise<ITestResultEntity> {
     try {
-      const testresult = this.testresultRepository.create(data);
-      return await this.testresultRepository.save(testresult);
+      const testresult = this.testResultRepository.create(data);
+      return await this.testResultRepository.save(testresult);
     } catch (error) {
       throw error;
     }
@@ -26,14 +26,14 @@ export class TestResultRepository implements ITestResultRepository {
 
   async findAllTestResult(): Promise<ITestResultEntity[]> {
     try {
-      return this.testresultRepository.find({});
+      return this.testResultRepository.find({});
     } catch (error) {
       throw new Error('TestResults not found');
     }
   }
 
   async findAllByUserAndTest(userId: string, testId: string) {
-    return this.testresultRepository.find({
+    return this.testResultRepository.find({
       where: {
         user: { id: userId },
         test: { id: testId },
@@ -42,10 +42,10 @@ export class TestResultRepository implements ITestResultRepository {
     });
   }
 
-  async findById(testresultId: string): Promise<ITestResultEntity> {
+  async findById(testResultId: string): Promise<ITestResultEntity> {
     try {
-      return this.testresultRepository.findOne({
-        where: { id: testresultId },
+      return this.testResultRepository.findOne({
+        where: { id: testResultId },
       });
     } catch (error) {
       throw new Error('TestResult not found');
@@ -56,7 +56,7 @@ export class TestResultRepository implements ITestResultRepository {
     userId: string,
     testId: string,
   ): Promise<ITestResultEntity[]> {
-    return this.testresultRepository.find({
+    return this.testResultRepository.find({
       where: { userId, testId },
       order: { completedAt: 'DESC' },
     });
@@ -64,19 +64,34 @@ export class TestResultRepository implements ITestResultRepository {
 
   async updateTestResult(
     id: string,
-    testresult: Partial<ITestResultEntity>,
+    testResult: Partial<ITestResultEntity>,
   ): Promise<ITestResultEntity> {
-    try {
-      await this.testresultRepository.update(id, testresult);
-      return this.testresultRepository.findOne({ where: { id } });
-    } catch {
-      throw new Error('TestResult not found');
+
+    const existing = await this.testResultRepository.findOne({
+      where: { id },
+      relations: ['test'],
+    });
+
+    if (!existing) {
+      throw new Error(`TestResult with id ${id} not found`);
     }
+
+    await this.testResultRepository.update(id, testResult);
+
+    const updated = await this.testResultRepository.findOne({
+      where: { id },
+    });
+
+    if (!updated) {
+      throw new Error('Failed to retrieve updated TestResult');
+    }
+
+    return updated;
   }
 
   async deleteTestResult(id: string): Promise<void> {
     try {
-      await this.testresultRepository.delete(id);
+      await this.testResultRepository.delete(id);
     } catch (error) {
       throw new Error(error);
     }

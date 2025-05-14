@@ -44,7 +44,6 @@ export class TestQuestionController {
     schema: {
       properties: {
         text: { type: 'string', default: 'test' },
-        imageUrl: { type: 'string', default: 'test' },
         number: { type: 'string', default: '1' },
         testId: { type: 'string', default: 'test' },
       },
@@ -70,13 +69,11 @@ export class TestQuestionController {
           questions: [
             {
               text: 'Что такое Dependency Injection?',
-              imageUrl: 'https://example.com/di.jpg',
               number: '1',
               testId: '585aff0c-ba6d-460d-9b40-021b57c81750',
             },
             {
               text: 'Как работает Middleware в NestJS?',
-              imageUrl: 'https://example.com/middleware.jpg',
               number: '2',
               testId: '585aff0c-ba6d-460d-9b40-021b57c81750',
             },
@@ -118,7 +115,6 @@ export class TestQuestionController {
     schema: {
       properties: {
         text: { type: 'string', default: 'test' },
-        imageUrl: { type: 'string', default: 'test' },
         number: { type: 'string', default: '1' },
         testId: { type: 'string', default: 'test' },
       },

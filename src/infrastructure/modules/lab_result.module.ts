@@ -7,7 +7,7 @@ import { LabResultEntity } from '../db/entities/lab_result.entity';
 import { UserStatisticsModule } from './user_statistics.module';
 import { labModule } from './lab.module';
 import { LabRepository } from '../db/repositories/lab.repository';
-import { LabEntity } from '../db/entities/lab.entity'
+import { LabEntity } from '../db/entities/lab.entity';
 
 @Module({
   imports: [

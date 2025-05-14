@@ -1,10 +1,4 @@
-import {
-  Controller,
-  Post,
-  Body,
-  Inject,
-  UseGuards,
-} from '@nestjs/common';
+import { Controller, Post, Body, Inject, UseGuards } from '@nestjs/common';
 import {
   ApiBearerAuth,
   ApiTags,
@@ -15,8 +9,8 @@ import {
 import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard';
 import { ITestEvaluateService } from 'src/use-cases/test/test_evaluate/interface/service/evaluate.service.interface';
 import { ITestSubmissionDto } from 'src/use-cases/test/test_evaluate/interface/dto/test_submission.dto.interface';
-import { CurrentUser } from 'src/infrastructure/decorators/current-user.decorator'
-import { IJwtUser } from 'src/infrastructure/JWT/strategies/jwt-user.interface'
+import { CurrentUser } from 'src/infrastructure/decorators/current-user.decorator';
+import { IJwtUser } from 'src/infrastructure/JWT/strategies/jwt-user.interface';
 
 @UseGuards(JwtAuthGuard)
 @ApiBearerAuth()
@@ -50,7 +44,10 @@ export class TestEvaluateController {
       },
     },
   })
-  @ApiResponse({ status: 201, description: 'Test result successfully calculated and stored.' })
+  @ApiResponse({
+    status: 201,
+    description: 'Test result successfully calculated and stored.',
+  })
   @ApiResponse({ status: 400, description: 'Invalid test submission.' })
   async submitTest(
     @CurrentUser() user: IJwtUser,

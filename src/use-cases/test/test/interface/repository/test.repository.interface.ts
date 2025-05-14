@@ -1,6 +1,6 @@
 import { ITestEntity } from 'src/entiies/test/test/interface/test.entity.interface';
 import { ICreateTestDto } from '../dto/create.test.dto.interface';
-import { ITestWithQuestionsEntity } from 'src/entiies/test/test/interface/test_with_questions.entity.interface'
+import { ITestWithQuestionsEntity } from 'src/entiies/test/test/interface/test_with_questions.entity.interface';
 
 export interface ITestRepository {
   createTest(data: ICreateTestDto): Promise<ITestEntity>;

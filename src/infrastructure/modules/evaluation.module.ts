@@ -10,27 +10,27 @@ import { TestResultEntity } from '../db/entities/test_result.entity';
 import { TestQuestionEntity } from '../db/entities/test_question.entity';
 
 @Module({
-	imports: [
-		TypeOrmModule.forFeature([
-			TestEntity,
-			TestResultEntity,
-			TestQuestionEntity,
-		]),
-	],
-	controllers: [TestEvaluateController],
-	providers: [
-		{
-			provide: 'testRepository',
-			useClass: TestRepository,
-		},
-		{
-			provide: 'testResultRepository',
-			useClass: TestResultRepository,
-		},
-		{
-			provide: 'testEvaluationService',
-			useClass: TestEvaluationService,
-		},
-	],
+  imports: [
+    TypeOrmModule.forFeature([
+      TestEntity,
+      TestResultEntity,
+      TestQuestionEntity,
+    ]),
+  ],
+  controllers: [TestEvaluateController],
+  providers: [
+    {
+      provide: 'testRepository',
+      useClass: TestRepository,
+    },
+    {
+      provide: 'testResultRepository',
+      useClass: TestResultRepository,
+    },
+    {
+      provide: 'testEvaluationService',
+      useClass: TestEvaluationService,
+    },
+  ],
 })
 export class TestEvaluationModule {}

@@ -79,13 +79,13 @@ export class TestResultService implements ITestResultService {
     );
 
     await this.userTestStatisticsService.recalculate(
-      updatedTestResult.userId,
-      updatedTestResult.testId,
+      updatedTestResult.userId ?? oldTestResult.userId,
+      updatedTestResult.testId ?? oldTestResult.testId,
       test.scoreMethod,
     );
 
     await this.userStatisticsService.recalculateTestStatistic(
-      updatedTestResult.userId,
+      updatedTestResult.userId ?? oldTestResult.userId,
     );
 
     return updatedTestResult;

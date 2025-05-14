@@ -13,7 +13,7 @@ import { TestAnswerModule } from './infrastructure/modules/test_answer.module';
 import { TestQuestionModule } from './infrastructure/modules/test_question.module';
 import { TopicModule } from './infrastructure/modules/topic.module';
 import { UserTestStatisticsModule } from './infrastructure/modules/user_test_statistics.module';
-import { TestEvaluationModule } from './infrastructure/modules/evaluation.module'
+import { TestEvaluationModule } from './infrastructure/modules/evaluation.module';
 
 @Module({
   imports: [

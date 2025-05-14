@@ -74,5 +74,4 @@ export class UserTestStatisticsRepository {
       throw new Error(error);
     }
   }
-
 }
