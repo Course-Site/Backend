@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserTestStatisticsEntity } from '../entities/user_test_statistics.entity';
 import { IUserTestStatisticsEntity } from 'src/entiies/user_test_statistics/interface/user_test_statistics.entity.interface';
+import { log } from 'console'
 
 @Injectable()
 export class UserTestStatisticsRepository {
@@ -67,9 +68,10 @@ export class UserTestStatisticsRepository {
     }
   }
 
-  async findByUserId(userId: string): Promise<IUserTestStatisticsEntity> {
+  async findByUserId(userId: string): Promise<IUserTestStatisticsEntity[]> {
     try {
-      return this.userTestStatisticsRepository.findOne({
+      console.log("репозиторий: ", userId)
+      return this.userTestStatisticsRepository.find({
         where: { userId: userId },
       });
     } catch (error) {

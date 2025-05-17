@@ -18,11 +18,7 @@ import {
   ApiParam,
   ApiBody,
 } from '@nestjs/swagger';
-import { IUserTestStatisticsEntity } from 'src/entiies/user_test_statistics/interface/user_test_statistics.entity.interface';
-import { Roles } from 'src/infrastructure/decorators/roles.decorator';
 import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard';
-import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard';
-import { UserRole } from 'src/entiies/user/enums/user-role.enum';
 
 @UseGuards(JwtAuthGuard)
 @ApiBearerAuth()
@@ -64,7 +60,7 @@ export class UserTestStatisticsController {
 
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  @Get('findByUserId/:id')
+  @Get('findByUserId/:userId')
   @ApiOperation({ summary: 'Get a UserTestStatistics by its userID' })
   @ApiParam({
     name: 'userId',
@@ -73,11 +69,12 @@ export class UserTestStatisticsController {
   })
   @ApiResponse({
     status: 200,
-    description: 'Return the UserTestStatistics with the given ID.',
+    description: 'Return the UserTestStatistics with the given user ID.',
   })
   @ApiResponse({ status: 404, description: 'UserTestStatistics not found.' })
   async findByUserId(@Param('userId') userId: string) {
-    return await this.userTestStatisticsService.findById(userId);
+    console.log("контроллер: ", userId)
+    return await this.userTestStatisticsService.findByUserId(userId);
   }
 
   @Delete('delete/:id')

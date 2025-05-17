@@ -9,6 +9,6 @@ export interface IUserTestStatisticsService {
   ): Promise<UserTestStatisticsEntity>;
   findAllUserTestStatistics(): Promise<IUserTestStatisticsEntity[]>;
   findById(id: string): Promise<IUserTestStatisticsEntity>;
-  findByUserId(userId: string): Promise<IUserTestStatisticsEntity>;
+  findByUserId(userId: string): Promise<IUserTestStatisticsEntity[]>;
   deleteUserTestStatistics(id: string): Promise<void>;
 }

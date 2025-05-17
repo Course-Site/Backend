@@ -6,6 +6,7 @@ import { IUserTestStatisticsRepository } from '../interface/repository/user_test
 import { ITestRepository } from 'src/use-cases/test/test/interface/repository/test.repository.interface';
 import { ITestResultRepository } from 'src/use-cases/test/test_result/interface/repository/test_result.repository.interface';
 import { IUserTestStatisticsEntity } from 'src/entiies/user_test_statistics/interface/user_test_statistics.entity.interface';
+import { log } from 'console'
 
 @Injectable()
 export class UserTestStatisticsService {
@@ -58,7 +59,9 @@ export class UserTestStatisticsService {
   async findById(id: string): Promise<IUserTestStatisticsEntity> {
     return this.userTestStatisticsRepository.findById(id);
   }
-  async findByUserId(userId: string): Promise<IUserTestStatisticsEntity> {
+
+  async findByUserId(userId: string): Promise<IUserTestStatisticsEntity[]> {
+    console.log("сервис: ", userId)
     return this.userTestStatisticsRepository.findByUserId(userId);
   }
 
