@@ -42,6 +42,19 @@ export class TestEvaluateController {
           },
         },
       },
+      example: {
+      testId: "testId",
+      answers: [
+        {
+          questionId: "questionId",
+          selectedAnswerIds: ["answerId"]
+        },
+        {
+          questionId: "questionId",
+          selectedAnswerIds: ["answerId"]
+        }
+      ]
+    }
     },
   })
   @ApiResponse({

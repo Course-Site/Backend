@@ -67,6 +67,16 @@ export class UserTestStatisticsRepository {
     }
   }
 
+  async findByUserId(userId: string): Promise<IUserTestStatisticsEntity> {
+    try {
+      return this.userTestStatisticsRepository.findOne({
+        where: { userId: userId },
+      });
+    } catch (error) {
+      throw new Error('UserStatistics not found');
+    }
+  }
+
   async deleteUserStatistics(id: string): Promise<void> {
     try {
       await this.userTestStatisticsRepository.delete(id);

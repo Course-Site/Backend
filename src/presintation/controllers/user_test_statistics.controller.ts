@@ -62,6 +62,24 @@ export class UserTestStatisticsController {
     return await this.userTestStatisticsService.findById(id);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @Get('findByUserId/:id')
+  @ApiOperation({ summary: 'Get a UserTestStatistics by its userID' })
+  @ApiParam({
+    name: 'userId',
+    description: 'User ID',
+    type: 'string',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Return the UserTestStatistics with the given ID.',
+  })
+  @ApiResponse({ status: 404, description: 'UserTestStatistics not found.' })
+  async findByUserId(@Param('userId') userId: string) {
+    return await this.userTestStatisticsService.findById(userId);
+  }
+
   @Delete('delete/:id')
   @ApiOperation({ summary: 'Delete a UserTestStatistics by its ID' })
   @ApiParam({

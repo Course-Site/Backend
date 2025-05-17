@@ -58,6 +58,9 @@ export class UserTestStatisticsService {
   async findById(id: string): Promise<IUserTestStatisticsEntity> {
     return this.userTestStatisticsRepository.findById(id);
   }
+  async findByUserId(userId: string): Promise<IUserTestStatisticsEntity> {
+    return this.userTestStatisticsRepository.findByUserId(userId);
+  }
 
   async deleteUserTestStatistics(id: string): Promise<void> {
     try {
