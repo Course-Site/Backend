@@ -9,7 +9,6 @@ import {
   Body,
   UseGuards,
 } from '@nestjs/common';
-import { ITestQuestionService } from 'src/use-cases/test/test_question/interface/service/test_question.service.interface';
 import {
   ApiBearerAuth,
   ApiTags,
@@ -18,15 +17,16 @@ import {
   ApiParam,
   ApiBody,
 } from '@nestjs/swagger';
-import { ICreateTestQuestionDto } from 'src/use-cases/test/test_question/interface/dto/create.test_question.dto.interface';
 import { ITestQuestionEntity } from 'src/entiies/test/test_question/interface/test_question.entity.interface';
+import { UserRole } from 'src/entiies/user/enums/user-role.enum';
 import { Roles } from 'src/infrastructure/decorators/roles.decorator';
 import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard';
 import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard';
-import { UserRole } from 'src/entiies/user/enums/user-role.enum';
+import { ICreateTestQuestionDto } from 'src/use-cases/test/test_question/interface/dto/create.test_question.dto.interface';
+import { ITestQuestionService } from 'src/use-cases/test/test_question/interface/service/test_question.service.interface';
 import { CreateTestQuestionDto } from '../dto/test/create.test_question.dto';
 
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, RolesGuard)
 @ApiBearerAuth()
 @Controller('testQuestion')
 @ApiTags('TestQuestion')
@@ -36,7 +36,6 @@ export class TestQuestionController {
     private readonly testQuestionService: ITestQuestionService,
   ) {}
 
-  @UseGuards(RolesGuard)
   @Roles(UserRole.ADMIN)
   @Post('create')
   @ApiOperation({ summary: 'Create a new test question' })
@@ -58,6 +57,7 @@ export class TestQuestionController {
     return await this.testQuestionService.createTestQuestion(data);
   }
 
+  @Roles(UserRole.ADMIN)
   @Post('massCreate')
   @ApiBody({
     description: 'Массив вопросов для создания',
@@ -94,8 +94,6 @@ export class TestQuestionController {
     return await this.testQuestionService.findAllTestQuestions();
   }
 
-  @UseGuards(JwtAuthGuard)
-  @ApiBearerAuth()
   @Get('findById/:id')
   @ApiOperation({ summary: 'Get a test question by its ID' })
   @ApiParam({ name: 'id', description: 'Test question ID', type: 'string' })
@@ -108,6 +106,7 @@ export class TestQuestionController {
     return await this.testQuestionService.findById(id);
   }
 
+  @Roles(UserRole.ADMIN)
   @Put(':id')
   @ApiOperation({ summary: 'Change the test question data' })
   @ApiParam({ name: 'id', description: 'Test question ID', type: 'string' })
@@ -132,6 +131,7 @@ export class TestQuestionController {
     return await this.testQuestionService.updateTestQuestion(id, testQuestion);
   }
 
+  @Roles(UserRole.ADMIN)
   @Delete('delete/:id')
   @ApiOperation({ summary: 'Delete a test question by its ID' })
   @ApiParam({ name: 'id', description: 'Test question ID', type: 'string' })

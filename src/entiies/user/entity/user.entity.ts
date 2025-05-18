@@ -1,6 +1,6 @@
+import { UserRole } from '../enums/user-role.enum';
 import { IUserEntity } from '../interface/user.entity.interface';
 import { TUserEntity } from '../type/user.entity.type';
-import { UserRole } from '../enums/user-role.enum';
 
 export class UserEntity implements IUserEntity {
   id?: string;

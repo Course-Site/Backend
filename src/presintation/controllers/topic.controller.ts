@@ -9,7 +9,6 @@ import {
   Body,
   UseGuards,
 } from '@nestjs/common';
-import { ITopicService } from 'src/use-cases/topic/interface/service/topic.service.interface';
 import {
   ApiBearerAuth,
   ApiTags,
@@ -18,14 +17,15 @@ import {
   ApiParam,
   ApiBody,
 } from '@nestjs/swagger';
-import { ICreateTopicDto } from 'src/use-cases/topic/interface/dto/create.topic.dto.interface';
 import { ITopicEntity } from 'src/entiies/topic/interface/topic.entity.interface';
+import { UserRole } from 'src/entiies/user/enums/user-role.enum';
 import { Roles } from 'src/infrastructure/decorators/roles.decorator';
 import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard';
 import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard';
-import { UserRole } from 'src/entiies/user/enums/user-role.enum';
+import { ICreateTopicDto } from 'src/use-cases/topic/interface/dto/create.topic.dto.interface';
+import { ITopicService } from 'src/use-cases/topic/interface/service/topic.service.interface';
 
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, RolesGuard)
 @ApiBearerAuth()
 @Controller('topic')
 @ApiTags('Topic')
@@ -35,7 +35,6 @@ export class TopicController {
     private readonly topicService: ITopicService,
   ) {}
 
-  @UseGuards(RolesGuard)
   @Roles(UserRole.ADMIN)
   @Post('create')
   @ApiOperation({ summary: 'Create a new topic' })
@@ -64,8 +63,6 @@ export class TopicController {
     return await this.topicService.findAllTopics();
   }
 
-  @UseGuards(JwtAuthGuard)
-  @ApiBearerAuth()
   @Get('findById/:id')
   @ApiOperation({ summary: 'Get a topic by its ID' })
   @ApiParam({ name: 'id', description: 'Topic ID', type: 'string' })
@@ -78,6 +75,7 @@ export class TopicController {
     return await this.topicService.findById(id);
   }
 
+  @Roles(UserRole.ADMIN)
   @Put(':id')
   @ApiOperation({ summary: 'Change the topic data' })
   @ApiParam({ name: 'id', description: 'Topic ID', type: 'string' })
@@ -95,6 +93,7 @@ export class TopicController {
     return await this.topicService.updateTopic(id, topic);
   }
 
+  @Roles(UserRole.ADMIN)
   @Delete('delete/:id')
   @ApiOperation({ summary: 'Delete a topic by its ID' })
   @ApiParam({ name: 'id', description: 'Topic ID', type: 'string' })

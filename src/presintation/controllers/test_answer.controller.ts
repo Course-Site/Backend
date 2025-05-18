@@ -9,7 +9,6 @@ import {
   Body,
   UseGuards,
 } from '@nestjs/common';
-import { ITestAnswerService } from 'src/use-cases/test/test_answer/interface/service/test_answer.service.interface';
 import {
   ApiBearerAuth,
   ApiTags,
@@ -18,14 +17,15 @@ import {
   ApiParam,
   ApiBody,
 } from '@nestjs/swagger';
-import { ICreateTestAnswerDto } from 'src/use-cases/test/test_answer/interface/dto/create.test_answer.dto.interface';
 import { ITestAnswerEntity } from 'src/entiies/test/test_answer/interface/test_answer.entity.interface';
+import { UserRole } from 'src/entiies/user/enums/user-role.enum';
 import { Roles } from 'src/infrastructure/decorators/roles.decorator';
 import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard';
 import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard';
-import { UserRole } from 'src/entiies/user/enums/user-role.enum';
+import { ICreateTestAnswerDto } from 'src/use-cases/test/test_answer/interface/dto/create.test_answer.dto.interface';
+import { ITestAnswerService } from 'src/use-cases/test/test_answer/interface/service/test_answer.service.interface';
 
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, RolesGuard)
 @ApiBearerAuth()
 @Controller('testAnswer')
 @ApiTags('TestAnswer')
@@ -35,7 +35,6 @@ export class TestAnswerController {
     private readonly testAnswerService: ITestAnswerService,
   ) {}
 
-  @UseGuards(RolesGuard)
   @Roles(UserRole.ADMIN)
   @Post('create')
   @ApiOperation({ summary: 'Create a new test answer' })
@@ -58,6 +57,7 @@ export class TestAnswerController {
     return await this.testAnswerService.createTestAnswer(data);
   }
 
+  @Roles(UserRole.ADMIN)
   @Get('getAll')
   @ApiOperation({ summary: 'Get all test answers' })
   @ApiResponse({ status: 200, description: 'Return all test answers.' })
@@ -66,8 +66,7 @@ export class TestAnswerController {
     return await this.testAnswerService.findAllTestAnswers();
   }
 
-  @UseGuards(JwtAuthGuard)
-  @ApiBearerAuth()
+  @Roles(UserRole.ADMIN)
   @Get('findById/:id')
   @ApiOperation({ summary: 'Get a test answer by its ID' })
   @ApiParam({ name: 'id', description: 'Test answer ID', type: 'string' })
@@ -80,6 +79,7 @@ export class TestAnswerController {
     return await this.testAnswerService.findById(id);
   }
 
+  @Roles(UserRole.ADMIN)
   @Put(':id')
   @ApiOperation({ summary: 'Change the test answer data' })
   @ApiParam({ name: 'id', description: 'Test answer ID', type: 'string' })
@@ -102,6 +102,7 @@ export class TestAnswerController {
     return await this.testAnswerService.updateTestAnswer(id, testAnswer);
   }
 
+  @Roles(UserRole.ADMIN)
   @Delete('delete/:id')
   @ApiOperation({ summary: 'Delete a test answer by its ID' })
   @ApiParam({ name: 'id', description: 'Test answer ID', type: 'string' })

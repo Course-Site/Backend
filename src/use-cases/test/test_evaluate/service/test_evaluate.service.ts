@@ -1,11 +1,9 @@
-import { UserTestStatisticsService } from 'src/use-cases/user_test_statistics/service/user_test_statistics.service';
-import { ITestResultRepository } from '../../test_result/interface/repository/test_result.repository.interface';
-import { ITestRepository } from '../../test/interface/repository/test.repository.interface';
 import { Inject, Injectable } from '@nestjs/common';
-import { ICreateTestAnswerDto } from 'src/use-cases/test/test_answer/interface/dto/create.test_answer.dto.interface';
-import { ICreateTestResultDto } from '../../test_result/interface/dto/create.test_result.dto.interface';
-import { IEvaluationDto } from '../interface/dto/evaluation.dto.interface';
 import { ITestWithQuestionsEntity } from 'src/entiies/test/test/interface/test_with_questions.entity.interface';
+import { ITestRepository } from '../../test/interface/repository/test.repository.interface';
+import { ICreateTestResultDto } from '../../test_result/interface/dto/create.test_result.dto.interface';
+import { ITestResultRepository } from '../../test_result/interface/repository/test_result.repository.interface';
+import { IEvaluationDto } from '../interface/dto/evaluation.dto.interface';
 
 @Injectable()
 export class TestEvaluationService {

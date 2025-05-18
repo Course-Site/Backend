@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ITopicEntity } from 'src/entiies/topic/interface/topic.entity.interface';
 import { ICreateTopicDto } from 'src/use-cases/topic/interface/dto/create.topic.dto.interface';
 import { ITopicRepository } from 'src/use-cases/topic/interface/repository/topic.repository.interface';
-import { TopicEntity } from '../entities/topic.entity';
 import { Repository } from 'typeorm';
-import { ITopicEntity } from 'src/entiies/topic/interface/topic.entity.interface';
+import { TopicEntity } from '../entities/topic.entity';
 
 @Injectable()
 export class TopicRepository implements ITopicRepository {

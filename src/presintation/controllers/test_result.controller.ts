@@ -9,7 +9,6 @@ import {
   Body,
   UseGuards,
 } from '@nestjs/common';
-import { ITestResultService } from 'src/use-cases/test/test_result/interface/service/test_result.service.interface';
 import {
   ApiBearerAuth,
   ApiTags,
@@ -18,14 +17,15 @@ import {
   ApiParam,
   ApiBody,
 } from '@nestjs/swagger';
-import { ICreateTestResultDto } from 'src/use-cases/test/test_result/interface/dto/create.test_result.dto.interface';
 import { ITestResultEntity } from 'src/entiies/test/test_result/interface/test_result.entity.interface';
+import { UserRole } from 'src/entiies/user/enums/user-role.enum';
 import { Roles } from 'src/infrastructure/decorators/roles.decorator';
 import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard';
 import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard';
-import { UserRole } from 'src/entiies/user/enums/user-role.enum';
+import { ICreateTestResultDto } from 'src/use-cases/test/test_result/interface/dto/create.test_result.dto.interface';
+import { ITestResultService } from 'src/use-cases/test/test_result/interface/service/test_result.service.interface';
 
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, RolesGuard)
 @ApiBearerAuth()
 @Controller('testresult')
 @ApiTags('TestResult')
@@ -35,7 +35,6 @@ export class TestResultController {
     private readonly testResultService: ITestResultService,
   ) {}
 
-  @UseGuards(RolesGuard)
   @Roles(UserRole.ADMIN)
   @Post('create')
   @ApiOperation({ summary: 'Create a new testResult' })
@@ -58,6 +57,7 @@ export class TestResultController {
     return await this.testResultService.createTestResult(data);
   }
 
+  @Roles(UserRole.ADMIN)
   @Get('getAll')
   @ApiOperation({ summary: 'Get all testResults' })
   @ApiResponse({ status: 200, description: 'Return all testResults.' })
@@ -66,8 +66,7 @@ export class TestResultController {
     return await this.testResultService.findAllTestResult();
   }
 
-  @UseGuards(JwtAuthGuard)
-  @ApiBearerAuth()
+  @Roles(UserRole.ADMIN)
   @Get('findById/:id')
   @ApiOperation({ summary: 'Get a testResult by its ID' })
   @ApiParam({ name: 'id', description: 'TestResult ID', type: 'string' })
@@ -80,6 +79,7 @@ export class TestResultController {
     return await this.testResultService.findById(id);
   }
 
+  @Roles(UserRole.ADMIN)
   @Put(':id')
   @ApiOperation({ summary: 'Change the testResult data' })
   @ApiParam({ name: 'id', description: 'TestResult ID', type: 'string' })
@@ -102,6 +102,7 @@ export class TestResultController {
     return await this.testResultService.updateTestResult(id, testResult);
   }
 
+  @Roles(UserRole.ADMIN)
   @Delete('delete/:id')
   @ApiOperation({ summary: 'Delete a testResult by its ID' })
   @ApiParam({ name: 'id', description: 'TestResult ID', type: 'string' })

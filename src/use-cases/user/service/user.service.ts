@@ -1,11 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { IUserService } from '../interface/service/user.service.interface';
-import { IUserRepository } from '../interface/repository/user.repository.interface';
-import { IUserEntity } from 'src/entiies/user/interface/user.entity.interface';
-import { ICreateUserDto } from '../interface/dto/create.user.dto.interface';
-import { IUserStatisticsService } from 'src/use-cases/user_statistics/interface/service/user_statistics.service.interface';
-
 import * as bcrypt from 'bcrypt';
+import { IUserEntity } from 'src/entiies/user/interface/user.entity.interface';
+import { IUserStatisticsService } from 'src/use-cases/user_statistics/interface/service/user_statistics.service.interface';
+import { ICreateUserDto } from '../interface/dto/create.user.dto.interface';
+import { IUserRepository } from '../interface/repository/user.repository.interface';
+import { IUserService } from '../interface/service/user.service.interface';
 
 @Injectable()
 export class UserService implements IUserService {
@@ -32,7 +31,6 @@ export class UserService implements IUserService {
       totalLabScore: 0,
       lastUpdated: new Date(),
     });
-
     return newUser;
   }
 

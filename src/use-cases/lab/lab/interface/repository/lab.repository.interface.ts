@@ -1,4 +1,4 @@
-import { ILabEntity } from 'src/entiies/lab/interface/lab.entity.interface';
+import { ILabEntity } from 'src/entiies/lab/lab/interface/lab.entity.interface';
 import { ICreateLabDto } from '../dto/create.lab.dto.interface';
 
 export interface ILabRepository {

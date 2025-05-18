@@ -1,10 +1,10 @@
-import { CreateUserDto } from 'src/presintation/dto/user/create.user.dto';
-import { IAuthService } from '../interface/service/auth.service.interface';
 import { ForbiddenException, Inject, Injectable } from '@nestjs/common';
-import { IUserService } from '../../user/interface/service/user.service.interface';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { UserRole } from 'src/entiies/user/enums/user-role.enum';
+import { CreateUserDto } from 'src/presintation/dto/user/create.user.dto';
+import { IUserService } from '../../user/interface/service/user.service.interface';
+import { IAuthService } from '../interface/service/auth.service.interface';
 
 @Injectable()
 export class AuthService implements IAuthService {

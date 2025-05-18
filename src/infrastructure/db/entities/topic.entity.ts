@@ -1,14 +1,8 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  OneToMany,
-  JoinColumn,
-} from 'typeorm';
+import { IsNotEmpty } from 'class-validator';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { LabEntity } from './lab.entity';
 import { LectureEntity } from './lecture.entity';
 import { TestEntity } from './test.entity';
-import { LabEntity } from './lab.entity';
-import { IsNotEmpty } from 'class-validator';
 
 @Entity()
 export class TopicEntity {

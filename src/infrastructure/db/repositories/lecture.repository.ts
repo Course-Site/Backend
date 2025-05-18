@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ILectureEntity } from 'src/entiies/lecture/interface/lecture.entity.interface';
 import { ICreateLectureDto } from 'src/use-cases/lecture/interface/dto/create.lecture.dto.interface';
 import { ILectureRepository } from 'src/use-cases/lecture/interface/repository/lecture.repository.interface';
-import { LectureEntity } from '../entities/lecture.entity';
 import { Repository } from 'typeorm';
-import { ILectureEntity } from 'src/entiies/lecture/interface/lecture.entity.interface';
+import { LectureEntity } from '../entities/lecture.entity';
 
 @Injectable()
 export class LectureRepository implements ILectureRepository {

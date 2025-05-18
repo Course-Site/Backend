@@ -1,3 +1,4 @@
+import { IsNotEmpty } from 'class-validator';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -6,7 +7,6 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { TopicEntity } from './topic.entity';
-import { IsNotEmpty } from 'class-validator';
 
 @Entity()
 export class LectureEntity {

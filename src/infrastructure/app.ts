@@ -1,12 +1,12 @@
-import { ConfigService } from '@nestjs/config';
-import { AppModule } from 'src/app.module';
 import {
   INestApplication,
   ValidationPipe,
   VersioningType,
 } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { AppModule } from 'src/app.module';
 
 export class App {
   private readonly app: INestApplication;

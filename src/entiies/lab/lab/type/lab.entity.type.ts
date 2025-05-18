@@ -1,6 +1,4 @@
-import { ITopicEntity } from 'src/entiies/topic/interface/topic.entity.interface';
-
-export interface ILabEntity {
+export type TLabEntity = {
   id?: string;
   title: string;
   description?: string;
@@ -8,4 +6,4 @@ export interface ILabEntity {
   submittedAt: Date;
   topicId: string;
   maxScore: number;
-}
+};

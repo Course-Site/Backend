@@ -1,11 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { ITestResultService } from '../interface/service/test_result.service.interface';
-import { ITestResultRepository } from '../interface/repository/test_result.repository.interface';
 import { ITestResultEntity } from 'src/entiies/test/test_result/interface/test_result.entity.interface';
-import { ICreateTestResultDto } from '../interface/dto/create.test_result.dto.interface';
-import { IUserStatisticsService } from 'src/use-cases/user_statistics/interface/service/user_statistics.service.interface';
 import { ITestRepository } from 'src/use-cases/test/test/interface/repository/test.repository.interface';
+import { IUserStatisticsService } from 'src/use-cases/user_statistics/interface/service/user_statistics.service.interface';
 import { IUserTestStatisticsService } from 'src/use-cases/user_test_statistics/interface/service/user_test_statistics.service.interface';
+import { ICreateTestResultDto } from '../interface/dto/create.test_result.dto.interface';
+import { ITestResultRepository } from '../interface/repository/test_result.repository.interface';
+import { ITestResultService } from '../interface/service/test_result.service.interface';
 
 @Injectable()
 export class TestResultService implements ITestResultService {

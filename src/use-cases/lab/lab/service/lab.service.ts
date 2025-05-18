@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { ILabService } from '../interface/service/lab.service.interface';
-import { ILabRepository } from '../interface/repository/lab.repository.interface';
-import { ILabEntity } from 'src/entiies/lab/interface/lab.entity.interface';
+import { ILabEntity } from 'src/entiies/lab/lab/interface/lab.entity.interface';
 import { ICreateLabDto } from '../interface/dto/create.lab.dto.interface';
+import { ILabRepository } from '../interface/repository/lab.repository.interface';
+import { ILabService } from '../interface/service/lab.service.interface';
 
 @Injectable()
 export class LabService implements ILabService {

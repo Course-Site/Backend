@@ -1,16 +1,13 @@
+import { IsNotEmpty } from 'class-validator';
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  OneToOne,
   JoinColumn,
-  OneToMany,
   ManyToOne,
 } from 'typeorm';
-import { UserEntity } from './user.entity';
-import { IsNotEmpty } from 'class-validator';
-import { TestResultEntity } from './test_result.entity';
 import { TestEntity } from './test.entity';
+import { UserEntity } from './user.entity';
 
 @Entity()
 export class UserTestStatisticsEntity {

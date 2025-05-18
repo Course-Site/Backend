@@ -1,5 +1,5 @@
-import { CreateUserDto } from 'src/presintation/dto/user/create.user.dto';
 import { UserRole } from 'src/entiies/user/enums/user-role.enum';
+import { CreateUserDto } from 'src/presintation/dto/user/create.user.dto';
 
 export interface IAuthService {
   validateUser(

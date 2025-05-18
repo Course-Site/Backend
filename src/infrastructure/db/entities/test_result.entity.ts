@@ -1,3 +1,4 @@
+import { IsNotEmpty } from 'class-validator';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -5,10 +6,8 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import { UserEntity } from './user.entity';
 import { TestEntity } from './test.entity';
-import { IsNotEmpty } from 'class-validator';
-import { UserStatisticsEntity } from './user_statistics.entity';
+import { UserEntity } from './user.entity';
 
 @Entity()
 export class TestResultEntity {

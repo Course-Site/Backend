@@ -9,7 +9,6 @@ import {
   Body,
   UseGuards,
 } from '@nestjs/common';
-import { ITestService } from 'src/use-cases/test/test/interface/service/test.service.interface';
 import {
   ApiBearerAuth,
   ApiTags,
@@ -18,14 +17,15 @@ import {
   ApiParam,
   ApiBody,
 } from '@nestjs/swagger';
-import { ICreateTestDto } from 'src/use-cases/test/test/interface/dto/create.test.dto.interface';
 import { ITestEntity } from 'src/entiies/test/test/interface/test.entity.interface';
+import { UserRole } from 'src/entiies/user/enums/user-role.enum';
 import { Roles } from 'src/infrastructure/decorators/roles.decorator';
 import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard';
 import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard';
-import { UserRole } from 'src/entiies/user/enums/user-role.enum';
+import { ICreateTestDto } from 'src/use-cases/test/test/interface/dto/create.test.dto.interface';
+import { ITestService } from 'src/use-cases/test/test/interface/service/test.service.interface';
 
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, RolesGuard)
 @ApiBearerAuth()
 @Controller('test')
 @ApiTags('Test')
@@ -35,7 +35,6 @@ export class TestController {
     private readonly testService: ITestService,
   ) {}
 
-  @UseGuards(RolesGuard)
   @Roles(UserRole.ADMIN)
   @Post('create')
   @ApiOperation({ summary: 'Create a new test' })
@@ -67,8 +66,7 @@ export class TestController {
     return await this.testService.findAllTests();
   }
 
-  @UseGuards(JwtAuthGuard)
-  @ApiBearerAuth()
+  @Roles(UserRole.ADMIN)
   @Get('findById/:id')
   @ApiOperation({ summary: 'Get a test by its ID' })
   @ApiParam({ name: 'id', description: 'Test ID', type: 'string' })
@@ -81,6 +79,7 @@ export class TestController {
     return await this.testService.findById(id);
   }
 
+  @Roles(UserRole.ADMIN)
   @Put(':id')
   @ApiOperation({ summary: 'Change the test data' })
   @ApiParam({ name: 'id', description: 'Test ID', type: 'string' })
@@ -101,6 +100,7 @@ export class TestController {
     return await this.testService.updateTest(id, test);
   }
 
+  @Roles(UserRole.ADMIN)
   @Delete('delete/:id')
   @ApiOperation({ summary: 'Delete a test by its ID' })
   @ApiParam({ name: 'id', description: 'Test ID', type: 'string' })

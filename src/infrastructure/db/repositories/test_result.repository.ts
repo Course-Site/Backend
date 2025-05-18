@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ITestResultEntity } from 'src/entiies/test/test_result/interface/test_result.entity.interface';
 import { ICreateTestResultDto } from 'src/use-cases/test/test_result/interface/dto/create.test_result.dto.interface';
 import { ITestResultRepository } from 'src/use-cases/test/test_result/interface/repository/test_result.repository.interface';
-import { TestResultEntity } from '../entities/test_result.entity';
 import { Repository } from 'typeorm';
-import { ITestResultEntity } from 'src/entiies/test/test_result/interface/test_result.entity.interface';
+import { TestResultEntity } from '../entities/test_result.entity';
 
 @Injectable()
 export class TestResultRepository implements ITestResultRepository {
@@ -66,7 +66,6 @@ export class TestResultRepository implements ITestResultRepository {
     id: string,
     testResult: Partial<ITestResultEntity>,
   ): Promise<ITestResultEntity> {
-
     const existing = await this.testResultRepository.findOne({
       where: { id },
       relations: ['test'],

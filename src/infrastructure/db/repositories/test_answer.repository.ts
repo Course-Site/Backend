@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ITestAnswerEntity } from 'src/entiies/test/test_answer/interface/test_answer.entity.interface';
 import { ICreateTestAnswerDto } from 'src/use-cases/test/test_answer/interface/dto/create.test_answer.dto.interface';
 import { ITestAnswerRepository } from 'src/use-cases/test/test_answer/interface/repository/test_answer.repository.interface';
-import { TestAnswerEntity } from '../entities/test_answer.entity';
 import { Repository } from 'typeorm';
-import { ITestAnswerEntity } from 'src/entiies/test/test_answer/interface/test_answer.entity.interface';
+import { TestAnswerEntity } from '../entities/test_answer.entity';
 
 @Injectable()
 export class TestAnswerRepository implements ITestAnswerRepository {

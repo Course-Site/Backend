@@ -1,6 +1,4 @@
-import { TopicEntity } from 'src/infrastructure/db/entities/topic.entity';
-
-export type TLabEntity = {
+export interface ILabEntity {
   id?: string;
   title: string;
   description?: string;
@@ -8,4 +6,4 @@ export type TLabEntity = {
   submittedAt: Date;
   topicId: string;
   maxScore: number;
-};
+}

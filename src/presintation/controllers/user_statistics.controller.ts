@@ -9,7 +9,6 @@ import {
   Body,
   UseGuards,
 } from '@nestjs/common';
-import { IUserStatisticsService } from 'src/use-cases/user_statistics/interface/service/user_statistics.service.interface';
 import {
   ApiBearerAuth,
   ApiTags,
@@ -18,14 +17,15 @@ import {
   ApiParam,
   ApiBody,
 } from '@nestjs/swagger';
-import { ICreateUserStatisticsDto } from 'src/use-cases/user_statistics/interface/dto/create.user_statistics.dto.interface';
+import { UserRole } from 'src/entiies/user/enums/user-role.enum';
 import { IUserStatisticsEntity } from 'src/entiies/user_statistics/interface/user_statistics.entity.interface';
 import { Roles } from 'src/infrastructure/decorators/roles.decorator';
 import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard';
 import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard';
-import { UserRole } from 'src/entiies/user/enums/user-role.enum';
+import { ICreateUserStatisticsDto } from 'src/use-cases/user_statistics/interface/dto/create.user_statistics.dto.interface';
+import { IUserStatisticsService } from 'src/use-cases/user_statistics/interface/service/user_statistics.service.interface';
 
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, RolesGuard)
 @ApiBearerAuth()
 @Controller('user_statistics')
 @ApiTags('User_Statistics')
@@ -35,7 +35,6 @@ export class UserStatisticsController {
     private readonly userStatisticsService: IUserStatisticsService,
   ) {}
 
-  @UseGuards(RolesGuard)
   @Roles(UserRole.ADMIN)
   @Post('create')
   @ApiOperation({ summary: 'Create a new userstatistics' })
@@ -58,6 +57,7 @@ export class UserStatisticsController {
     return await this.userStatisticsService.createUserStatistics(data);
   }
 
+  @Roles(UserRole.ADMIN)
   @Get('getAll')
   @ApiOperation({ summary: 'Get all userstatisticss' })
   @ApiResponse({ status: 200, description: 'Return all userstatistics.' })
@@ -80,6 +80,7 @@ export class UserStatisticsController {
     return await this.userStatisticsService.findById(id);
   }
 
+  @Roles(UserRole.ADMIN)
   @Put(':id')
   @ApiOperation({ summary: 'Change the userstatistics data' })
   @ApiParam({ name: 'id', description: 'UserStatistics ID', type: 'string' })
@@ -108,6 +109,7 @@ export class UserStatisticsController {
     );
   }
 
+  @Roles(UserRole.ADMIN)
   @Delete('delete/:id')
   @ApiOperation({ summary: 'Delete a userstatistics by its ID' })
   @ApiParam({ name: 'id', description: 'UserStatistics ID', type: 'string' })

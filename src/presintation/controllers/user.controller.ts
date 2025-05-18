@@ -6,7 +6,6 @@ import {
   Param,
   UseGuards,
 } from '@nestjs/common';
-import { IUserService } from 'src/use-cases/user/interface/service/user.service.interface';
 import {
   ApiBearerAuth,
   ApiTags,
@@ -14,13 +13,15 @@ import {
   ApiResponse,
   ApiParam,
 } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard';
-import { UserId } from 'src/infrastructure/decorators/user-id.decorator';
-import { Roles } from 'src/infrastructure/decorators/roles.decorator';
-import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard';
 import { UserRole } from 'src/entiies/user/enums/user-role.enum';
+import { Roles } from 'src/infrastructure/decorators/roles.decorator';
+import { UserId } from 'src/infrastructure/decorators/user-id.decorator';
+import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard';
+import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard';
+import { IUserService } from 'src/use-cases/user/interface/service/user.service.interface';
 
-@UseGuards(RolesGuard)
+@UseGuards(JwtAuthGuard, RolesGuard)
+@ApiBearerAuth()
 @Controller('user')
 @ApiTags('User')
 @UseGuards(JwtAuthGuard)
@@ -32,7 +33,7 @@ export class UserController {
     private readonly userService: IUserService,
   ) {}
 
-  //@UseGuards(RolesGuard)
+  @Roles(UserRole.ADMIN)
   @Get('getAll')
   @ApiOperation({ summary: 'Get all users' })
   @ApiResponse({ status: 200, description: 'Return all users.' })
@@ -41,6 +42,7 @@ export class UserController {
     return await this.userService.findAllUsers();
   }
 
+  @Roles(UserRole.ADMIN)
   @Get('findById/:id')
   @ApiOperation({ summary: 'Get user by his ID' })
   @ApiParam({ name: 'id', description: 'User ID', type: 'string' })
@@ -60,6 +62,7 @@ export class UserController {
     };
   }
 
+  @Roles(UserRole.ADMIN)
   @Get('findByEmail/:email')
   async findByEmail(@Param('email') email: string) {
     const user = await this.userService.findByEmail(email);
@@ -72,7 +75,7 @@ export class UserController {
     };
   }
 
-  //@UseGuards(RolesGuard)
+  @Roles(UserRole.ADMIN)
   @Delete('delete/:id')
   @ApiOperation({ summary: 'Delete a user by his ID' })
   @ApiParam({ name: 'id', description: 'User ID', type: 'string' })

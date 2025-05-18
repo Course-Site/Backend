@@ -2,25 +2,24 @@ import {
   Controller,
   Get,
   Delete,
-  Put,
   Inject,
   Param,
-  Post,
-  Body,
   UseGuards,
 } from '@nestjs/common';
-import { IUserTestStatisticsService } from 'src/use-cases/user_test_statistics/interface/service/user_test_statistics.service.interface';
 import {
   ApiBearerAuth,
   ApiTags,
   ApiOperation,
   ApiResponse,
   ApiParam,
-  ApiBody,
 } from '@nestjs/swagger';
+import { UserRole } from 'src/entiies/user/enums/user-role.enum';
+import { Roles } from 'src/infrastructure/decorators/roles.decorator';
 import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard';
+import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard';
+import { IUserTestStatisticsService } from 'src/use-cases/user_test_statistics/interface/service/user_test_statistics.service.interface';
 
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, RolesGuard)
 @ApiBearerAuth()
 @Controller('user_test_statistics')
 @ApiTags('User_Test_Statistics')
@@ -30,8 +29,7 @@ export class UserTestStatisticsController {
     private readonly userTestStatisticsService: IUserTestStatisticsService,
   ) {}
 
-  @UseGuards(JwtAuthGuard)
-  @ApiBearerAuth()
+  @Roles(UserRole.ADMIN)
   @Get('getAll')
   @ApiOperation({ summary: 'Get all UserTestStatistics' })
   @ApiResponse({ status: 200, description: 'Return all UserTestStatistics.' })
@@ -40,8 +38,6 @@ export class UserTestStatisticsController {
     return await this.userTestStatisticsService.findAllUserTestStatistics();
   }
 
-  @UseGuards(JwtAuthGuard)
-  @ApiBearerAuth()
   @Get('findById/:id')
   @ApiOperation({ summary: 'Get a UserTestStatistics by its ID' })
   @ApiParam({
@@ -58,8 +54,6 @@ export class UserTestStatisticsController {
     return await this.userTestStatisticsService.findById(id);
   }
 
-  @UseGuards(JwtAuthGuard)
-  @ApiBearerAuth()
   @Get('findByUserId/:userId')
   @ApiOperation({ summary: 'Get a UserTestStatistics by its userID' })
   @ApiParam({
@@ -73,10 +67,11 @@ export class UserTestStatisticsController {
   })
   @ApiResponse({ status: 404, description: 'UserTestStatistics not found.' })
   async findByUserId(@Param('userId') userId: string) {
-    console.log("контроллер: ", userId)
+    console.log('контроллер: ', userId);
     return await this.userTestStatisticsService.findByUserId(userId);
   }
 
+  @Roles(UserRole.ADMIN)
   @Delete('delete/:id')
   @ApiOperation({ summary: 'Delete a UserTestStatistics by its ID' })
   @ApiParam({

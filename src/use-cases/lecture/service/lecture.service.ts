@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { ILectureService } from '../interface/service/lecture.service.interface';
-import { ILectureRepository } from '../interface/repository/lecture.repository.interface';
 import { ILectureEntity } from 'src/entiies/lecture/interface/lecture.entity.interface';
 import { ICreateLectureDto } from '../interface/dto/create.lecture.dto.interface';
+import { ILectureRepository } from '../interface/repository/lecture.repository.interface';
+import { ILectureService } from '../interface/service/lecture.service.interface';
 
 @Injectable()
 export class LectureService implements ILectureService {

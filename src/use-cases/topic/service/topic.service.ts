@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { ITopicService } from '../interface/service/topic.service.interface';
-import { ITopicRepository } from '../interface/repository/topic.repository.interface';
 import { ITopicEntity } from 'src/entiies/topic/interface/topic.entity.interface';
 import { ICreateTopicDto } from '../interface/dto/create.topic.dto.interface';
+import { ITopicRepository } from '../interface/repository/topic.repository.interface';
+import { ITopicService } from '../interface/service/topic.service.interface';
 
 @Injectable()
 export class TopicService implements ITopicService {

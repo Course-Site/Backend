@@ -1,3 +1,4 @@
+import { IsEmail, IsNotEmpty, MaxLength, MinLength } from 'class-validator';
 import { UserRole } from 'src/entiies/user/enums/user-role.enum';
 import {
   Entity,
@@ -6,7 +7,6 @@ import {
   OneToMany,
   OneToOne,
 } from 'typeorm';
-import { IsEmail, IsNotEmpty, MaxLength, MinLength } from 'class-validator';
 import { LabResultEntity } from './lab_result.entity';
 import { TestResultEntity } from './test_result.entity';
 import { UserStatisticsEntity } from './user_statistics.entity';

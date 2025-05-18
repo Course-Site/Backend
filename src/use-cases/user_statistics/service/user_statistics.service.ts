@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { IUserStatisticsService } from '../interface/service/user_statistics.service.interface';
-import { IUserStatisticsRepository } from '../interface/repository/user_statistics.repository.interface';
 import { IUserStatisticsEntity } from 'src/entiies/user_statistics/interface/user_statistics.entity.interface';
-import { ICreateUserStatisticsDto } from '../interface/dto/create.user_statistics.dto.interface';
 import { IUserTestStatisticsRepository } from 'src/use-cases/user_test_statistics/interface/repository/user_test_statistics.repository.interface';
+import { ICreateUserStatisticsDto } from '../interface/dto/create.user_statistics.dto.interface';
+import { IUserStatisticsRepository } from '../interface/repository/user_statistics.repository.interface';
+import { IUserStatisticsService } from '../interface/service/user_statistics.service.interface';
 
 @Injectable()
 export class UserStatisticsService implements IUserStatisticsService {

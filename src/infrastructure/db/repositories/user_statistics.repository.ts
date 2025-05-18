@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { IUserStatisticsEntity } from 'src/entiies/user_statistics/interface/user_statistics.entity.interface';
 import { ICreateUserStatisticsDto } from 'src/use-cases/user_statistics/interface/dto/create.user_statistics.dto.interface';
 import { IUserStatisticsRepository } from 'src/use-cases/user_statistics/interface/repository/user_statistics.repository.interface';
-import { UserStatisticsEntity } from '../entities/user_statistics.entity';
 import { Repository } from 'typeorm';
-import { IUserStatisticsEntity } from 'src/entiies/user_statistics/interface/user_statistics.entity.interface';
+import { UserStatisticsEntity } from '../entities/user_statistics.entity';
 
 @Injectable()
 export class UserStatisticsRepository implements IUserStatisticsRepository {

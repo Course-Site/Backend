@@ -9,7 +9,6 @@ import {
   Body,
   UseGuards,
 } from '@nestjs/common';
-import { ILectureService } from 'src/use-cases/lecture/interface/service/lecture.service.interface';
 import {
   ApiBearerAuth,
   ApiTags,
@@ -18,14 +17,15 @@ import {
   ApiParam,
   ApiBody,
 } from '@nestjs/swagger';
-import { ICreateLectureDto } from 'src/use-cases/lecture/interface/dto/create.lecture.dto.interface';
 import { ILectureEntity } from 'src/entiies/lecture/interface/lecture.entity.interface';
+import { UserRole } from 'src/entiies/user/enums/user-role.enum';
 import { Roles } from 'src/infrastructure/decorators/roles.decorator';
 import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard';
 import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard';
-import { UserRole } from 'src/entiies/user/enums/user-role.enum';
+import { ICreateLectureDto } from 'src/use-cases/lecture/interface/dto/create.lecture.dto.interface';
+import { ILectureService } from 'src/use-cases/lecture/interface/service/lecture.service.interface';
 
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, RolesGuard)
 @ApiBearerAuth()
 @Controller('lecture')
 @ApiTags('Lecture')
@@ -35,7 +35,6 @@ export class LectureController {
     private readonly lectureService: ILectureService,
   ) {}
 
-  @UseGuards(RolesGuard)
   @Roles(UserRole.ADMIN)
   @Post('create')
   @ApiOperation({ summary: 'Create a new lecture' })
@@ -65,8 +64,6 @@ export class LectureController {
     return await this.lectureService.findAllLectures();
   }
 
-  @UseGuards(JwtAuthGuard)
-  @ApiBearerAuth()
   @Get('findById/:id')
   @ApiOperation({ summary: 'Get a lecture by its ID' })
   @ApiParam({ name: 'id', description: 'Lecture ID', type: 'string' })
@@ -79,6 +76,7 @@ export class LectureController {
     return await this.lectureService.findById(id);
   }
 
+  @Roles(UserRole.ADMIN)
   @Put(':id')
   @ApiOperation({ summary: 'Change the lecture data' })
   @ApiParam({ name: 'id', description: 'Lecture ID', type: 'string' })
@@ -97,6 +95,7 @@ export class LectureController {
     return await this.lectureService.updateLecture(id, lecture);
   }
 
+  @Roles(UserRole.ADMIN)
   @Delete('delete/:id')
   @ApiOperation({ summary: 'Delete a lecture by its ID' })
   @ApiParam({ name: 'id', description: 'Lecture ID', type: 'string' })

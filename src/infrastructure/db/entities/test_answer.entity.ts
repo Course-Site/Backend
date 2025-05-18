@@ -1,3 +1,4 @@
+import { IsNotEmpty } from 'class-validator';
 import {
   Column,
   Entity,
@@ -6,7 +7,6 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { TestQuestionEntity } from './test_question.entity';
-import { IsNotEmpty } from 'class-validator';
 
 @Entity()
 export class TestAnswerEntity {

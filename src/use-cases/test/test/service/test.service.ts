@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { ITestService } from '../interface/service/test.service.interface';
-import { ITestRepository } from '../interface/repository/test.repository.interface';
 import { ITestEntity } from 'src/entiies/test/test/interface/test.entity.interface';
 import { ICreateTestDto } from '../interface/dto/create.test.dto.interface';
+import { ITestRepository } from '../interface/repository/test.repository.interface';
+import { ITestService } from '../interface/service/test.service.interface';
 
 @Injectable()
 export class TestService implements ITestService {

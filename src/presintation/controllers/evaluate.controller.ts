@@ -6,13 +6,14 @@ import {
   ApiResponse,
   ApiBody,
 } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard';
-import { ITestEvaluateService } from 'src/use-cases/test/test_evaluate/interface/service/evaluate.service.interface';
-import { ITestSubmissionDto } from 'src/use-cases/test/test_evaluate/interface/dto/test_submission.dto.interface';
 import { CurrentUser } from 'src/infrastructure/decorators/current-user.decorator';
+import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard';
+import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard';
 import { IJwtUser } from 'src/infrastructure/JWT/strategies/jwt-user.interface';
+import { ITestSubmissionDto } from 'src/use-cases/test/test_evaluate/interface/dto/test_submission.dto.interface';
+import { ITestEvaluateService } from 'src/use-cases/test/test_evaluate/interface/service/evaluate.service.interface';
 
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, RolesGuard)
 @ApiBearerAuth()
 @Controller('test-evaluate')
 @ApiTags('Test Evaluation')
@@ -43,18 +44,18 @@ export class TestEvaluateController {
         },
       },
       example: {
-      testId: "testId",
-      answers: [
-        {
-          questionId: "questionId",
-          selectedAnswerIds: ["answerId"]
-        },
-        {
-          questionId: "questionId",
-          selectedAnswerIds: ["answerId"]
-        }
-      ]
-    }
+        testId: 'testId',
+        answers: [
+          {
+            questionId: 'questionId',
+            selectedAnswerIds: ['answerId'],
+          },
+          {
+            questionId: 'questionId',
+            selectedAnswerIds: ['answerId'],
+          },
+        ],
+      },
     },
   })
   @ApiResponse({

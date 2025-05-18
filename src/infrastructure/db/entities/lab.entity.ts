@@ -1,3 +1,4 @@
+import { IsNotEmpty } from 'class-validator';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -8,7 +9,6 @@ import {
 } from 'typeorm';
 import { LabResultEntity } from './lab_result.entity';
 import { TopicEntity } from './topic.entity';
-import { IsNotEmpty } from 'class-validator';
 
 @Entity()
 export class LabEntity {

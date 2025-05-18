@@ -1,12 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { UserTestStatisticsRepository } from 'src/infrastructure/db/repositories/user_test_statistics.repository';
-import { TestResultRepository } from 'src/infrastructure/db/repositories/test_result.repository';
-import { TestRepository } from 'src/infrastructure/db/repositories/test.repository';
-import { IUserTestStatisticsRepository } from '../interface/repository/user_test_statistics.repository.interface';
-import { ITestRepository } from 'src/use-cases/test/test/interface/repository/test.repository.interface';
-import { ITestResultRepository } from 'src/use-cases/test/test_result/interface/repository/test_result.repository.interface';
 import { IUserTestStatisticsEntity } from 'src/entiies/user_test_statistics/interface/user_test_statistics.entity.interface';
-import { log } from 'console'
+import { ITestResultRepository } from 'src/use-cases/test/test_result/interface/repository/test_result.repository.interface';
+import { IUserTestStatisticsRepository } from '../interface/repository/user_test_statistics.repository.interface';
 
 @Injectable()
 export class UserTestStatisticsService {
@@ -61,7 +56,7 @@ export class UserTestStatisticsService {
   }
 
   async findByUserId(userId: string): Promise<IUserTestStatisticsEntity[]> {
-    console.log("сервис: ", userId)
+    console.log('сервис: ', userId);
     return this.userTestStatisticsRepository.findByUserId(userId);
   }
 

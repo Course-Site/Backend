@@ -3,6 +3,6 @@
   "semi": true,
   "tabWidth": 2,
   "trailingComma": "all",
-  "noMultipleEmptyLines": true,
-  "endOfLine": "crlf"
+  "endOfLine": "crlf",
+  "singleAttributePerLine": false
 }

@@ -1,9 +1,8 @@
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
-import { ITestQuestionService } from '../interface/service/test_question.service.interface';
-import { ITestQuestionRepository } from '../interface/repository/test_question.repository.interface';
 import { ITestQuestionEntity } from 'src/entiies/test/test_question/interface/test_question.entity.interface';
 import { ICreateTestQuestionDto } from '../interface/dto/create.test_question.dto.interface';
-import { CreateTestQuestionDto } from 'src/presintation/dto/test/create.test_question.dto';
+import { ITestQuestionRepository } from '../interface/repository/test_question.repository.interface';
+import { ITestQuestionService } from '../interface/service/test_question.service.interface';
 
 @Injectable()
 export class TestQuestionService implements ITestQuestionService {

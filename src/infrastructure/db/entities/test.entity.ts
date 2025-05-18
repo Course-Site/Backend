@@ -1,3 +1,5 @@
+import { IsNotEmpty } from 'class-validator';
+import { ScoreMethod } from 'src/entiies/test/test/enums/score_method';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -6,11 +8,9 @@ import {
   OneToMany,
   JoinColumn,
 } from 'typeorm';
-import { TopicEntity } from './topic.entity';
 import { TestQuestionEntity } from './test_question.entity';
 import { TestResultEntity } from './test_result.entity';
-import { IsNotEmpty } from 'class-validator';
-import { ScoreMethod } from 'src/entiies/test/test/enums/score_method';
+import { TopicEntity } from './topic.entity';
 import { UserTestStatisticsEntity } from './user_test_statistics.entity';
 
 @Entity()
