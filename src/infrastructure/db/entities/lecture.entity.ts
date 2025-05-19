@@ -5,6 +5,7 @@ import {
   Column,
   ManyToOne,
   JoinColumn,
+  CreateDateColumn,
 } from 'typeorm';
 import { TopicEntity } from './topic.entity';
 
@@ -20,7 +21,7 @@ export class LectureEntity {
   @Column('text')
   content: string;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @CreateDateColumn()
   addedAt: Date;
 
   @Column('uuid')

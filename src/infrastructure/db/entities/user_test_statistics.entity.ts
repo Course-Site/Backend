@@ -5,6 +5,7 @@ import {
   Column,
   JoinColumn,
   ManyToOne,
+  CreateDateColumn,
 } from 'typeorm';
 import { TestEntity } from './test.entity';
 import { UserEntity } from './user.entity';
@@ -17,7 +18,7 @@ export class UserTestStatisticsEntity {
   @Column({ type: 'float' })
   calculatedScore: number;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @CreateDateColumn()
   lastUpdated: Date;
 
   @Column('uuid')

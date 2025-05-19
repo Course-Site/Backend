@@ -6,6 +6,7 @@ import {
   ManyToOne,
   JoinColumn,
   OneToMany,
+  CreateDateColumn,
 } from 'typeorm';
 import { LabResultEntity } from './lab_result.entity';
 import { TopicEntity } from './topic.entity';
@@ -25,7 +26,7 @@ export class LabEntity {
   @Column('text', { nullable: true })
   content: string;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @CreateDateColumn()
   submittedAt: Date;
 
   @Column('uuid')

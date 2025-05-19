@@ -29,7 +29,6 @@ export class UserService implements IUserService {
       userId: newUser.id,
       totalTestScore: 0,
       totalLabScore: 0,
-      lastUpdated: new Date(),
     });
     return newUser;
   }

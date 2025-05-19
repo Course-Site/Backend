@@ -43,7 +43,6 @@ export class TestEvaluationService {
       testId,
       percentage: 0,
       score: totalScore,
-      completedAt: new Date(),
     };
 
     const createdResult =

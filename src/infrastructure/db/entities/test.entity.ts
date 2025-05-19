@@ -7,6 +7,7 @@ import {
   ManyToOne,
   OneToMany,
   JoinColumn,
+  CreateDateColumn,
 } from 'typeorm';
 import { TestQuestionEntity } from './test_question.entity';
 import { TestResultEntity } from './test_result.entity';
@@ -37,7 +38,7 @@ export class TestEntity {
   @IsNotEmpty()
   scoreMethod: ScoreMethod;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @CreateDateColumn()
   addedAt: Date;
 
   @Column('uuid')

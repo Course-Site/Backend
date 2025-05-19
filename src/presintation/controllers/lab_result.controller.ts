@@ -43,7 +43,6 @@ export class LabResultController {
       properties: {
         submissionFileUrl: { type: 'string', default: 'test' },
         score: { type: 'number', default: '0' },
-        submittedAt: { type: 'Date', default: '01.04.2025' },
         userId: { type: 'string', default: '0' },
         labId: { type: 'string', default: '0' },
       },
@@ -88,7 +87,6 @@ export class LabResultController {
       properties: {
         submissionFileUrl: { type: 'string', default: 'test' },
         score: { type: 'number', default: '0' },
-        submittedAt: { type: 'Date', default: '01.04.2025' },
         userId: { type: 'string', default: '0' },
         labId: { type: 'string', default: '0' },
       },

@@ -20,7 +20,6 @@ export class UserStatisticsService implements IUserStatisticsService {
     const result = this.userStatisticsRepository.createUserStatistics({
       totalTestScore: data.totalTestScore,
       totalLabScore: data.totalLabScore,
-      lastUpdated: data.lastUpdated,
       userId: data.userId,
     });
     return result;

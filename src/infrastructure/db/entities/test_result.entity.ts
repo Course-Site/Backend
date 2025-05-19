@@ -5,6 +5,7 @@ import {
   Column,
   ManyToOne,
   JoinColumn,
+  CreateDateColumn,
 } from 'typeorm';
 import { TestEntity } from './test.entity';
 import { UserEntity } from './user.entity';
@@ -22,7 +23,7 @@ export class TestResultEntity {
   @IsNotEmpty()
   percentage: number;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @CreateDateColumn()
   completedAt: Date;
 
   @Column('uuid')

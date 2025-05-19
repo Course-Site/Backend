@@ -6,6 +6,7 @@ import {
   OneToOne,
   JoinColumn,
   OneToMany,
+  CreateDateColumn,
 } from 'typeorm';
 import { LabResultEntity } from './lab_result.entity';
 import { UserEntity } from './user.entity';
@@ -23,7 +24,7 @@ export class UserStatisticsEntity {
   @IsNotEmpty()
   totalLabScore: number;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @CreateDateColumn()
   lastUpdated: Date;
 
   @Column('uuid')

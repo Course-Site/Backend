@@ -28,7 +28,6 @@ export class LabResultService implements ILabResultService {
       submissionFileUrl: data.submissionFileUrl,
       score: data.score,
       percentage: percent,
-      submittedAt: data.submittedAt,
       userId: data.userId,
       labId: data.labId,
     });

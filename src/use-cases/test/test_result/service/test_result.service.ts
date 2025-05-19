@@ -38,7 +38,6 @@ export class TestResultService implements ITestResultService {
     const newResult = await this.testResultRepository.createTestResult({
       score: data.score,
       percentage: percent,
-      completedAt: data.completedAt,
       userId: data.userId,
       testId: data.testId,
     });

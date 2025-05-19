@@ -14,6 +14,7 @@ import { TopicModule } from './infrastructure/modules/topic.module';
 import { UserModule } from './infrastructure/modules/user.module';
 import { UserStatisticsModule } from './infrastructure/modules/user_statistics.module';
 import { UserTestStatisticsModule } from './infrastructure/modules/user_test_statistics.module';
+import { LabReportModule } from './infrastructure/modules/lab_report.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { UserTestStatisticsModule } from './infrastructure/modules/user_test_sta
     UserTestStatisticsModule,
     UserStatisticsModule,
     TestEvaluationModule,
+    LabReportModule,
   ],
   controllers: [],
   providers: [],
