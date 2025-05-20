@@ -8,6 +8,7 @@ import {
   Post,
   Body,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import {
   ApiBearerAuth,
@@ -16,6 +17,7 @@ import {
   ApiResponse,
   ApiParam,
   ApiBody,
+  ApiQuery,
 } from '@nestjs/swagger';
 import { ITestResultEntity } from 'src/entiies/test/test_result/interface/test_result.entity.interface';
 import { UserRole } from 'src/entiies/user/enums/user-role.enum';
@@ -63,6 +65,22 @@ export class TestResultController {
   @ApiResponse({ status: 404, description: 'TestResults not found.' })
   async findAllTestResults() {
     return await this.testResultService.findAllTestResult();
+  }
+
+  @Get('GetByTestAndUser')
+  @ApiOperation({ summary: 'Get the testresult' })
+  @ApiQuery({ name: 'testId', type: 'string', required: true, example: '3fa85f64-5717-4562-b3fc-2c963f66afa6' })
+  @ApiQuery({ name: 'userId', type: 'string', required: true, example: '3fa85f64-5717-4562-b3fc-2c963f66afa6' })
+  @ApiResponse({
+    status: 200,
+    description: 'The testResult has been successfully returned',
+  })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
+  async findByTestAndUser(
+  @Query('testId') testId: string,
+  @Query('userId') userId: string,
+  ) {
+    return await this.testResultService.findByTestAndUser(testId, userId);
   }
 
   @Roles(UserRole.ADMIN)

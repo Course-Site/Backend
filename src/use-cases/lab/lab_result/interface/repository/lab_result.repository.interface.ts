@@ -4,6 +4,7 @@ import { ICreateLabResultDto } from '../dto/create.lab_result.dto.interface';
 export interface ILabResultRepository {
   createLabResult(data: ICreateLabResultDto): Promise<ILabResultEntity>;
   findAllLabResult(): Promise<ILabResultEntity[]>;
+  findByLabAndUser(labId: string, userId: string): Promise<ILabResultEntity[]>;
   findById(id: string): Promise<ILabResultEntity>;
   updateLabResult(
     id: string,

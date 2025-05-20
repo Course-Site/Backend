@@ -8,6 +8,7 @@ import {
   Post,
   Body,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import {
   ApiBearerAuth,
@@ -16,6 +17,7 @@ import {
   ApiResponse,
   ApiParam,
   ApiBody,
+  ApiQuery,
 } from '@nestjs/swagger';
 import { ILabResultEntity } from 'src/entiies/lab/lab_result/interface/lab_result.entity.interface';
 import { UserRole } from 'src/entiies/user/enums/user-role.enum';
@@ -64,6 +66,22 @@ export class LabResultController {
   @ApiResponse({ status: 404, description: 'LabResults not found.' })
   async findAllLabResults() {
     return await this.labResultService.findAllLabResult();
+  }
+
+  @Get('GetByLabAndUser')
+  @ApiOperation({ summary: 'Get the labresult' })
+  @ApiQuery({ name: 'labId', type: 'string', required: true, example: '3fa85f64-5717-4562-b3fc-2c963f66afa6' })
+  @ApiQuery({ name: 'userId', type: 'string', required: true, example: '3fa85f64-5717-4562-b3fc-2c963f66afa6' })
+  @ApiResponse({
+    status: 200,
+    description: 'The labResult has been successfully returned',
+  })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
+  async findByLabAndUser(
+    @Query('labId') labId: string,
+    @Query('userId') userId: string,
+  ) {
+    return await this.labResultService.findByLabAndUser(labId, userId);
   }
 
   @Get('findById/:id')

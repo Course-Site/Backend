@@ -32,13 +32,12 @@ export class TestResultRepository implements ITestResultRepository {
     }
   }
 
-  async findAllByUserAndTest(userId: string, testId: string) {
+  async findByTestAndUser(labId: string, userId: string) {
     return this.testResultRepository.find({
       where: {
-        user: { id: userId },
-        test: { id: testId },
+        testId: labId,
+        userId: userId,
       },
-      relations: ['user', 'test'],
     });
   }
 

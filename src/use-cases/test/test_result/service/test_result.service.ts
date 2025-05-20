@@ -56,6 +56,13 @@ export class TestResultService implements ITestResultService {
     return await this.testResultRepository.findAllTestResult();
   }
 
+  async findByTestAndUser(
+    testId: string,
+    userId: string,
+  ): Promise<ITestResultEntity[]> {
+    return this.testResultRepository.findByTestAndUser(testId, userId);
+  }
+
   async findById(id: string): Promise<ITestResultEntity> {
     return this.testResultRepository.findById(id);
   }

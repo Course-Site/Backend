@@ -63,7 +63,7 @@ export class AuthService implements IAuthService {
   }
 
   async signIn(user: { id: string; role: string }) {
-    if (!user.role) user.role = UserRole.USER; // Защита от undefined
+    if (!user.role) user.role = UserRole.USER;
     return {
       token: this.jwtService.sign({ id: user.id, role: user.role }),
     };

@@ -4,6 +4,7 @@ import { ICreateTestResultDto } from '../dto/create.test_result.dto.interface';
 export interface ITestResultRepository {
   createTestResult(data: ICreateTestResultDto): Promise<ITestResultEntity>;
   findAllTestResult(): Promise<ITestResultEntity[]>;
+  findByTestAndUser(labId: string, userId: string): Promise<ITestResultEntity[]>;
   findById(id: string): Promise<ITestResultEntity>;
   findResultsByUserAndTest(
     userId: string,
