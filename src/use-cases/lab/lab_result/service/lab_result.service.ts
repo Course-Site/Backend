@@ -9,8 +9,8 @@ import { ILabResultService } from '../interface/service/lab_result.service.inter
 @Injectable()
 export class LabResultService implements ILabResultService {
   constructor(
-    @Inject('labresultRepository')
-    private readonly labresultRepository: ILabResultRepository,
+    @Inject('labResultRepository')
+    private readonly labResultRepository: ILabResultRepository,
     @Inject('labRepository')
     private readonly labRepository: ILabRepository,
     @Inject('userStatisticsService')
@@ -24,7 +24,7 @@ export class LabResultService implements ILabResultService {
     );
     const lab = await this.labRepository.findById(data.labId);
     const percent = (data.score / lab.maxScore) * 100;
-    return this.labresultRepository.createLabResult({
+    return this.labResultRepository.createLabResult({
       submissionFileUrl: data.submissionFileUrl,
       score: data.score,
       percentage: percent,
@@ -34,18 +34,18 @@ export class LabResultService implements ILabResultService {
   }
 
   async findAllLabResult(): Promise<ILabResultEntity[]> {
-    return await this.labresultRepository.findAllLabResult();
+    return await this.labResultRepository.findAllLabResult();
   }
 
   async findById(id: string): Promise<ILabResultEntity> {
-    return this.labresultRepository.findById(id);
+    return this.labResultRepository.findById(id);
   }
 
   async updateLabResult(
     id: string,
     labResult: Partial<ILabResultEntity>,
   ): Promise<ILabResultEntity> {
-    const oldLabResult = await this.labresultRepository.findById(id);
+    const oldLabResult = await this.labResultRepository.findById(id);
 
     if (labResult.score !== undefined) {
       const lab = await this.labRepository.findById(oldLabResult.labId);
@@ -53,7 +53,7 @@ export class LabResultService implements ILabResultService {
       labResult.percentage = newPercentage;
     }
 
-    const updatedLabResult = await this.labresultRepository.updateLabResult(
+    const updatedLabResult = await this.labResultRepository.updateLabResult(
       id,
       labResult,
     );
@@ -70,7 +70,7 @@ export class LabResultService implements ILabResultService {
 
   async deleteLabResult(id: string): Promise<void> {
     try {
-      return await this.labresultRepository.deleteLabResult(id);
+      return await this.labResultRepository.deleteLabResult(id);
     } catch (error) {
       throw new Error(error);
     }

@@ -18,11 +18,11 @@ import { UserStatisticsModule } from './user_statistics.module';
   controllers: [LabResultController],
   providers: [
     {
-      provide: 'labresultRepository',
+      provide: 'labResultRepository',
       useClass: LabResultRepository,
     },
     {
-      provide: 'labresultService',
+      provide: 'labResultService',
       useClass: LabResultService,
     },
     {

@@ -17,10 +17,18 @@ export class LabReportService {
     return report;
   }
 
+  async findAllLabReport(): Promise<ILabReportEntity[]> {
+    return await this.labReportRepository.findAllLabReport();
+  }
+  
   async findByLabAndUser(
     labId: string,
     userId: string,
   ): Promise<ILabReportEntity[]> {
     return this.labReportRepository.findByLabAndUser(labId, userId);
+  }
+
+  async findById(id: string): Promise<ILabReportEntity> {
+    return this.labReportRepository.findById(id);
   }
 }

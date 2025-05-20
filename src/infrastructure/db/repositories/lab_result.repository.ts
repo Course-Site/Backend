@@ -10,13 +10,13 @@ import { LabResultEntity } from '../entities/lab_result.entity';
 export class LabResultRepository implements ILabResultRepository {
   constructor(
     @InjectRepository(LabResultEntity)
-    private readonly labresultRepository: Repository<LabResultEntity>,
+    private readonly labResultRepository: Repository<LabResultEntity>,
   ) {}
 
   async createLabResult(data: ICreateLabResultDto): Promise<ILabResultEntity> {
     try {
-      const labresult = this.labresultRepository.create(data);
-      return await this.labresultRepository.save(labresult);
+      const labresult = this.labResultRepository.create(data);
+      return await this.labResultRepository.save(labresult);
     } catch (error) {
       throw error;
     }
@@ -24,7 +24,7 @@ export class LabResultRepository implements ILabResultRepository {
 
   async findAllLabResult(): Promise<ILabResultEntity[]> {
     try {
-      return this.labresultRepository.find({});
+      return this.labResultRepository.find({});
     } catch (error) {
       throw new Error('LabResults not found');
     }
@@ -32,7 +32,7 @@ export class LabResultRepository implements ILabResultRepository {
 
   async findById(labresultId: string): Promise<ILabResultEntity> {
     try {
-      return this.labresultRepository.findOne({
+      return this.labResultRepository.findOne({
         where: { id: labresultId },
       });
     } catch (error) {
@@ -45,8 +45,8 @@ export class LabResultRepository implements ILabResultRepository {
     labresult: Partial<ILabResultEntity>,
   ): Promise<ILabResultEntity> {
     try {
-      await this.labresultRepository.update(id, labresult);
-      return this.labresultRepository.findOne({ where: { id } });
+      await this.labResultRepository.update(id, labresult);
+      return this.labResultRepository.findOne({ where: { id } });
     } catch {
       throw new Error('LabResult not found');
     }
@@ -54,7 +54,7 @@ export class LabResultRepository implements ILabResultRepository {
 
   async deleteLabResult(id: string): Promise<void> {
     try {
-      await this.labresultRepository.delete(id);
+      await this.labResultRepository.delete(id);
     } catch (error) {
       throw new Error(error);
     }

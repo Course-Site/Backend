@@ -5,7 +5,11 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
+import { UserEntity } from './user.entity'
+import { LabEntity } from './lab.entity'
 
 @Entity()
 export class LabReportEntity {
@@ -26,14 +30,22 @@ export class LabReportEntity {
   @Column()
   size: number;
 
-  @Column()
+  @CreateDateColumn()
+  uploadedAt: Date;
+
+  @Column('uuid')
   @IsNotEmpty()
   userId: string;
 
-  @Column()
+  @Column('uuid')
   @IsNotEmpty()
   labId: string;
 
-  @CreateDateColumn()
-  uploadedAt: Date;
+  @ManyToOne(() => UserEntity, (user) => user.labReport)
+  @JoinColumn({ name: 'userId' })
+  user: UserEntity;
+  
+  @ManyToOne(() => LabEntity, (lab) => lab.labReport)
+  @JoinColumn({ name: 'labId' })
+  labs: LabEntity;
 }

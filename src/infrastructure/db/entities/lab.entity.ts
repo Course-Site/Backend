@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 import { LabResultEntity } from './lab_result.entity';
 import { TopicEntity } from './topic.entity';
+import { LabReportEntity } from './lab_report.entity'
 
 @Entity()
 export class LabEntity {
@@ -38,6 +39,9 @@ export class LabEntity {
   })
   @JoinColumn({ name: 'topicId' })
   topic: TopicEntity;
+
+  @OneToMany(() => LabReportEntity, (labReport) => labReport.labs)
+  labReport: LabReportEntity[];
 
   @OneToMany(() => LabResultEntity, (labResult) => labResult.labs)
   labResult: LabResultEntity[];

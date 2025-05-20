@@ -5,12 +5,19 @@ import {
   UploadedFile,
   Body,
   Inject,
+  UseGuards,
+  Get,
+  Query,
+  Param,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import {
+  ApiBearerAuth,
   ApiBody,
   ApiConsumes,
   ApiOperation,
+  ApiParam,
+  ApiQuery,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
@@ -19,7 +26,13 @@ import { mimeToFileType } from 'src/use-cases/lab/lab_report/file_upload.config/
 import { multerConfig } from 'src/use-cases/lab/lab_report/file_upload.config/file-upload.config';
 import { ILabReportService } from 'src/use-cases/lab/lab_report/interface/service/lab_report.service.interface';
 import * as iconv from 'iconv-lite';
+import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard'
+import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard'
+import { UserRole } from 'src/entiies/user/enums/user-role.enum'
+import { Roles } from 'src/infrastructure/decorators/roles.decorator'
 
+@UseGuards(JwtAuthGuard, RolesGuard)
+@ApiBearerAuth()
 @Controller('lab-reports')
 @ApiTags('Lab Report')
 export class LabReportController {
@@ -90,5 +103,42 @@ export class LabReportController {
       userId: body.userId,
       labId: body.labId,
     });
+  }
+
+  @Roles(UserRole.ADMIN)
+  @Get('getAll')
+  @ApiOperation({ summary: 'Get all labresults' })
+  @ApiResponse({ status: 200, description: 'Return all labresults.' })
+  @ApiResponse({ status: 404, description: 'LabResults not found.' })
+  async findAllLabResults() {
+    return await this.labReportService.findAllLabReport();
+  }
+
+  @Get('findById/:id')
+  @ApiOperation({ summary: 'Get a labresult by its ID' })
+  @ApiParam({ name: 'id', description: 'LabResult ID', type: 'string' })
+  @ApiResponse({
+    status: 200,
+    description: 'Return the labresult with the given ID.',
+  })
+  @ApiResponse({ status: 404, description: 'LabResult not found.' })
+  async findById(@Param('id') id: string) {
+    return await this.labReportService.findById(id);
+  }
+
+  @Get('Get')
+  @ApiOperation({ summary: 'Get the labreport' })
+  @ApiQuery({ name: 'labId', type: 'string', required: true, example: '3fa85f64-5717-4562-b3fc-2c963f66afa6' })
+  @ApiQuery({ name: 'userId', type: 'string', required: true, example: '3fa85f64-5717-4562-b3fc-2c963f66afa6' })
+  @ApiResponse({
+    status: 200,
+    description: 'The labReport has been successfully returned',
+  })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
+  async findByLabAndUser(
+    @Query('labId') labId: string,
+    @Query('userId') userId: string,
+  ) {
+    return await this.labReportService.findByLabAndUser(labId, userId);
   }
 }

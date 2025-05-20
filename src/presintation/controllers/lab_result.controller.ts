@@ -31,8 +31,8 @@ import { ILabResultService } from 'src/use-cases/lab/lab_result/interface/servic
 @ApiTags('LabResult')
 export class LabResultController {
   constructor(
-    @Inject('labresultService')
-    private readonly labresultService: ILabResultService,
+    @Inject('labResultService')
+    private readonly labResultService: ILabResultService,
   ) {}
 
   @Roles(UserRole.ADMIN)
@@ -54,7 +54,7 @@ export class LabResultController {
   })
   @ApiResponse({ status: 400, description: 'Bad Request.' })
   async createLabResult(@Body() data: ICreateLabResultDto) {
-    return await this.labresultService.createLabResult(data);
+    return await this.labResultService.createLabResult(data);
   }
 
   @Roles(UserRole.ADMIN)
@@ -63,7 +63,7 @@ export class LabResultController {
   @ApiResponse({ status: 200, description: 'Return all labresults.' })
   @ApiResponse({ status: 404, description: 'LabResults not found.' })
   async findAllLabResults() {
-    return await this.labresultService.findAllLabResult();
+    return await this.labResultService.findAllLabResult();
   }
 
   @Get('findById/:id')
@@ -75,7 +75,7 @@ export class LabResultController {
   })
   @ApiResponse({ status: 404, description: 'LabResult not found.' })
   async findById(@Param('id') id: string) {
-    return await this.labresultService.findById(id);
+    return await this.labResultService.findById(id);
   }
 
   @Roles(UserRole.ADMIN)
@@ -98,7 +98,7 @@ export class LabResultController {
   })
   @ApiResponse({ status: 404, description: 'LabResult not found.' })
   async update(@Param('id') id: string, @Body() labresult: ILabResultEntity) {
-    return await this.labresultService.updateLabResult(id, labresult);
+    return await this.labResultService.updateLabResult(id, labresult);
   }
 
   @Roles(UserRole.ADMIN)
@@ -111,6 +111,6 @@ export class LabResultController {
   })
   @ApiResponse({ status: 404, description: 'LabResult not found.' })
   async deleteLabResult(@Param('id') id: string) {
-    await this.labresultService.deleteLabResult(id);
+    await this.labResultService.deleteLabResult(id);
   }
 }
