@@ -45,9 +45,7 @@ export class TestEntity {
   @IsNotEmpty()
   topicId: string;
 
-  @ManyToOne(() => TopicEntity, (topic) => topic.tests, {
-    onDelete: 'CASCADE',
-  })
+  @ManyToOne(() => TopicEntity, (topic) => topic.tests)
   @JoinColumn({ name: 'topicId' })
   topic: TopicEntity;
 
@@ -57,6 +55,6 @@ export class TestEntity {
   @OneToMany(() => TestResultEntity, (result) => result.test )
   testResult: TestResultEntity[];
 
-  @ManyToOne(() => UserTestStatisticsEntity, (stats) => stats.test )
+  @OneToMany(() => UserTestStatisticsEntity, (stats) => stats.test )
   testStatistics: UserTestStatisticsEntity[];
 }
