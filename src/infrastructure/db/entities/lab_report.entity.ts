@@ -45,7 +45,9 @@ export class LabReportEntity {
   @JoinColumn({ name: 'userId' })
   user: UserEntity;
   
-  @ManyToOne(() => LabEntity, (lab) => lab.labReport)
+  @ManyToOne(() => LabEntity, (lab) => lab.labReport, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'labId' })
   labs: LabEntity;
 }

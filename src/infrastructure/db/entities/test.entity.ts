@@ -51,12 +51,12 @@ export class TestEntity {
   @JoinColumn({ name: 'topicId' })
   topic: TopicEntity;
 
-  @OneToMany(() => TestQuestionEntity, (question) => question.test)
+  @OneToMany(() => TestQuestionEntity, (question) => question.test )
   questions: TestQuestionEntity;
 
-  @OneToMany(() => TestResultEntity, (result) => result.test)
+  @OneToMany(() => TestResultEntity, (result) => result.test )
   testResult: TestResultEntity[];
 
-  @ManyToOne(() => UserTestStatisticsEntity, (stats) => stats.test)
+  @ManyToOne(() => UserTestStatisticsEntity, (stats) => stats.test )
   testStatistics: UserTestStatisticsEntity[];
 }

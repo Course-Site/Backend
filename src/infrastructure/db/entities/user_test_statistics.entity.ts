@@ -29,11 +29,15 @@ export class UserTestStatisticsEntity {
   @IsNotEmpty()
   testId: string;
 
-  @ManyToOne(() => UserEntity, (user) => user.testStatistics)
+  @ManyToOne(() => UserEntity, (user) => user.testStatistics, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'userId' })
   user: UserEntity;
 
-  @ManyToOne(() => TestEntity, (test) => test.testStatistics)
+  @ManyToOne(() => TestEntity, (test) => test.testStatistics, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'testId' })
   test: TestEntity;
 }

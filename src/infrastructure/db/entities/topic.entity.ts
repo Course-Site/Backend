@@ -13,9 +13,7 @@ export class TopicEntity {
   @IsNotEmpty()
   title: string;
 
-  @OneToMany(() => LectureEntity, (lecture) => lecture.topic, {
-    nullable: true,
-  })
+  @OneToMany(() => LectureEntity, (lecture) => lecture.topic, { nullable: true })
   lectures: LectureEntity[];
 
   @OneToMany(() => TestEntity, (test) => test.topic, { nullable: true })

@@ -62,9 +62,7 @@ export class UserTestStatisticsService {
 
   async deleteUserTestStatistics(id: string): Promise<void> {
     try {
-      return await this.userTestStatisticsRepository.deleteUserTestStatistics(
-        id,
-      );
+      return await this.userTestStatisticsRepository.deleteUserTestStatistics(id);
     } catch (error) {
       throw new Error(error);
     }

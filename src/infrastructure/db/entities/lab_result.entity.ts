@@ -38,18 +38,15 @@ export class LabResultEntity {
   @IsNotEmpty()
   labId: string;
 
-  @ManyToOne(() => UserEntity, (user) => user.labResult)
+  @ManyToOne(() => UserEntity, (user) => user.labResult, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'userId' })
   user: UserEntity;
 
-  @ManyToOne(() => LabEntity, (lab) => lab.labResult)
+  @ManyToOne(() => LabEntity, (lab) => lab.labResult, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'labId' })
   labs: LabEntity;
-
-  @ManyToOne(
-    () => UserStatisticsEntity,
-    (userStatistics) => userStatistics.labResult,
-  )
-  @JoinColumn({ name: 'userStatisticsId' })
-  statistics: UserStatisticsEntity;
 }

@@ -78,7 +78,7 @@ export class UserTestStatisticsRepository {
     }
   }
 
-  async deleteUserStatistics(id: string): Promise<void> {
+  async deleteUserTestStatistics(id: string): Promise<void> {
     try {
       await this.userTestStatisticsRepository.delete(id);
     } catch (error) {

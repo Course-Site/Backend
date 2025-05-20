@@ -31,10 +31,9 @@ export class UserStatisticsEntity {
   @IsNotEmpty()
   userId: string;
 
-  @OneToOne(() => UserEntity, (user) => user.statistics)
+  @OneToOne(() => UserEntity, (user) => user.statistics, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'userId' })
   user: UserEntity;
-
-  @OneToMany(() => LabResultEntity, (labResult) => labResult.statistics)
-  labResult: LabResultEntity;
 }
