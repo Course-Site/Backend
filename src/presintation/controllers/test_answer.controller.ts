@@ -57,7 +57,6 @@ export class TestAnswerController {
     return await this.testAnswerService.createTestAnswer(data);
   }
 
-  @Roles(UserRole.ADMIN)
   @Get('getAll')
   @ApiOperation({ summary: 'Get all test answers' })
   @ApiResponse({ status: 200, description: 'Return all test answers.' })
@@ -66,7 +65,6 @@ export class TestAnswerController {
     return await this.testAnswerService.findAllTestAnswers();
   }
 
-  @Roles(UserRole.ADMIN)
   @Get('findById/:id')
   @ApiOperation({ summary: 'Get a test answer by its ID' })
   @ApiParam({ name: 'id', description: 'Test answer ID', type: 'string' })
