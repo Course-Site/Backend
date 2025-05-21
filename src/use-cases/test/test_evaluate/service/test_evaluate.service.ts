@@ -2,15 +2,15 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ITestWithQuestionsEntity } from 'src/entiies/test/test/interface/test_with_questions.entity.interface';
 import { ITestRepository } from '../../test/interface/repository/test.repository.interface';
 import { ICreateTestResultDto } from '../../test_result/interface/dto/create.test_result.dto.interface';
-import { ITestResultRepository } from '../../test_result/interface/repository/test_result.repository.interface';
 import { IEvaluationDto } from '../interface/dto/evaluation.dto.interface';
+import { ITestResultService } from '../../test_result/interface/service/test_result.service.interface'
 
 @Injectable()
 export class TestEvaluationService {
   constructor(
     @Inject('testRepository') private testRepository: ITestRepository,
-    @Inject('testResultRepository')
-    private testResultRepository: ITestResultRepository,
+    @Inject('testResultService')
+    private testResultService: ITestResultService,
   ) {}
 
   async evaluateTestSubmission(
@@ -18,8 +18,7 @@ export class TestEvaluationService {
     testId: string,
     answers: IEvaluationDto[],
   ) {
-    const test: ITestWithQuestionsEntity =
-      await this.testRepository.findWithQuestions(testId);
+    const test: ITestWithQuestionsEntity = await this.testRepository.findWithQuestions(testId);
 
     let totalScore = 0;
 
@@ -45,8 +44,7 @@ export class TestEvaluationService {
       score: totalScore,
     };
 
-    const createdResult =
-      await this.testResultRepository.createTestResult(createDto);
+    const createdResult = await this.testResultService.createTestResult(createDto);
 
     return {
       totalScore,

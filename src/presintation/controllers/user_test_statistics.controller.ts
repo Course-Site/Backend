@@ -67,7 +67,6 @@ export class UserTestStatisticsController {
   })
   @ApiResponse({ status: 404, description: 'UserTestStatistics not found.' })
   async findByUserId(@Param('userId') userId: string) {
-    console.log('контроллер: ', userId);
     return await this.userTestStatisticsService.findByUserId(userId);
   }
 

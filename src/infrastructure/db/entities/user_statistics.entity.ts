@@ -16,11 +16,11 @@ export class UserStatisticsEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column('int', { default: 0 })
+  @Column('float', { default: 0 })
   @IsNotEmpty()
   totalTestScore: number;
 
-  @Column('int', { default: 0 })
+  @Column('float', { default: 0 })
   @IsNotEmpty()
   totalLabScore: number;
 

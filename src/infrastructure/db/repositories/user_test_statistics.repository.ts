@@ -69,7 +69,6 @@ export class UserTestStatisticsRepository {
 
   async findByUserId(userId: string): Promise<IUserTestStatisticsEntity[]> {
     try {
-      console.log('репозиторий: ', userId);
       return this.userTestStatisticsRepository.find({
         where: { userId: userId },
       });

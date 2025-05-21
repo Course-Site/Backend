@@ -41,7 +41,7 @@ export class AuthService implements IAuthService {
     };
   }
 
-  async signUp(data: CreateUserDto): Promise<{ token: string }> {
+  async signUp(data: CreateUserDto): Promise<{ token: string, id: string }> {
     try {
       const candidate = await this.userService.findByEmail(data.email);
       if (candidate) {
@@ -56,6 +56,7 @@ export class AuthService implements IAuthService {
           id: userData.id,
           role: userData.role,
         }),
+        id: userData.id
       };
     } catch (err) {
       throw new ForbiddenException('Ошибка при регистрации');
@@ -66,6 +67,7 @@ export class AuthService implements IAuthService {
     if (!user.role) user.role = UserRole.USER;
     return {
       token: this.jwtService.sign({ id: user.id, role: user.role }),
+      id: user.id,
     };
   }
 }

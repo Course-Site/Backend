@@ -11,6 +11,6 @@ export interface IAuthService {
     name: string;
     role?: UserRole;
   } | null>;
-  signUp(data: CreateUserDto): Promise<{ token: string }>;
+  signUp(data: CreateUserDto): Promise<{ token: string, id: string }>;
   signIn(data: any): Promise<{ token: string }>;
 }

@@ -44,6 +44,16 @@ export class UserStatisticsRepository implements IUserStatisticsRepository {
     }
   }
 
+  async findByUserId(userId: string): Promise<IUserStatisticsEntity[]> {
+    try {
+      return this.userStatisticsRepository.find({
+        where: { userId: userId },
+      });
+    } catch (error) {
+      throw new Error('UserStatistics not found');
+    }
+  }
+
   async updateUserStatistics(
     id: string,
     userstatistics: Partial<IUserStatisticsEntity>,

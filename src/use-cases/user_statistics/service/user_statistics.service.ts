@@ -80,6 +80,10 @@ export class UserStatisticsService implements IUserStatisticsService {
     }
   }
 
+  async findByUserId(userId: string): Promise<IUserStatisticsEntity[]> {
+    return this.userStatisticsRepository.findByUserId(userId);
+  }
+
   async updateLabStatistics(userId: string, score: number): Promise<void> {
     try {
       return await this.userStatisticsRepository.updateLabStatistics(

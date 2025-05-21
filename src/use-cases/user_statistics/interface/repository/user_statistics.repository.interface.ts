@@ -7,6 +7,7 @@ export interface IUserStatisticsRepository {
   ): Promise<IUserStatisticsEntity>;
   findAllUserStatistics(): Promise<IUserStatisticsEntity[]>;
   findById(id: string): Promise<IUserStatisticsEntity>;
+  findByUserId(userId: string): Promise<IUserStatisticsEntity[]>;
   updateUserStatistics(
     id: string,
     userstatistics: Partial<IUserStatisticsEntity>,

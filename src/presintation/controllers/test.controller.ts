@@ -17,6 +17,7 @@ import {
   ApiParam,
   ApiBody,
 } from '@nestjs/swagger';
+import { ScoreMethod } from 'src/entiies/test/test/enums/score_method'
 import { ITestEntity } from 'src/entiies/test/test/interface/test.entity.interface';
 import { UserRole } from 'src/entiies/user/enums/user-role.enum';
 import { Roles } from 'src/infrastructure/decorators/roles.decorator';
@@ -46,6 +47,7 @@ export class TestController {
         topicId: { type: 'string', default: 'test' },
         maxScore: { type: 'number', default: '5' },
         maxAttempts: { type: 'number', default: '5' },
+        scoreMethod: { type: 'string', default: ScoreMethod.AVERAGE },
       },
     },
   })
@@ -91,6 +93,7 @@ export class TestController {
         topicId: { type: 'string', default: 'test' },
         maxScore: { type: 'number', default: '5' },
         maxAttempts: { type: 'number', default: '5' },
+        scoreMethod: { type: 'string', default: ScoreMethod.AVERAGE },
       },
     },
   })

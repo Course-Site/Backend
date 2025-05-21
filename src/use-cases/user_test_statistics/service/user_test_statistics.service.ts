@@ -56,7 +56,6 @@ export class UserTestStatisticsService {
   }
 
   async findByUserId(userId: string): Promise<IUserTestStatisticsEntity[]> {
-    console.log('сервис: ', userId);
     return this.userTestStatisticsRepository.findByUserId(userId);
   }
 

@@ -65,6 +65,22 @@ export class UserStatisticsController {
     return await this.userStatisticsService.findAllUserStatistics();
   }
 
+  @Get('findByUserId/:userId')
+  @ApiOperation({ summary: 'Get a UserStatistics by its userID' })
+  @ApiParam({
+    name: 'userId',
+    description: 'User ID',
+    type: 'string',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Return the UserStatistics with the given user ID.',
+  })
+  @ApiResponse({ status: 404, description: 'UserStatistics not found.' })
+  async findByUserId(@Param('userId') userId: string) {
+    return await this.userStatisticsService.findByUserId(userId);
+  }
+
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @Get('findById/:id')
