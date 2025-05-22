@@ -69,16 +69,26 @@ export class TestResultController {
 
   @Get('GetByTestAndUser')
   @ApiOperation({ summary: 'Get the testresult' })
-  @ApiQuery({ name: 'testId', type: 'string', required: true, example: '3fa85f64-5717-4562-b3fc-2c963f66afa6' })
-  @ApiQuery({ name: 'userId', type: 'string', required: true, example: '3fa85f64-5717-4562-b3fc-2c963f66afa6' })
+  @ApiQuery({
+    name: 'testId',
+    type: 'string',
+    required: true,
+    example: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+  })
+  @ApiQuery({
+    name: 'userId',
+    type: 'string',
+    required: true,
+    example: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+  })
   @ApiResponse({
     status: 200,
     description: 'The testResult has been successfully returned',
   })
   @ApiResponse({ status: 400, description: 'Bad Request.' })
   async findByTestAndUser(
-  @Query('testId') testId: string,
-  @Query('userId') userId: string,
+    @Query('testId') testId: string,
+    @Query('userId') userId: string,
   ) {
     return await this.testResultService.findByTestAndUser(testId, userId);
   }

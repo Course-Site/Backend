@@ -20,7 +20,7 @@ export class LabReportService {
   async findAllLabReport(): Promise<ILabReportEntity[]> {
     return await this.labReportRepository.findAllLabReport();
   }
-  
+
   async findByLabAndUser(
     labId: string,
     userId: string,

@@ -70,8 +70,18 @@ export class LabResultController {
 
   @Get('GetByLabAndUser')
   @ApiOperation({ summary: 'Get the labresult' })
-  @ApiQuery({ name: 'labId', type: 'string', required: true, example: '3fa85f64-5717-4562-b3fc-2c963f66afa6' })
-  @ApiQuery({ name: 'userId', type: 'string', required: true, example: '3fa85f64-5717-4562-b3fc-2c963f66afa6' })
+  @ApiQuery({
+    name: 'labId',
+    type: 'string',
+    required: true,
+    example: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+  })
+  @ApiQuery({
+    name: 'userId',
+    type: 'string',
+    required: true,
+    example: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+  })
   @ApiResponse({
     status: 200,
     description: 'The labResult has been successfully returned',

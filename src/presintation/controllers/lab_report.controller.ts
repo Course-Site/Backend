@@ -9,6 +9,9 @@ import {
   Get,
   Query,
   Param,
+  NotFoundException,
+  StreamableFile,
+  InternalServerErrorException,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import {
@@ -26,10 +29,12 @@ import { mimeToFileType } from 'src/use-cases/lab/lab_report/file_upload.config/
 import { multerConfig } from 'src/use-cases/lab/lab_report/file_upload.config/file-upload.config';
 import { ILabReportService } from 'src/use-cases/lab/lab_report/interface/service/lab_report.service.interface';
 import * as iconv from 'iconv-lite';
-import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard'
-import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard'
-import { UserRole } from 'src/entiies/user/enums/user-role.enum'
-import { Roles } from 'src/infrastructure/decorators/roles.decorator'
+import { JwtAuthGuard } from 'src/infrastructure/JWT/guards/jwt.guard';
+import { RolesGuard } from 'src/infrastructure/JWT/guards/roles.guard';
+import { UserRole } from 'src/entiies/user/enums/user-role.enum';
+import { Roles } from 'src/infrastructure/decorators/roles.decorator';
+import { createReadStream, existsSync } from 'fs';
+import { basename } from 'path';
 
 @UseGuards(JwtAuthGuard, RolesGuard)
 @ApiBearerAuth()
@@ -105,31 +110,90 @@ export class LabReportController {
     });
   }
 
+  @Get('download')
+  @ApiOperation({ summary: 'Download lab report by labId and userId' })
+  @ApiQuery({
+    name: 'labId',
+    type: 'string',
+    required: true,
+    example: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+  })
+  @ApiQuery({
+    name: 'userId',
+    type: 'string',
+    required: true,
+    example: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+  })
+  @ApiResponse({ status: 200, description: 'File download started' })
+  @ApiResponse({ status: 404, description: 'Lab report not found' })
+  @ApiResponse({
+    status: 500,
+    description: 'Internal server error while streaming file',
+  })
+  async downloadByLabAndUser(
+    @Query('labId') labId: string,
+    @Query('userId') userId: string,
+  ): Promise<StreamableFile> {
+    const reports = await this.labReportService.findByLabAndUser(labId, userId);
+
+    if (!reports || reports.length === 0) {
+      throw new NotFoundException('Лабораторный отчет не найден');
+    }
+
+    const report = reports[0]; // Если нужен первый найденный файл — можно адаптировать под выбор всех
+
+    if (!report.filepath || !existsSync(report.filepath)) {
+      throw new NotFoundException('Файл не найден на сервере');
+    }
+
+    try {
+      const fileStream = createReadStream(report.filepath);
+      const filename = basename(report.filename);
+
+      return new StreamableFile(fileStream, {
+        type: 'application/octet-stream',
+        disposition: `attachment; filename="${encodeURIComponent(filename)}"`,
+      });
+    } catch (error) {
+      throw new InternalServerErrorException('Ошибка при открытии файла');
+    }
+  }
+
   @Roles(UserRole.ADMIN)
   @Get('getAll')
-  @ApiOperation({ summary: 'Get all labresults' })
-  @ApiResponse({ status: 200, description: 'Return all labresults.' })
-  @ApiResponse({ status: 404, description: 'LabResults not found.' })
-  async findAllLabResults() {
+  @ApiOperation({ summary: 'Get all labReports' })
+  @ApiResponse({ status: 200, description: 'Return all labReports.' })
+  @ApiResponse({ status: 404, description: 'LabReports not found.' })
+  async findAllLabReports() {
     return await this.labReportService.findAllLabReport();
   }
 
   @Get('findById/:id')
-  @ApiOperation({ summary: 'Get a labresult by its ID' })
-  @ApiParam({ name: 'id', description: 'LabResult ID', type: 'string' })
+  @ApiOperation({ summary: 'Get a labReport by its ID' })
+  @ApiParam({ name: 'id', description: 'LabReport ID', type: 'string' })
   @ApiResponse({
     status: 200,
-    description: 'Return the labresult with the given ID.',
+    description: 'Return the labReport with the given ID.',
   })
-  @ApiResponse({ status: 404, description: 'LabResult not found.' })
+  @ApiResponse({ status: 404, description: 'LabReport not found.' })
   async findById(@Param('id') id: string) {
     return await this.labReportService.findById(id);
   }
 
   @Get('GetByLabAndUser')
   @ApiOperation({ summary: 'Get the labreport' })
-  @ApiQuery({ name: 'labId', type: 'string', required: true, example: '3fa85f64-5717-4562-b3fc-2c963f66afa6' })
-  @ApiQuery({ name: 'userId', type: 'string', required: true, example: '3fa85f64-5717-4562-b3fc-2c963f66afa6' })
+  @ApiQuery({
+    name: 'labId',
+    type: 'string',
+    required: true,
+    example: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+  })
+  @ApiQuery({
+    name: 'userId',
+    type: 'string',
+    required: true,
+    example: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+  })
   @ApiResponse({
     status: 200,
     description: 'The labReport has been successfully returned',

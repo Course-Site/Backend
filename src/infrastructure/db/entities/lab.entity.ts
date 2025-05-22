@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 import { LabResultEntity } from './lab_result.entity';
 import { TopicEntity } from './topic.entity';
-import { LabReportEntity } from './lab_report.entity'
+import { LabReportEntity } from './lab_report.entity';
 
 @Entity()
 export class LabEntity {

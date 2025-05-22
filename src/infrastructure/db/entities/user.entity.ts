@@ -11,7 +11,7 @@ import { LabResultEntity } from './lab_result.entity';
 import { TestResultEntity } from './test_result.entity';
 import { UserStatisticsEntity } from './user_statistics.entity';
 import { UserTestStatisticsEntity } from './user_test_statistics.entity';
-import { LabReportEntity } from './lab_report.entity'
+import { LabReportEntity } from './lab_report.entity';
 
 @Entity()
 export class UserEntity {

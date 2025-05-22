@@ -8,8 +8,8 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import { UserEntity } from './user.entity'
-import { LabEntity } from './lab.entity'
+import { UserEntity } from './user.entity';
+import { LabEntity } from './lab.entity';
 
 @Entity()
 export class LabReportEntity {
@@ -44,7 +44,7 @@ export class LabReportEntity {
   @ManyToOne(() => UserEntity, (user) => user.labReport)
   @JoinColumn({ name: 'userId' })
   user: UserEntity;
-  
+
   @ManyToOne(() => LabEntity, (lab) => lab.labReport, {
     onDelete: 'CASCADE',
   })

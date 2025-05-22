@@ -5,10 +5,8 @@ import {
   Column,
   OneToOne,
   JoinColumn,
-  OneToMany,
   CreateDateColumn,
 } from 'typeorm';
-import { LabResultEntity } from './lab_result.entity';
 import { UserEntity } from './user.entity';
 
 @Entity()

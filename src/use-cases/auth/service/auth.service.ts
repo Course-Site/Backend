@@ -41,7 +41,7 @@ export class AuthService implements IAuthService {
     };
   }
 
-  async signUp(data: CreateUserDto): Promise<{ token: string, id: string }> {
+  async signUp(data: CreateUserDto): Promise<{ token: string; id: string }> {
     try {
       const candidate = await this.userService.findByEmail(data.email);
       if (candidate) {
@@ -56,7 +56,7 @@ export class AuthService implements IAuthService {
           id: userData.id,
           role: userData.role,
         }),
-        id: userData.id
+        id: userData.id,
       };
     } catch (err) {
       throw new ForbiddenException('Ошибка при регистрации');

@@ -47,9 +47,10 @@ export class TestResultService implements ITestResultService {
       data.testId,
       test.scoreMethod,
     );
-    const IsUserStatistic = await this.userStatisticsService.findByUserId(data.userId);
-    console.log(IsUserStatistic);
-    if (IsUserStatistic.length == 0 ) {
+    const IsUserStatistic = await this.userStatisticsService.findByUserId(
+      data.userId,
+    );
+    if (IsUserStatistic.length == 0) {
       await this.userStatisticsService.createUserStatistics({
         userId: data.userId,
         totalTestScore: 0,
@@ -66,11 +67,11 @@ export class TestResultService implements ITestResultService {
   }
 
   async findByTestAndUser(
-      labId: string,
-      userId: string,
-    ): Promise<ITestResultEntity[]> {
-      return this.testResultRepository.findByTestAndUser(labId, userId);
-    }
+    labId: string,
+    userId: string,
+  ): Promise<ITestResultEntity[]> {
+    return this.testResultRepository.findByTestAndUser(labId, userId);
+  }
 
   async findById(id: string): Promise<ITestResultEntity> {
     return this.testResultRepository.findById(id);

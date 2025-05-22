@@ -9,7 +9,6 @@ import {
 } from 'typeorm';
 import { LabEntity } from './lab.entity';
 import { UserEntity } from './user.entity';
-import { UserStatisticsEntity } from './user_statistics.entity';
 
 @Entity()
 export class LabResultEntity {
