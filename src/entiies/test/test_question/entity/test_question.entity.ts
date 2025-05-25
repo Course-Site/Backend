@@ -4,6 +4,7 @@ export class TestQuestionEntity implements ITestQuestionEntity {
   id?: string;
   text: string;
   number: string;
+  score: number;
   testId: string;
 
   constructor(data: ITestQuestionEntity) {
@@ -11,5 +12,6 @@ export class TestQuestionEntity implements ITestQuestionEntity {
     this.text = data.text;
     this.number = data.number;
     this.testId = data.testId;
+    this.score = data.score;
   }
 }

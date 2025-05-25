@@ -20,7 +20,7 @@ export class LabEntity {
   @Column('varchar', { nullable: true })
   title: string;
 
-  @Column({ type: 'int', default: 5 })
+  @Column({ type: 'float', default: 5 })
   @IsNotEmpty()
   maxScore: number;
 

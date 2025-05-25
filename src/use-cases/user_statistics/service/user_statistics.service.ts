@@ -53,11 +53,11 @@ export class UserStatisticsService implements IUserStatisticsService {
 
   async updateUserStatistics(
     id: string,
-    userstatistics: Partial<IUserStatisticsEntity>,
+    userStatistics: Partial<IUserStatisticsEntity>,
   ): Promise<IUserStatisticsEntity> {
     return await this.userStatisticsRepository.updateUserStatistics(
       id,
-      userstatistics,
+      userStatistics,
     );
   }
 

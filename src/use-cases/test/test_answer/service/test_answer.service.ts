@@ -18,7 +18,6 @@ export class TestAnswerService implements ITestAnswerService {
       text: data.text,
       isCorrect: data.isCorrect,
       questionId: data.questionId,
-      score: data.score,
     });
   }
 

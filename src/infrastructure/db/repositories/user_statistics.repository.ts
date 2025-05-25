@@ -56,10 +56,10 @@ export class UserStatisticsRepository implements IUserStatisticsRepository {
 
   async updateUserStatistics(
     id: string,
-    userstatistics: Partial<IUserStatisticsEntity>,
+    userStatistics: Partial<IUserStatisticsEntity>,
   ): Promise<IUserStatisticsEntity> {
     try {
-      await this.userStatisticsRepository.update(id, userstatistics);
+      await this.userStatisticsRepository.update(id, userStatistics);
       return this.userStatisticsRepository.findOne({ where: { id } });
     } catch {
       throw new Error('UserStatistics not found');

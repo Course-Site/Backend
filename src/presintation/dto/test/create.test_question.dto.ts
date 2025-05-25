@@ -2,8 +2,7 @@ import { ICreateTestQuestionDto } from 'src/use-cases/test/test_question/interfa
 
 export class CreateTestQuestionDto implements ICreateTestQuestionDto {
   text: string;
-
   number: string;
-
+  score: number;
   testId: string;
 }

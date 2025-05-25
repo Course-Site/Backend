@@ -15,8 +15,8 @@ import { ITestEvaluateService } from 'src/use-cases/test/test_evaluate/interface
 
 @UseGuards(JwtAuthGuard, RolesGuard)
 @ApiBearerAuth()
-@Controller('test-evaluate')
-@ApiTags('Test Evaluation')
+@Controller('test_evaluate')
+@ApiTags('Test Evaluate')
 export class TestEvaluateController {
   constructor(
     @Inject('testEvaluationService')

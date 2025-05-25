@@ -26,7 +26,7 @@ export class TestEntity {
   @Column('text')
   description: string;
 
-  @Column({ type: 'int', default: 5 })
+  @Column({ type: 'float', default: 5 })
   @IsNotEmpty()
   maxScore: number;
 

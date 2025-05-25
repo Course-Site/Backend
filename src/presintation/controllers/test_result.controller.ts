@@ -29,8 +29,8 @@ import { ITestResultService } from 'src/use-cases/test/test_result/interface/ser
 
 @UseGuards(JwtAuthGuard, RolesGuard)
 @ApiBearerAuth()
-@Controller('testresult')
-@ApiTags('TestResult')
+@Controller('test_result')
+@ApiTags('Test Result')
 export class TestResultController {
   constructor(
     @Inject('testResultService')

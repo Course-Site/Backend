@@ -28,7 +28,7 @@ import { IUserStatisticsService } from 'src/use-cases/user_statistics/interface/
 @UseGuards(JwtAuthGuard, RolesGuard)
 @ApiBearerAuth()
 @Controller('user_statistics')
-@ApiTags('User_Statistics')
+@ApiTags('User Statistics')
 export class UserStatisticsController {
   constructor(
     @Inject('userStatisticsService')

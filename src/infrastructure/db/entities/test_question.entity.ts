@@ -23,6 +23,10 @@ export class TestQuestionEntity {
   @IsNotEmpty()
   number: string;
 
+  @Column({ type: 'float', default: 1 })
+  @IsNotEmpty()
+  score: number;
+
   @Column('uuid')
   @IsNotEmpty()
   testId: string;

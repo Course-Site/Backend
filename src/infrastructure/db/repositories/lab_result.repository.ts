@@ -39,6 +39,16 @@ export class LabResultRepository implements ILabResultRepository {
     });
   }
 
+  async findByUserId(userId: string): Promise<ILabResultEntity[]> {
+    try {
+      return this.labResultRepository.find({
+        where: { userId: userId },
+      });
+    } catch (error) {
+      throw new Error('LabResults not found');
+    }
+  }
+
   async findById(labresultId: string): Promise<ILabResultEntity> {
     try {
       return this.labResultRepository.findOne({

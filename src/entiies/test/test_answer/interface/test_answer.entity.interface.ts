@@ -3,5 +3,4 @@ export interface ITestAnswerEntity {
   text: string;
   isCorrect: boolean;
   questionId: string;
-  score: number;
 }

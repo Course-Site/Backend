@@ -3,5 +3,4 @@ export type TTestAnswerEntity = {
   text: string;
   isCorrect: boolean;
   questionId: string;
-  score: number;
 };

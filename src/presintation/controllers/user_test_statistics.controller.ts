@@ -22,7 +22,7 @@ import { IUserTestStatisticsService } from 'src/use-cases/user_test_statistics/i
 @UseGuards(JwtAuthGuard, RolesGuard)
 @ApiBearerAuth()
 @Controller('user_test_statistics')
-@ApiTags('UserTestStatistics')
+@ApiTags('User Test Statistics')
 export class UserTestStatisticsController {
   constructor(
     @Inject('userTestStatisticsService')

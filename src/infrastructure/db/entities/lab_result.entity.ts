@@ -18,7 +18,7 @@ export class LabResultEntity {
   @Column('varchar', { nullable: true })
   submissionFileUrl?: string;
 
-  @Column('int', { nullable: true })
+  @Column('float', { nullable: true })
   @IsNotEmpty()
   score: number;
 

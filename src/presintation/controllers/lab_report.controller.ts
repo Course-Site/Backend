@@ -38,7 +38,7 @@ import { basename } from 'path';
 
 @UseGuards(JwtAuthGuard, RolesGuard)
 @ApiBearerAuth()
-@Controller('lab-reports')
+@Controller('lab_report')
 @ApiTags('Lab Report')
 export class LabReportController {
   constructor(

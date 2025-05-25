@@ -21,10 +21,6 @@ export class TestAnswerEntity {
   @IsNotEmpty()
   isCorrect: boolean;
 
-  @Column({ type: 'float', default: 1 })
-  @IsNotEmpty()
-  score: number;
-
   @Column('uuid')
   @IsNotEmpty()
   questionId: string;

@@ -44,6 +44,10 @@ export class LabResultService implements ILabResultService {
     return this.labResultRepository.findByLabAndUser(labId, userId);
   }
 
+  async findByUserId(userId: string): Promise<ILabResultEntity[]> {
+    return this.labResultRepository.findByUserId(userId);
+  }
+
   async findById(id: string): Promise<ILabResultEntity> {
     return this.labResultRepository.findById(id);
   }

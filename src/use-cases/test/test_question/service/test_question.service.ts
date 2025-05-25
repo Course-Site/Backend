@@ -18,6 +18,7 @@ export class TestQuestionService implements ITestQuestionService {
       text: data.text,
       number: data.number,
       testId: data.testId,
+      score: data.score,
     });
   }
 

@@ -47,10 +47,12 @@ export class TestResultService implements ITestResultService {
       data.testId,
       test.scoreMethod,
     );
+
     const IsUserStatistic = await this.userStatisticsService.findByUserId(
       data.userId,
     );
-    if (IsUserStatistic.length == 0) {
+
+    if (IsUserStatistic.length === 0) {
       await this.userStatisticsService.createUserStatistics({
         userId: data.userId,
         totalTestScore: 0,
@@ -116,5 +118,6 @@ export class TestResultService implements ITestResultService {
       result.testId,
       test.scoreMethod,
     );
+    await this.userStatisticsService.recalculateTestStatistic(result.userId);
   }
 }

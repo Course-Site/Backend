@@ -10,7 +10,7 @@ export interface IUserStatisticsRepository {
   findByUserId(userId: string): Promise<IUserStatisticsEntity[]>;
   updateUserStatistics(
     id: string,
-    userstatistics: Partial<IUserStatisticsEntity>,
+    userStatistics: Partial<IUserStatisticsEntity>,
   ): Promise<IUserStatisticsEntity>;
   deleteUserStatistics(id: string): Promise<void>;
   updateTestStatistics(userId: string, score: number): Promise<void>;

@@ -15,7 +15,7 @@ export class TestResultEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column('int')
+  @Column('float')
   @IsNotEmpty()
   score: number;
 

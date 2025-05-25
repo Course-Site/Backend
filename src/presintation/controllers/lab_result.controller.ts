@@ -29,8 +29,8 @@ import { ILabResultService } from 'src/use-cases/lab/lab_result/interface/servic
 
 @UseGuards(JwtAuthGuard, RolesGuard)
 @ApiBearerAuth()
-@Controller('labresult')
-@ApiTags('LabResult')
+@Controller('lab_result')
+@ApiTags('Lab Result')
 export class LabResultController {
   constructor(
     @Inject('labResultService')

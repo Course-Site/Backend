@@ -27,8 +27,8 @@ import { ITestAnswerService } from 'src/use-cases/test/test_answer/interface/ser
 
 @UseGuards(JwtAuthGuard, RolesGuard)
 @ApiBearerAuth()
-@Controller('testAnswer')
-@ApiTags('TestAnswer')
+@Controller('test_answer')
+@ApiTags('Test Answer')
 export class TestAnswerController {
   constructor(
     @Inject('testAnswerService')
@@ -44,7 +44,6 @@ export class TestAnswerController {
         text: { type: 'string', default: 'test' },
         isCorrect: { type: 'bool', default: '0' },
         questionId: { type: 'string', default: 'test' },
-        score: { type: 'number', default: '1' },
       },
     },
   })
@@ -87,7 +86,6 @@ export class TestAnswerController {
         text: { type: 'string', default: 'test' },
         isCorrect: { type: 'bool', default: '0' },
         questionId: { type: 'string', default: 'test' },
-        score: { type: 'number', default: '1' },
       },
     },
   })

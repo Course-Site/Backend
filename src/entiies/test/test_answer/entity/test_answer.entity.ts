@@ -6,13 +6,11 @@ export class TestAnswerEntity implements ITestAnswerEntity {
   text: string;
   isCorrect: boolean;
   questionId: string;
-  score: number;
 
   constructor(data: TTestAnswerEntity) {
     this.id = data.id;
     this.text = data.text;
     this.isCorrect = data.isCorrect;
     this.questionId = data.questionId;
-    this.score = data.score;
   }
 }

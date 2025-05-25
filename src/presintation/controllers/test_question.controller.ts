@@ -28,8 +28,8 @@ import { CreateTestQuestionDto } from '../dto/test/create.test_question.dto';
 
 @UseGuards(JwtAuthGuard, RolesGuard)
 @ApiBearerAuth()
-@Controller('testQuestion')
-@ApiTags('TestQuestion')
+@Controller('test_question')
+@ApiTags('Test Question')
 export class TestQuestionController {
   constructor(
     @Inject('testQuestionService')
@@ -70,11 +70,13 @@ export class TestQuestionController {
             {
               text: 'Что такое Dependency Injection?',
               number: '1',
+              score: '1',
               testId: '585aff0c-ba6d-460d-9b40-021b57c81750',
             },
             {
               text: 'Как работает Middleware в NestJS?',
               number: '2',
+              score: '1',
               testId: '585aff0c-ba6d-460d-9b40-021b57c81750',
             },
           ],
@@ -115,6 +117,7 @@ export class TestQuestionController {
       properties: {
         text: { type: 'string', default: 'test' },
         number: { type: 'string', default: '1' },
+        score: { type: 'number', default: '1' },
         testId: { type: 'string', default: 'test' },
       },
     },
