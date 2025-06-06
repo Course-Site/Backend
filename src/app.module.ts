@@ -20,6 +20,7 @@ import { LabReportModule } from './infrastructure/modules/lab_report.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: ['.env.local', '.env'],
     }),
     TypeOrmComponent,
     AuthModule,
